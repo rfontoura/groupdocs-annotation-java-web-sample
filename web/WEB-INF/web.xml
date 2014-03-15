@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+        PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+
+    <servlet>
+        <servlet-name>IndexServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.IndexServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>IndexServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetJsServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetJsHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetJsServlet</servlet-name>
+        <url-pattern>/GetJsHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetCssServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetCssHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetCssServlet</servlet-name>
+        <url-pattern>/GetCssHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetImageServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetImageHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetImageServlet</servlet-name>
+        <url-pattern>/images/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetDocumentPageImageHandlerServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetDocumentPageImageHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetDocumentPageImageHandlerServlet</servlet-name>
+        <url-pattern>/document-viewer/GetDocumentPageImageHandler/*</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>GetFileHandlerServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetFileHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetFileHandlerServlet</servlet-name>
+        <url-pattern>/document-viewer/GetFileHandler/*</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>GetImageUrlsHandlerServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetImageUrlsHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetImageUrlsHandlerServlet</servlet-name>
+        <url-pattern>/document-viewer/GetImageUrlsHandler</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>GetPdf2JavaScriptHandlerServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetPdf2JavaScriptHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetPdf2JavaScriptHandlerServlet</servlet-name>
+        <url-pattern>/document-viewer/GetPdf2JavaScriptHandler</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>GetPrintableHtmlHandlerServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetPrintableHtmlHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetPrintableHtmlHandlerServlet</servlet-name>
+        <url-pattern>/document-viewer/GetPrintableHtmlHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ListAnnotationsHandler</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.ListAnnotationsHandler</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>ListAnnotationsHandler</servlet-name>
+        <url-pattern>/document-annotation/ListAnnotationsHandler</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ExportAnnotationsHandler</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.ExportAnnotationsHandler</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>ExportAnnotationsHandler</servlet-name>
+        <url-pattern>/document-annotation/ExportAnnotationsHandler</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>GetPdfVersionOfDocumentHandler</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetPdfVersionOfDocumentHandler</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>GetPdfVersionOfDocumentHandler</servlet-name>
+        <url-pattern>/document-annotation/GetPdfVersionOfDocumentHandler</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>CreateAnnotationHandler</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.CreateAnnotationHandler</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>CreateAnnotationHandler</servlet-name>
+        <url-pattern>/document-annotation/CreateAnnotationHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetAvatarHandler</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetAvatarHandler</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetAvatarHandler</servlet-name>
+        <url-pattern>/document-annotation/GetAvatarHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddAnnotationReplyHandler</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.AddAnnotationReplyHandler</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddAnnotationReplyHandler</servlet-name>
+        <url-pattern>/document-annotation/AddAnnotationReplyHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EditAnnotationReplyHandler</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.EditAnnotationReplyHandler</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>EditAnnotationReplyHandler</servlet-name>
+        <url-pattern>/document-annotation/EditAnnotationReplyHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteAnnotationReplyHandler</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.DeleteAnnotationReplyHandler</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>DeleteAnnotationReplyHandler</servlet-name>
+        <url-pattern>/document-annotation/DeleteAnnotationReplyHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteAnnotationHandler</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.DeleteAnnotationHandler</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>DeleteAnnotationHandler</servlet-name>
+        <url-pattern>/document-annotation/DeleteAnnotationHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SaveTextFieldHandler</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.SaveTextFieldHandler</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>SaveTextFieldHandler</servlet-name>
+        <url-pattern>/document-annotation/SaveTextFieldHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SetTextFieldColorHandler</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.SetTextFieldColorHandler</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>SetTextFieldColorHandler</servlet-name>
+        <url-pattern>/document-annotation/SetTextFieldColorHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MoveAnnotationMarkerHandler</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.MoveAnnotationMarkerHandler</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>MoveAnnotationMarkerHandler</servlet-name>
+        <url-pattern>/document-annotation/MoveAnnotationMarkerHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LoadFileBrowserTreeDataHandlerServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.LoadFileBrowserTreeDataHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LoadFileBrowserTreeDataHandlerServlet</servlet-name>
+        <url-pattern>/document-viewer/LoadFileBrowserTreeDataHandler</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>ViewDocumentHandlerServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.ViewDocumentHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ViewDocumentHandlerServlet</servlet-name>
+        <url-pattern>/document-viewer/ViewDocumentHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>/document-annotation/assets/*</url-pattern>
+        <url-pattern>*.js</url-pattern>
+        <url-pattern>*.css</url-pattern>
+        <url-pattern>*.png</url-pattern>
+        <url-pattern>*.gif</url-pattern>
+    </servlet-mapping>
+
+    <filter>
+        <filter-name>CORS</filter-name>
+        <filter-class>com.thetransactioncompany.cors.CORSFilter</filter-class>
+        <init-param>
+            <param-name>cors.supportedMethods</param-name>
+            <param-value>GET, POST</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>CORS</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>
