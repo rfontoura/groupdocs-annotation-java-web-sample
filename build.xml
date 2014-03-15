@@ -1,0 +1,62 @@
+<?xml version="1.0" ?> 
+<project name="document-annotation" default="war">
+    <property file="build.properties"/>
+
+
+    <path id="project.classpath">
+        <fileset dir="${project.lib.dir}" includes="servlet-api.jar"/>
+        <fileset dir="${project.lib.dir}" includes="log4j-1.2.17.jar"/>
+        <fileset dir="${project.lib.dir}" includes="${project.annotation.path}" />
+        <fileset dir="${project.tomcat.home}/lib/" includes="*.jar" />
+        <fileset dir="src" includes="log4j.properties"/>
+    </path>
+
+    <target name="init" depends="clean">
+        <echo>Creating the build directory</echo>
+        <mkdir dir="${project.build.dir}/WEB-INF/classes"/>
+        <mkdir dir="${project.build.dir}/WEB-INF/lib"/>
+    </target>
+
+    <target name="compile" depends="init" description="Compile project">
+        <echo>Compile the source files</echo>
+        <javac srcdir="${project.src.dir}" destdir="${project.build.dir}/WEB-INF/classes" includeantruntime="false">
+            <classpath refid="project.classpath"/>
+        </javac>
+    </target>
+
+    <target name="copy" depends="compile" >
+        <copy todir="${project.build.dir}/WEB-INF">
+            <fileset dir="${project.conf.dir}"/>
+        </copy>
+        <copy todir="${project.build.dir}/META-INF">
+            <fileset dir="${project.meta.dir}"/>
+        </copy>
+        <copy todir="${project.build.dir}/WEB-INF/lib">
+            <fileset dir="${project.lib.dir}"/>
+            <fileset file="${project.lib.dir}/${project.annotation.path}" />
+        </copy>
+        <copy todir="${project.build.dir}/annotation">
+            <fileset dir="${project.view.dir}" />
+        </copy>
+        <copy todir="${project.build.dir}/WEB-INF/classes">
+            <fileset dir="src" includes="log4j.properties"/>
+        </copy>
+    </target>
+
+    <target name="war" depends="copy" description="Create war file">
+        <echo>Building the war file</echo>
+        <war destfile="${project.dist.dir}/document-annotation.war" webxml="${project.build.dir}/WEB-INF/web.xml">
+            <fileset dir="${project.build.dir}"/>
+        </war>
+	</target>
+
+    <target name="clean">
+        <echo>Cleaning the ${project.build.dir}</echo>
+                <delete dir="${project.build.dir}" />
+        <echo>Cleaning the ${project.dist.dir}</echo>
+                <delete dir="${project.dist.dir}" />
+        <echo>Cleaning the out</echo>
+        <delete dir="out" />
+    </target>
+
+</project>
