@@ -1,5 +1,6 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import com.groupdocs.annotation.config.ServiceConfiguration;
 import com.groupdocs.annotation.handler.AnnotationHandler;
 
 import org.apache.log4j.Logger;
@@ -24,11 +25,9 @@ public abstract class AnnotationServlet extends HttpServlet {
             final String appPath = "http://127.0.0.1:8080/document-annotation";
             final String basePath = "G:\\imyFolder\\workshop\\GroupDocs\\Files";
             final String licensePath = null;
-            if (annotationHandler == null) {
-                final com.groupdocs.annotation.config.ServiceConfiguration annotationConfig =
-                    new com.groupdocs.annotation.config.ServiceConfiguration(appPath, basePath, licensePath, Boolean.FALSE);
-                annotationHandler = new AnnotationHandler(annotationConfig);
-            }
+            final ServiceConfiguration annotationConfig
+                    = new ServiceConfiguration(appPath, basePath, licensePath, Boolean.FALSE);
+            annotationHandler = new AnnotationHandler(annotationConfig);
         } catch (Exception ex) {
             Logger.getLogger(this.getClass()).error(ex);
         }
