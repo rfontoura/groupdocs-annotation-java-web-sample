@@ -219,6 +219,16 @@
         <servlet-name>MoveAnnotationMarkerHandler</servlet-name>
         <url-pattern>/document-annotation/MoveAnnotationMarkerHandler</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>SignalrServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.SignalrServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>SignalrServlet</servlet-name>
+        <url-pattern>/signalr1_1_2/*</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>LoadFileBrowserTreeDataHandlerServlet</servlet-name>
