@@ -18,15 +18,17 @@ import java.io.IOException;
 public abstract class AnnotationServlet extends HttpServlet {
 
     protected AnnotationHandler annotationHandler = null;
+    protected final String appPath = "http://127.0.0.1:8080/document-annotation";
+    protected final String basePath = "E:\\Projects\\GroupDocs\\app\\xFiles";
+    protected final int width = 800;
+    protected final int height = 600;
 
     @Override
     public void init() throws ServletException {
         try {
-            final String appPath = "http://127.0.0.1:8080/document-annotation";
-            final String basePath = "G:\\imyFolder\\workshop\\GroupDocs\\Files";
             final String licensePath = null;
             final ServiceConfiguration annotationConfig
-                    = new ServiceConfiguration(appPath, basePath, licensePath, Boolean.FALSE);
+                    = new ServiceConfiguration(appPath, basePath, licensePath, Boolean.FALSE, width);
             annotationHandler = new AnnotationHandler(annotationConfig);
         } catch (Exception ex) {
             Logger.getLogger(this.getClass()).error(ex);

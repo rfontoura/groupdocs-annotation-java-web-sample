@@ -19,6 +19,6 @@ public class GetPrintableHtmlHandlerServlet extends AnnotationServlet{
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Content-type", "text/plain");
-        response.getWriter().print(annotationHandler.getPrintableHtmlHandler(request));
+        response.getOutputStream().write(annotationHandler.getPrintableHtmlHandler(request, response).toString().getBytes());
     }
 }

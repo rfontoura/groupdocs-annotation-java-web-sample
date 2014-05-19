@@ -13,12 +13,12 @@ public class MoveAnnotationMarkerHandler extends AnnotationServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Content-type", "application/json;charset=UTF-8");
-        response.getWriter().print(annotationHandler.moveAnnotationMarkerHandler(request));
+        response.getOutputStream().write(annotationHandler.moveAnnotationMarkerHandler(request, response).toString().getBytes());
     }
 }

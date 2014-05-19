@@ -16,7 +16,7 @@ public class GetDocumentPageImageHandlerServlet extends AnnotationServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            String width = request.getParameter("width");
+            int width = Integer.parseInt(request.getParameter("width"));
             int quality = Integer.valueOf(request.getParameter("quality"));
             boolean usePdf = Boolean.valueOf(request.getParameter("usePdf"));
             int pageIndex = Integer.valueOf(request.getParameter("pageIndex"));

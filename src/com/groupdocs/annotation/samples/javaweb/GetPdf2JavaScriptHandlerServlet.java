@@ -19,6 +19,6 @@ public class GetPdf2JavaScriptHandlerServlet extends AnnotationServlet{
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Content-type", "application/json;charset=UTF-8");
-        response.getWriter().print(annotationHandler.getPdf2JavaScriptHandler(request));
+        response.getOutputStream().write(annotationHandler.getPdf2JavaScriptHandler(request, response).toString().getBytes());
     }
 }

@@ -19,6 +19,6 @@ public class ViewDocumentHandlerServlet extends AnnotationServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Content-type", "application/json;charset=UTF-8");
-        response.getWriter().print(annotationHandler.viewDocumentHandler(request));
+        response.getOutputStream().write(annotationHandler.viewDocumentHandler(request, response).toString().getBytes());
     }
 }

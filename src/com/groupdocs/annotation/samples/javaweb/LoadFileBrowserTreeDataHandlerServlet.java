@@ -19,6 +19,6 @@ public class LoadFileBrowserTreeDataHandlerServlet extends AnnotationServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Content-type", "application/json;charset=UTF-8");
-        response.getWriter().print(annotationHandler.loadFileBrowserTreeDataHandler(request));
+        response.getOutputStream().write(annotationHandler.loadFileBrowserTreeDataHandler(request, response).toString().getBytes());
     }
 }

@@ -142,7 +142,7 @@
 
     <servlet>
         <servlet-name>GetAvatarHandler</servlet-name>
-        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetAvatarHandler</servlet-class>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetAvatarHandlerServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -240,7 +240,6 @@
         <url-pattern>/document-viewer/LoadFileBrowserTreeDataHandler</url-pattern>
     </servlet-mapping>
 
-
     <servlet>
         <servlet-name>ViewDocumentHandlerServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.ViewDocumentHandlerServlet</servlet-class>
@@ -249,6 +248,26 @@
     <servlet-mapping>
         <servlet-name>ViewDocumentHandlerServlet</servlet-name>
         <url-pattern>/document-viewer/ViewDocumentHandler</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FontsHandlerServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.FontsHandlerServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>FontsHandlerServlet</servlet-name>
+        <url-pattern>/fonts/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AtmosphereServlet</servlet-name>
+        <servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AtmosphereServlet</servlet-name>
+        <!-- Any mapping -->
+        <url-pattern>/document-annotation/annotation</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -272,5 +291,16 @@
     <filter-mapping>
         <filter-name>CORS</filter-name>
         <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>AtmosphereFilter</filter-name>
+        <filter-class>org.atmosphere.cpr.AtmosphereFilter</filter-class>
+        <!-- List of init-param -->
+    </filter>
+    <filter-mapping>
+        <filter-name>AtmosphereFilter</filter-name>
+        <!-- Any mapping -->
+        <url-pattern>/document-annotation/annotation</url-pattern>
     </filter-mapping>
 </web-app>
