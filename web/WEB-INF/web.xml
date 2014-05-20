@@ -67,7 +67,6 @@
         <url-pattern>/document-viewer/GetFileHandler/*</url-pattern>
     </servlet-mapping>
 
-
     <servlet>
         <servlet-name>GetImageUrlsHandlerServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.GetImageUrlsHandlerServlet</servlet-class>
@@ -261,13 +260,13 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>AtmosphereServlet</servlet-name>
-        <servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
+        <servlet-name>GetDocumentCollaboratorsHandlerServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetDocumentCollaboratorsHandlerServlet</servlet-class>
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>AtmosphereServlet</servlet-name>
-        <!-- Any mapping -->
-        <url-pattern>/document-annotation/annotation</url-pattern>
+        <servlet-name>GetDocumentCollaboratorsHandlerServlet</servlet-name>
+        <url-pattern>/document-annotation/GetDocumentCollaboratorsHandler/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -293,14 +292,24 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <filter>
-        <filter-name>AtmosphereFilter</filter-name>
-        <filter-class>org.atmosphere.cpr.AtmosphereFilter</filter-class>
-        <!-- List of init-param -->
-    </filter>
-    <filter-mapping>
-        <filter-name>AtmosphereFilter</filter-name>
-        <!-- Any mapping -->
-        <url-pattern>/document-annotation/annotation</url-pattern>
-    </filter-mapping>
+    <!-- Atmosphere -->
+    <servlet>
+        <servlet-name>AtmosphereServlet</servlet-name>
+        <servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
+        <init-param>
+            <!-- Jersey base package of your resources -->
+            <param-name>com.sun.jersey.config.property.packages</param-name>
+            <param-value>com.groupdocs.annotation.service</param-value>
+        </init-param>
+        <!--<init-param>-->
+            <!--&lt;!&ndash; Enable Jersey's JSON mapping feature &ndash;&gt;-->
+            <!--<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>-->
+            <!--<param-value>true</param-value>-->
+        <!--</init-param>-->
+        <load-on-startup>0</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AtmosphereServlet</servlet-name>
+        <url-pattern>/annotation</url-pattern>
+    </servlet-mapping>
 </web-app>
