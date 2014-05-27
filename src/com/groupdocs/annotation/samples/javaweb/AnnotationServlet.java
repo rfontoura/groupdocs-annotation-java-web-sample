@@ -26,7 +26,7 @@ public abstract class AnnotationServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {
         try {
-            final String licensePath = null;
+            final String licensePath = "C:\\license\\GroupDocs.Annotation.lic";
             final ServiceConfiguration annotationConfig
                     = new ServiceConfiguration(appPath, basePath, licensePath, Boolean.FALSE, width);
             annotationHandler = new AnnotationHandler(annotationConfig);

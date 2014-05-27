@@ -1,5 +1,5 @@
 <?xml version="1.0" ?> 
-<project name="document-annotation" default="war">
+<project name="document-annotation-java-web-sample" default="war">
     <property file="build.properties"/>
 
 

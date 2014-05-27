@@ -19,7 +19,7 @@ public class IndexServlet extends AnnotationServlet{
     
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("annotation_head", annotationHandler.getHeader(request));
+        request.setAttribute("annotation_head", annotationHandler.getHeader());
         final String userName = request.getParameter("userName");
 
         String fileId = request.getParameter("fileId");
@@ -51,7 +51,7 @@ public class IndexServlet extends AnnotationServlet{
             groupDocsFilePath = null;
         }
 
-        final String userGuid = annotationHandler.addCollaborator(userName, groupDocsFilePath.getPath(), AccessRights.All.value(), getIntFromColor(Color.RED));
+        final String userGuid = annotationHandler.addCollaborator(userName, groupDocsFilePath.getPath(), AccessRights.All, getIntFromColor(Color.RED));
 
         HashMap<String, String> params = new HashMap<String, String>() {{
             // You can skip parameters which have default value
@@ -98,7 +98,7 @@ public class IndexServlet extends AnnotationServlet{
 //            put("showFolderBrowser", Boolean.toString(applicationConfig.getShowFolderBrowser())); // Not used
 //            put("showDownload", Boolean.toString(applicationConfig.getShowDownload())); // Not used
 //            put("showSearch", Boolean.toString(applicationConfig.getShowSearch())); // Not used
-        }};        request.setAttribute("annotation_scripts", annotationHandler.getScripts(request, params));
+        }};        request.setAttribute("annotation_scripts", annotationHandler.getScripts(params));
         request.setAttribute("userName", userName);
         request.setAttribute("userGuid", userGuid);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("annotation/index.jsp");
