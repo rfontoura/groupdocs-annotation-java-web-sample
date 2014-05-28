@@ -1,7 +1,7 @@
-Groupdocs Annotation for Java (Java WEB Sample)
+Groupdocs.Annotation for Java (Java WEB Sample)
 ===============================================
 
-1. Download and extract GroupDocs Annotation for Java into desired directory. http://groupdocs.com/java/document-annotation-library
+1. Download and extract GroupDocs.Annotation for Java into desired directory. http://groupdocs.com/java/document-annotation-library
 2. Download sample source code to any directory.
 3. Open file `build.properties`. Update `project.annotation.path` property (on line 2) and `project.tomcat.home` property (on line 10).
 4. Open file `src\java\com\groupdocs\annotation\samples\javaweb\AnnotationServlet.java`. Edit init() method to fill your needs.
