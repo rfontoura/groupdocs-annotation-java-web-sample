@@ -6,7 +6,7 @@
     <path id="project.classpath">
         <fileset dir="${project.lib.dir}" includes="servlet-api.jar"/>
         <fileset dir="${project.lib.dir}" includes="log4j-1.2.17.jar"/>
-        <fileset dir="${project.lib.dir}" includes="${project.annotation.path}" />
+        <fileset dir="${project.m2.home}" includes="${project.annotation.path}" />
         <fileset dir="${project.tomcat.home}/lib/" includes="*.jar" />
         <fileset dir="src" includes="log4j.properties"/>
     </path>
@@ -33,7 +33,7 @@
         </copy>
         <copy todir="${project.build.dir}/WEB-INF/lib">
             <fileset dir="${project.lib.dir}"/>
-            <fileset file="${project.lib.dir}/${project.annotation.path}" />
+            <fileset file="${project.m2.home}/${project.annotation.path}" />
         </copy>
         <copy todir="${project.build.dir}/annotation">
             <fileset dir="${project.view.dir}" />
