@@ -1,8 +1,7 @@
 package com.groupdocs.annotation.samples.javaweb;
 
-import com.groupdocs.annotation.config.ServiceConfiguration;
 import com.groupdocs.annotation.handler.AnnotationHandler;
-
+import com.groupdocs.viewer.config.ServiceConfiguration;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -20,16 +19,13 @@ public abstract class AnnotationServlet extends HttpServlet {
     protected AnnotationHandler annotationHandler = null;
     protected final String appPath = "http://127.0.0.1:8080/document-annotation";
     protected final String basePath = "E:\\Projects\\GroupDocs\\app\\xFiles";
-    protected final int width = 800;
-    protected final int height = 600;
+    protected final ApplicationConfig applicationConfig = new ApplicationConfig(appPath, basePath);
+    protected final ServiceConfiguration serviceConfiguration = new ServiceConfiguration(applicationConfig);
 
     @Override
     public void init() throws ServletException {
         try {
-            final String licensePath = null;
-            final ServiceConfiguration annotationConfig
-                    = new ServiceConfiguration(appPath, basePath, licensePath, Boolean.FALSE, width);
-            annotationHandler = new AnnotationHandler(annotationConfig);
+            annotationHandler = new AnnotationHandler(serviceConfiguration);
         } catch (Exception ex) {
             Logger.getLogger(this.getClass()).error(ex);
         }

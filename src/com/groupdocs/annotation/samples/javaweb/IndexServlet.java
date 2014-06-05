@@ -41,7 +41,7 @@ public class IndexServlet extends AnnotationServlet{
         }else if(fileUrl != null && !fileUrl.isEmpty()){
             groupDocsFilePath = new FileUrl(fileUrl);
         }else if(tokenId != null && !tokenId.isEmpty()){
-            TokenId tki = new TokenId(tokenId);
+            TokenId tki = new TokenId(tokenId, serviceConfiguration.getEncryptionKey());
             if(tki.isExpired()){
                 groupDocsFilePath = null;
             }else{
@@ -53,46 +53,46 @@ public class IndexServlet extends AnnotationServlet{
 
         final String userGuid = annotationHandler.addCollaborator(userName, groupDocsFilePath.getPath(), AccessRights.All.value(), getIntFromColor(Color.RED));
 
-        HashMap<String, String> params = new HashMap<String, String>() {{
+        HashMap<String, Object> params = new HashMap<String, Object>() {{
             // You can skip parameters which have default value
             put("filePath",                             groupDocsFilePath.getPath()); // Default value: empty string
-            put("width",                                Integer.toString(width));            // Default value: 800
-            put("height",                               Integer.toString(height));           // Default value: 600
-            put("quality",                              "75");              // Default value: 90
-            put("enableRightClickMenu",                 "true");            // Default value: true
-            put("showHeader",                           "true");       // Default value: true
-            put("showZoom",                             "true");         // Default value: true
-            put("showPaging",                           "true");       // Default value: true
-            put("showPrint",                            "false");        // Default value: false
-            put("showFileExplorer",                     "true");            // Default value: true
-            put("showThumbnails",                       "true");   // Default value: true
-            put("showToolbar",                          "true");            // Default value: true
-            put("openThumbnails",                       "false");   // Default value: false
-            put("zoomToFitWidth",                       "false");           // Default value: false
-            put("zoomToFitHeight",                      "false");           // Default value: false
-            put("initialZoom",                          "100");             // Default value: 100
-            put("preloadPagesCount",                    "0");               // Default value: 0
-            put("enableSidePanel",                      "true");            // Default value: true
-            put("scrollOnFocus",                        "true");            // Default value: true
-            put("strikeOutColor",                       "");                // Default value: empty string
-            put("enabledTools",                         "511");             // Default value: 511
-            put("connectorPosition",                    "0");               // Default value: 0
-            put("saveReplyOnFocusLoss",                 "false");           // Default value: false
-            put("clickableAnnotations",                 "false");           // Default value: false
-            put("disconnectUncommented",                "false");           // Default value: false
-            put("strikeoutMode",                        "0");               // Default value: 0
-            put("sideboarContainerSelector",            "div.comments_sidebar_wrapper"); // Default value: div.comments_sidebar_wrapper
-            put("usePageNumberInUrlHash",               "false");           // Default value: false
-            put("textSelectionSynchronousCalculation",  "true");            // Default value: true
-            put("variableHeightPageSupport",            "true");            // Default value: true
-            put("useJavaScriptDocumentDescription",     "true");            // Default value: true
-            put("isRightPanelEnabled",                  "true");            // Default value: true
-            put("createMarkup",                         "true");            // Default value: true
-            put("use_pdf",                              "true");            // Default value: true
-            put("_mode",                                "annotatedDocument");           // Default value: annotatedDocument
-            put("selectionContainerSelector",           "[name='selection-content']");  // Default value: [name='selection-content']
-            put("graphicsContainerSelector",            ".annotationsContainer");       // Default value: .annotationsContainer
-            put("widgetId",                             "annotation-widget");           // Default value: annotation-widget
+            put("width",                                applicationConfig.getWidth());            // Default value: 800
+            put("height",                               applicationConfig.getHeight());           // Default value: 600
+            put("quality",                              applicationConfig.getQuality());              // Default value: 90
+            put("enableRightClickMenu",                 applicationConfig.isEnableRightClickMenu());            // Default value: true
+            put("showHeader",                           applicationConfig.isShowHeader());       // Default value: true
+            put("showZoom",                             applicationConfig.isShowZoom());         // Default value: true
+            put("showPaging",                           applicationConfig.isShowPaging());       // Default value: true
+            put("showPrint",                            applicationConfig.isShowPrint());        // Default value: false
+            put("showFileExplorer",                     applicationConfig.isShowFileExplorer());            // Default value: true
+            put("showThumbnails",                       applicationConfig.isShowThumbnails());   // Default value: true
+            put("showToolbar",                          applicationConfig.isShowToolbar());            // Default value: true
+            put("openThumbnails",                       applicationConfig.isOpenThumbnails());   // Default value: false
+            put("zoomToFitWidth",                       applicationConfig.isZoomToFitWidth());           // Default value: false
+            put("zoomToFitHeight",                      applicationConfig.isZoomToFitHeight());           // Default value: false
+            put("initialZoom",                          applicationConfig.getInitialZoom());             // Default value: 100
+            put("preloadPagesCount",                    applicationConfig.getPreloadPagesCount());               // Default value: 0
+            put("enableSidePanel",                      applicationConfig.isEnableSidePanel());            // Default value: true
+            put("scrollOnFocus",                        applicationConfig.isScrollOnFocus());            // Default value: true
+            put("strikeOutColor",                       applicationConfig.getStrikeOutColor());                // Default value: empty string
+            put("enabledTools",                         applicationConfig.getEnabledTools());            // Default value: 2047
+            put("connectorPosition",                    applicationConfig.getConnectorPosition());               // Default value: 0
+            put("saveReplyOnFocusLoss",                 applicationConfig.isSaveReplyOnFocusLoss());           // Default value: false
+            put("clickableAnnotations",                 applicationConfig.isClickableAnnotations());           // Default value: true
+            put("disconnectUncommented",                applicationConfig.isDisconnectUncommented());           // Default value: false
+            put("strikeoutMode",                        applicationConfig.getStrikeoutMode());               // Default value: 0
+            put("sideboarContainerSelector",            applicationConfig.getSidebarContainerSelector()); // Default value: div.comments_sidebar_wrapper
+            put("usePageNumberInUrlHash",               applicationConfig.isUsePageNumberInUrlHash());           // Default value: false
+            put("textSelectionSynchronousCalculation",  applicationConfig.isTextSelectionSynchronousCalculation());            // Default value: true
+            put("variableHeightPageSupport",            applicationConfig.isVariableHeightPageSupport());            // Default value: true
+            put("useJavaScriptDocumentDescription",     applicationConfig.isUseJavaScriptDocumentDescription());            // Default value: true
+            put("isRightPanelEnabled",                  applicationConfig.isRightPanelEnabled());            // Default value: true
+            put("createMarkup",                         applicationConfig.isCreateMarkup());            // Default value: true
+            put("use_pdf",                              applicationConfig.isUse_pdf());            // Default value: true
+            put("_mode",                                applicationConfig.getMode());           // Default value: annotatedDocument
+            put("selectionContainerSelector",           applicationConfig.getSelectionContainerSelector());  // Default value: [name='selection-content']
+            put("graphicsContainerSelector",            applicationConfig.getGraphicsContainerSelector());       // Default value: .annotationsContainer
+            put("widgetId",                             applicationConfig.getWidgetId());           // Default value: annotation-widget
             put("userName",                             userName == null ? "Anonimous" : userName);
             put("userGuid",                             userGuid);
 //            put("showFolderBrowser", Boolean.toString(applicationConfig.getShowFolderBrowser())); // Not used
