@@ -9,17 +9,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author imy
  */
-public class GetImageHandlerServlet extends AnnotationServlet {
+public class ListAnnotationsServlet extends AnnotationServlet {
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Content-type", "image/png");
-        String contextPath = request.getPathInfo();
-        String[] path = contextPath.split("/");
-        annotationHandler.getImageHandler(path[path.length - 1], response);
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //Not required
+        response.setHeader("Content-type", "application/json;charset=UTF-8");
+        response.getOutputStream().write(annotationHandler.listAnnotationsHandler(request, response).toString().getBytes());
     }
 }

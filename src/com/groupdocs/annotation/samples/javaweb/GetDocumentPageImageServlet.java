@@ -12,7 +12,7 @@ import java.io.IOException;
  *
  * @author imy
  */
-public class GetDocumentPageImageHandlerServlet extends AnnotationServlet{
+public class GetDocumentPageImageServlet extends AnnotationServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

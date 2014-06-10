@@ -1,7 +1,5 @@
 package com.groupdocs.annotation.samples.javaweb;
 
-import org.apache.log4j.Logger;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,20 +9,19 @@ import java.io.IOException;
  *
  * @author imy
  */
-public class GetFileHandlerServlet extends AnnotationServlet{
+public class GetFontServlet extends AnnotationServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            String path = request.getQueryString().split("=")[1];
-            annotationHandler.getFileHandler(path, response);
-        } catch (Exception ex) {
-            Logger.getLogger(this.getClass()).error(ex);
+        response.setHeader("Content-type", "application/x-font-woff");
+        String[] split = request.getRequestURI().split("/");
+        if (split.length > 0){
+            annotationHandler.getFontHandler(split[split.length - 1], response);
         }
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Not needed
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

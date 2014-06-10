@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author imy
  */
-public class GetPrintableHtmlHandlerServlet extends AnnotationServlet{
+public class SaveTextFieldServlet extends AnnotationServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Content-type", "text/plain");
-        response.getOutputStream().write(annotationHandler.getPrintableHtmlHandler(request, response).toString().getBytes());
+        response.setHeader("Content-type", "application/json;charset=UTF-8");
+        response.getOutputStream().write(annotationHandler.saveTextFieldHandler(request, response).toString().getBytes());
     }
 }

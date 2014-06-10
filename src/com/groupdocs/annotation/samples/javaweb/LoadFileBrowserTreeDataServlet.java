@@ -9,15 +9,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author imy
  */
-public class GetPdfVersionOfDocumentHandler extends AnnotationServlet {
+public class LoadFileBrowserTreeDataServlet extends AnnotationServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //TODO
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        response.setHeader("Content-type", "application/json;charset=UTF-8");
+        response.getOutputStream().write(annotationHandler.loadFileBrowserTreeDataHandler(request, response).toString().getBytes());
     }
 }

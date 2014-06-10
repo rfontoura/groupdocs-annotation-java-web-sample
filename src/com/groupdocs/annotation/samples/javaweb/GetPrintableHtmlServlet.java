@@ -1,15 +1,15 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 /**
  *
  * @author imy
  */
-public class ViewDocumentHandlerServlet extends AnnotationServlet {
+public class GetPrintableHtmlServlet extends AnnotationServlet{
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -18,7 +18,7 @@ public class ViewDocumentHandlerServlet extends AnnotationServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Content-type", "application/json;charset=UTF-8");
-        response.getOutputStream().write(annotationHandler.viewDocumentHandler(request, response).toString().getBytes());
+        response.setHeader("Content-type", "text/plain");
+        response.getOutputStream().write(annotationHandler.getPrintableHtmlHandler(request, response).toString().getBytes());
     }
 }

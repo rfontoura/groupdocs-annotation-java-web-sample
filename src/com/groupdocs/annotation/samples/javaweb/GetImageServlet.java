@@ -9,16 +9,17 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author imy
  */
-public class GetPdf2JavaScriptHandlerServlet extends AnnotationServlet{
-
+public class GetImageServlet extends AnnotationServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO
+        response.setHeader("Content-type", "image/png");
+        String contextPath = request.getPathInfo();
+        String[] path = contextPath.split("/");
+        annotationHandler.getImageHandler(path[path.length - 1], response);
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Content-type", "application/json;charset=UTF-8");
-        response.getOutputStream().write(annotationHandler.getPdf2JavaScriptHandler(request, response).toString().getBytes());
+        //Not required
     }
 }

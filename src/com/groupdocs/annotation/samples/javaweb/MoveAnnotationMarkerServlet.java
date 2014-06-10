@@ -9,15 +9,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author imy
  */
-public class GetCssHandlerServlet extends AnnotationServlet {
+public class MoveAnnotationMarkerServlet extends AnnotationServlet {
+
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Content-type", "text/css");
-        annotationHandler.getCssHandler(request.getParameter("script"), response);
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //Not required
+        response.setHeader("Content-type", "application/json;charset=UTF-8");
+        response.getOutputStream().write(annotationHandler.moveAnnotationMarkerHandler(request, response).toString().getBytes());
     }
 }

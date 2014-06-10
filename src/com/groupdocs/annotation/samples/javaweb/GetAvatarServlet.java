@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author imy
  */
-public class AddAnnotationReplyHandler extends AnnotationServlet {
+public class GetAvatarServlet extends AnnotationServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        throw new UnsupportedOperationException("Not supported yet.");
+        response.setHeader("Content-type", "image/png");
+        annotationHandler.getAvatarHandler(request, response, "Anonimous");
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Content-type", "application/json;charset=UTF-8");
-        response.getOutputStream().write(annotationHandler.addAnnotationReplyHandler(request, response).toString().getBytes());
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
