@@ -41,6 +41,11 @@ public class ApplicationConfig implements ServiceConfigurationBase {
     }
 
     @Override
+    public boolean isUseBrowserCache() {
+        return false;
+    }
+
+    @Override
     public int getExpirationDate() {
         return 5;
     }
@@ -62,7 +67,7 @@ public class ApplicationConfig implements ServiceConfigurationBase {
 
     @Override
     public boolean isOpenThumbnails() {
-        return true;
+        return false;
     }
 
     @Override
