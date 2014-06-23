@@ -5,3 +5,4 @@
 /nbproject
 /nbbuild.xml
 /lib/GroupDocs.*
+/web/annotation/META-INF/context.xml

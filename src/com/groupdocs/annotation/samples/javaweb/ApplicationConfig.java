@@ -6,11 +6,10 @@ import com.groupdocs.viewer.config.ServiceConfigurationBase;
  * Created by Aleksey Permyakov on 05.06.14.
  */
 public class ApplicationConfig implements ServiceConfigurationBase {
-    private String appPath;
-    private String basePath;
+    private final String appPath;
+    private final String basePath;
 
     public ApplicationConfig(String appPath, String basePath) {
-
         this.appPath = appPath;
         this.basePath = basePath;
     }
@@ -53,6 +52,11 @@ public class ApplicationConfig implements ServiceConfigurationBase {
     @Override
     public String getEncryptionKey() {
         return "GroupDocsEncrypt";
+    }
+    
+    @Override
+    public String getLocalesPath() {
+        return null;
     }
 
     @Override
