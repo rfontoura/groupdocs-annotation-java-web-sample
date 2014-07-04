@@ -2,6 +2,9 @@ package com.groupdocs.annotation.samples.javaweb;
 
 import com.groupdocs.annotation.domain.AccessRights;
 import com.groupdocs.viewer.domain.*;
+import com.groupdocs.viewer.domain.path.EncodedPath;
+import com.groupdocs.viewer.domain.path.GroupDocsPath;
+import com.groupdocs.viewer.domain.path.TokenId;
 
 import java.awt.*;
 import java.io.IOException;
@@ -22,40 +25,25 @@ public class IndexServlet extends AnnotationServlet{
         request.setAttribute("annotation_head", annotationHandler.getHeader(request));
         final String userName = request.getParameter("userName");
 
-        String fileId = request.getParameter("fileId");
-        String filePath = request.getParameter("filePath");
-        String fileUrl = request.getParameter("fileUrl");
+        String file = request.getParameter("file");
         String tokenId = request.getParameter("tokenId");
 
-        // Default value
-        if (filePath == null) {
-            filePath = "/files/GroupDocs_Demo.doc";
-        }
-
-        final GroupDocsPath groupDocsFilePath;
-
-        if(fileId !=null && !fileId.isEmpty()){
-            groupDocsFilePath = new FileId(fileId);
-        }else if(filePath != null && !filePath.isEmpty()){
-            groupDocsFilePath = new FilePath(filePath, annotationHandler.getConfiguration());
-        }else if(fileUrl != null && !fileUrl.isEmpty()){
-            groupDocsFilePath = new FileUrl(fileUrl);
+        GroupDocsPath path = null;
+        if(file != null && !file.isEmpty()){
+            path = new EncodedPath(file, annotationHandler.getConfiguration());
         }else if(tokenId != null && !tokenId.isEmpty()){
-            TokenId tki = new TokenId(tokenId, serviceConfiguration.getEncryptionKey());
-            if(tki.isExpired()){
-                groupDocsFilePath = null;
-            }else{
-                groupDocsFilePath = tki;
+            TokenId tki = new TokenId(tokenId, applicationConfig.getEncryptionKey());
+            if(!tki.isExpired()){
+                path = tki;
             }
-        } else {
-            groupDocsFilePath = null;
         }
+        final String initialPath = (path == null) ? "/files/GroupDocs_Demo.doc" : path.getPath();
 
-        final String userGuid = annotationHandler.addCollaborator(userName, groupDocsFilePath.getPath(), AccessRights.All.value(), getIntFromColor(Color.RED));
+        final String userGuid = annotationHandler.addCollaborator(userName, initialPath, AccessRights.All.value(), getIntFromColor(Color.RED));
 
         HashMap<String, Object> params = new HashMap<String, Object>() {{
             // You can skip parameters which have default value
-            put("filePath",                             groupDocsFilePath.getPath()); // Default value: empty string
+            put("filePath",                             initialPath); // Default value: empty string
             put("width",                                applicationConfig.getWidth());            // Default value: 800
             put("height",                               applicationConfig.getHeight());           // Default value: 600
             put("quality",                              applicationConfig.getQuality());              // Default value: 90
