@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author imy
+ * @author Aleksey Permyakov
  */
 public class GetPdfVersionOfDocumentServlet extends AnnotationServlet {
 

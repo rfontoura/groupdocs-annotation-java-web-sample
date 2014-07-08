@@ -1,6 +1,7 @@
 package com.groupdocs.annotation.samples.javaweb;
 
 import java.io.IOException;
+import java.io.InputStream;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +14,7 @@ public class GetCssServlet extends AnnotationServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Content-type", "text/css");
-        annotationHandler.getCssHandler(request.getParameter("script"), response);
+        writeOutput((InputStream) annotationHandler.getCssHandler(request.getParameter("script"), response), response);
     }
 
     @Override

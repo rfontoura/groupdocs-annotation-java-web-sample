@@ -1,6 +1,7 @@
 package com.groupdocs.annotation.samples.javaweb;
 
 import java.io.IOException;
+import java.io.InputStream;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +16,6 @@ public class GetImageServlet extends AnnotationServlet {
         response.setHeader("Content-type", "image/png");
         String contextPath = request.getPathInfo();
         String[] path = contextPath.split("/");
-        annotationHandler.getImageHandler(path[path.length - 1], response);
-    }
-
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //Not required
+        writeOutput((InputStream) annotationHandler.getImageHandler(path[path.length - 1], response), response);
     }
 }

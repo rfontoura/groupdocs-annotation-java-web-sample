@@ -1,6 +1,6 @@
 package com.groupdocs.annotation.samples.javaweb;
 
-import org.apache.log4j.Logger;
+import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,7 +20,6 @@ public class GetDocumentCollaboratorsServlet extends AnnotationServlet{
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Content-type", "application/json;charset=UTF-8");
-        response.getOutputStream().write(annotationHandler.getDocumentCollaboratorsHandler(request, response).toString().getBytes());
+        writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.getDocumentCollaboratorsHandler(request, response));
     }
 }

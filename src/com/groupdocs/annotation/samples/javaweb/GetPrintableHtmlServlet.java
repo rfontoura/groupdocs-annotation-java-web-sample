@@ -1,5 +1,6 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,6 @@ public class GetPrintableHtmlServlet extends AnnotationServlet{
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Content-type", "text/plain");
-        response.getOutputStream().write(annotationHandler.getPrintableHtmlHandler(request, response).toString().getBytes());
+        writeOutput(MediaType.TEXT_PLAIN, response, annotationHandler.getPrintableHtmlHandler(request, response));
     }
 }

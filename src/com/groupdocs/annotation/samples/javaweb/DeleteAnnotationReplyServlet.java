@@ -1,5 +1,7 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import static com.groupdocs.annotation.samples.javaweb.AnnotationServlet.annotationHandler;
+import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +20,6 @@ public class DeleteAnnotationReplyServlet extends AnnotationServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setHeader("Content-type", "application/json;charset=UTF-8");
-        response.getOutputStream().write(annotationHandler.deleteAnnotationReplyHandler(request, response).toString().getBytes());
+        writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.deleteAnnotationReplyHandler(request, response));
     }
 }
