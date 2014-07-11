@@ -12,7 +12,7 @@
 </head>
 <body>
 <div id="annotation-widget"
-     style="width:${width}px;height:${height}px;overflow:hidden;position:relative;margin-bottom:20px;background-color:gray;border:1px solid #ccc;"></div>
+     style="width:<%=(String) request.getAttribute("width")%>px;height:<%=(String) request.getAttribute("height")%>px;overflow:hidden;position:relative;margin-bottom:20px;background-color:gray;border:1px solid #ccc;"></div>
 <%=(String) request.getAttribute("annotation_scripts")%>
 </body>
 </html>

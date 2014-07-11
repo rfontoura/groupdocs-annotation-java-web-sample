@@ -20,6 +20,8 @@
     <target name="compile" depends="init" description="Compile project">
         <echo>Compile the source files</echo>
         <javac srcdir="${project.src.dir}" destdir="${project.build.dir}/WEB-INF/classes" includeantruntime="false">
+            <!-- Argument for possibility to debug -->
+            <compilerarg line="-g:source,lines,vars" />
             <classpath refid="project.classpath"/>
         </javac>
     </target>

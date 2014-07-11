@@ -2,6 +2,7 @@ package com.groupdocs.annotation.samples.javaweb;
 
 import com.groupdocs.annotation.handler.AnnotationHandler;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
+import com.groupdocs.annotation.utils.Utils;
 import com.groupdocs.viewer.config.ServiceConfiguration;
 import org.apache.log4j.Logger;
 
@@ -46,6 +47,10 @@ public abstract class AnnotationServlet extends HttpServlet {
     }
     
     protected void writeOutput(InputStream inputStream, HttpServletResponse response) throws IOException{
+        if (inputStream == null){
+            Logger.getLogger(this.getClass()).error("inputStream is null");
+        }
         IOUtils.copy(inputStream, response.getOutputStream());
+        Utils.closeStreams(inputStream, response.getOutputStream());
     }
 }

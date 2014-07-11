@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by Aleksey Permyakov on 10.06.14.
+ * @author Aleksey Permyakov on 10.06.14.
  */
 public class GetPrintViewServlet extends AnnotationServlet {
     @Override

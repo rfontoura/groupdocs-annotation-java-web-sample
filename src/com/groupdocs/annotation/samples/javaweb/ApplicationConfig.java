@@ -3,7 +3,7 @@ package com.groupdocs.annotation.samples.javaweb;
 import com.groupdocs.viewer.config.ServiceConfigurationBase;
 
 /**
- * Created by Aleksey Permyakov on 05.06.14.
+ * @author Aleksey Permyakov on 05.06.14.
  */
 public class ApplicationConfig implements ServiceConfigurationBase {
     private final String appPath;
@@ -340,7 +340,7 @@ public class ApplicationConfig implements ServiceConfigurationBase {
     }
 
     public int getEnabledTools() {
-        return 2047;
+        return 1023;
     }
 
     public int getConnectorPosition() {
