@@ -20,6 +20,7 @@ public class DeleteAnnotationReplyServlet extends AnnotationServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        addCORSHeaders(request, response);
         writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.deleteAnnotationReplyHandler(request, response));
     }
 }

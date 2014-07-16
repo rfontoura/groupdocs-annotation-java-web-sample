@@ -16,6 +16,7 @@ public class GetPrintViewServlet extends AnnotationServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        addCORSHeaders(request, response);
         response.getOutputStream().write(annotationHandler.getPrintViewHandler(request, response).toString().getBytes());
     }
 }

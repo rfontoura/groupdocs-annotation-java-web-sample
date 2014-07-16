@@ -19,6 +19,7 @@ public class GetPrintableHtmlServlet extends AnnotationServlet{
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        addCORSHeaders(request, response);
         writeOutput(MediaType.TEXT_PLAIN, response, annotationHandler.getPrintableHtmlHandler(request, response));
     }
 }

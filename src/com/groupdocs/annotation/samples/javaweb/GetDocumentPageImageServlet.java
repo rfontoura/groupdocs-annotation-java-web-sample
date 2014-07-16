@@ -17,6 +17,7 @@ import java.io.InputStream;
 public class GetDocumentPageImageServlet extends AnnotationServlet{
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        addCORSHeaders(request, response);
         int width = Integer.parseInt(request.getParameter("width"));
         int quality = Integer.valueOf(request.getParameter("quality"));
         boolean usePdf = Boolean.valueOf(request.getParameter("usePdf"));

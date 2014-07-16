@@ -335,12 +335,12 @@ public class ApplicationConfig implements ServiceConfigurationBase {
         return true;
     }
 
-    public int getStrikeOutColor() {
-        return 0;
+    public String getStrikeOutColor() {
+        return "";
     }
 
     public int getEnabledTools() {
-        return 1023;
+        return 2047;
     }
 
     public int getConnectorPosition() {

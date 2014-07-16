@@ -19,6 +19,7 @@ public class DeleteAnnotationServlet extends AnnotationServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Content-type", "application/json;charset=UTF-8");
+        addCORSHeaders(request, response);
         response.getOutputStream().write(annotationHandler.deleteAnnotationHandler(request, response).toString().getBytes());
     }
 }

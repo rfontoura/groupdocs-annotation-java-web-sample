@@ -8,9 +8,13 @@ import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
+
 import org.apache.commons.io.IOUtils;
 
 /**
@@ -52,5 +56,19 @@ public abstract class AnnotationServlet extends HttpServlet {
         }
         IOUtils.copy(inputStream, response.getOutputStream());
         Utils.closeStreams(inputStream, response.getOutputStream());
+    }
+
+    protected void addCORSHeaders(HttpServletRequest request, HttpServletResponse response){
+        String origin = request.getHeader("origin");
+        if (origin == null || "".equals(origin)) {
+            response.setHeader("Access-Control-Allow-Origin", "*");
+        }
+        response.addHeader("Access-Control-Allow-Credentials", "true");
+        response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.addHeader("Access-Control-Allow-Headers", "X-Requested-With,Origin,Content-Type, Accept");
+    }
+
+    public static AnnotationHandler getAnnotationHandler(){
+        return annotationHandler;
     }
 }
