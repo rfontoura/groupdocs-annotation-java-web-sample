@@ -299,7 +299,7 @@
         <init-param>
             <!-- Jersey base package of your resources -->
             <param-name>com.sun.jersey.config.property.packages</param-name>
-            <param-value>com.groupdocs.annotation.service</param-value>
+            <param-value>com.groupdocs.annotation.samples.service</param-value>
         </init-param>
         <!--<init-param>-->
             <!--&lt;!&ndash; Enable Jersey's JSON mapping feature &ndash;&gt;-->
