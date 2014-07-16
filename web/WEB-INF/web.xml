@@ -269,6 +269,26 @@
         <url-pattern>/document-annotation/GetPrintViewHandler/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>UploadFileServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.UploadFileServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ImportAnnotationsServlet</servlet-name>
+        <url-pattern>/document-annotation/ImportAnnotationsHandler/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ImportAnnotationsServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.ImportAnnotationsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>UploadFileServlet</servlet-name>
+        <url-pattern>/document-annotation/UploadFileHandler/*</url-pattern>
+    </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>default</servlet-name>
         <url-pattern>/document-annotation/assets/*</url-pattern>
