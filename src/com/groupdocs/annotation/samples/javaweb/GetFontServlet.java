@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- *
  * @author imy
  */
 public class GetFontServlet extends AnnotationServlet {
@@ -17,7 +16,7 @@ public class GetFontServlet extends AnnotationServlet {
         response.setHeader("Content-type", "application/x-font-woff");
         addCORSHeaders(request, response);
         String[] split = request.getRequestURI().split("/");
-        if (split.length > 0){
+        if (split.length > 0) {
             writeOutput((InputStream) annotationHandler.getFontHandler(split[split.length - 1], response), response);
         }
     }

@@ -1,14 +1,13 @@
 package com.groupdocs.annotation.samples.javaweb;
 
-import static com.groupdocs.annotation.samples.javaweb.AnnotationServlet.annotationHandler;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
-import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
- *
  * @author imy
  */
 public class DeleteAnnotationReplyServlet extends AnnotationServlet {

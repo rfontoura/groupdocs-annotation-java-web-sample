@@ -9,10 +9,9 @@ import java.io.IOException;
 
 
 /**
- *
  * @author imy
  */
-public class GetDocumentCollaboratorsServlet extends AnnotationServlet{
+public class GetDocumentCollaboratorsServlet extends AnnotationServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         throw new UnsupportedOperationException("Not supported yet.");

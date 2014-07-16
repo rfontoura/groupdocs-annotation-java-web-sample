@@ -53,7 +53,7 @@ public class ApplicationConfig implements ServiceConfigurationBase {
     public String getEncryptionKey() {
         return "GroupDocsEncrypt";
     }
-    
+
     @Override
     public String getLocalesPath() {
         return null;

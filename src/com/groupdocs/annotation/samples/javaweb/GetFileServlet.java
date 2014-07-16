@@ -8,10 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- *
  * @author imy
  */
-public class GetFileServlet extends AnnotationServlet{
+public class GetFileServlet extends AnnotationServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,13 +1,11 @@
 package com.groupdocs.annotation.samples.service;
 
 import com.groupdocs.annotation.samples.javaweb.AnnotationServlet;
-import com.groupdocs.annotation.utils.Utils;
-import org.atmosphere.config.service.*;
-import org.atmosphere.cpr.*;
-import org.json.JSONObject;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.atmosphere.config.service.ManagedService;
+import org.atmosphere.config.service.Message;
+import org.atmosphere.config.service.Post;
+import org.atmosphere.config.service.Ready;
+import org.atmosphere.cpr.AtmosphereResource;
 
 /**
  * @author Aleksey Permyakov (16.07.14).
@@ -17,6 +15,7 @@ public class AtmosphereManagedService {
 
     /**
      * On ready handler
+     *
      * @param resource resource data received from socket
      */
     @Ready
@@ -26,6 +25,7 @@ public class AtmosphereManagedService {
 
     /**
      * On message handler [POST]
+     *
      * @param resource resource data received from socket
      */
     @Post
