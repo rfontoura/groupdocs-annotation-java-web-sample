@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * @author imy
@@ -20,30 +21,36 @@ import java.io.InputStream;
 public abstract class AnnotationServlet extends HttpServlet {
     private final String DEFAULT_ENCODING = "UTF-8";
     protected static AnnotationHandler annotationHandler = null;
-    protected final String appPath = "http://127.0.0.1:8080/document-annotation";
-    protected final String basePath = "E:\\Projects\\GroupDocs\\app\\xFiles";
     protected static ApplicationConfig applicationConfig;
     protected static ServiceConfiguration serviceConfiguration;
 
     @Override
     public void init() throws ServletException {
+        InputStream resourceStreamAux = getServletContext().getResourceAsStream("WEB-INF/application.properties");
         try {
             if (annotationHandler == null) {
-                applicationConfig = new ApplicationConfig(appPath, basePath);
+                Properties properties = new Properties();
+                properties.load(resourceStreamAux);
+                applicationConfig = new ApplicationConfig(
+                        properties.getProperty("applicationPath"),
+                        properties.getProperty("basePath"),
+                        properties.getProperty("licensePath"));
                 serviceConfiguration = new ServiceConfiguration(applicationConfig);
                 annotationHandler = new AnnotationHandler(serviceConfiguration);
             }
         } catch (Exception ex) {
             Logger.getLogger(this.getClass()).error(ex);
+        } finally {
+            Utils.closeStreams(resourceStreamAux);
         }
     }
 
     protected void writeOutput(MediaType contentType, HttpServletResponse response, Object object) throws IOException {
         String json = (String) object;
-        response.getOutputStream().write(json.getBytes(DEFAULT_ENCODING));
         if (contentType != null && !contentType.toString().isEmpty()) {
             response.setContentType(contentType.toString());
         }
+        response.getOutputStream().write(json.getBytes(DEFAULT_ENCODING));
     }
 
     protected void writeOutput(InputStream inputStream, HttpServletResponse response) throws IOException {

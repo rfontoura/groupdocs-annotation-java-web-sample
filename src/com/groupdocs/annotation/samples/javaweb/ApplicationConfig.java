@@ -1,22 +1,24 @@
 package com.groupdocs.annotation.samples.javaweb;
 
-import com.groupdocs.viewer.config.ServiceConfigurationBase;
+import com.groupdocs.annotation.config.ServiceConfigurationBase;
 
 /**
  * @author Aleksey Permyakov on 05.06.14.
  */
-public class ApplicationConfig implements ServiceConfigurationBase {
+public class ApplicationConfig extends ServiceConfigurationBase {
     private final String appPath;
     private final String basePath;
+    private final String licensePath;
 
-    public ApplicationConfig(String appPath, String basePath) {
+    public ApplicationConfig(String appPath, String basePath, String licensePath) {
         this.appPath = appPath;
         this.basePath = basePath;
+        this.licensePath = licensePath;
     }
 
     @Override
     public String getLicensePath() {
-        return "C:\\license\\GroupDocs.Annotation.lic";
+        return licensePath;
     }
 
     @Override
@@ -100,22 +102,7 @@ public class ApplicationConfig implements ServiceConfigurationBase {
     }
 
     @Override
-    public String getBackgroundColor() {
-        return null;
-    }
-
-    @Override
-    public boolean isShowFolderBrowser() {
-        return true;
-    }
-
-    @Override
     public boolean isShowPrint() {
-        return true;
-    }
-
-    @Override
-    public boolean isShowDownload() {
         return true;
     }
 
@@ -130,88 +117,8 @@ public class ApplicationConfig implements ServiceConfigurationBase {
     }
 
     @Override
-    public boolean isShowViewerStyleControl() {
-        return true;
-    }
-
-    @Override
-    public boolean isShowSearch() {
-        return true;
-    }
-
-    @Override
     public int getPreloadPagesCount() {
         return 0;
-    }
-
-    @Override
-    public int getViewerStyle() {
-        return 1;
-    }
-
-    @Override
-    public boolean isSupportTextSelection() {
-        return true;
-    }
-
-    @Override
-    public boolean isUsePdfPrinting() {
-        return false;
-    }
-
-    @Override
-    public String getToolbarButtonsBoxShadowStyle() {
-        return null;
-    }
-
-    @Override
-    public String getToolbarButtonsBoxShadowHoverStyle() {
-        return null;
-    }
-
-    @Override
-    public String getThumbnailsContainerBackgroundColor() {
-        return null;
-    }
-
-    @Override
-    public String getThumbnailsContainerBorderRightColor() {
-        return null;
-    }
-
-    @Override
-    public String getToolbarBorderBottomColor() {
-        return null;
-    }
-
-    @Override
-    public String getToolbarInputFieldBorderColor() {
-        return null;
-    }
-
-    @Override
-    public String getToolbarButtonBorderColor() {
-        return null;
-    }
-
-    @Override
-    public String getToolbarButtonBorderHoverColor() {
-        return null;
-    }
-
-    @Override
-    public int getThumbnailsContainerWidth() {
-        return 0;
-    }
-
-    @Override
-    public boolean isShowDownloadErrorsInPopup() {
-        return false;
-    }
-
-    @Override
-    public boolean isShowImageWidth() {
-        return false;
     }
 
     @Override
@@ -220,193 +127,126 @@ public class ApplicationConfig implements ServiceConfigurationBase {
     }
 
     @Override
-    public int getMinimumImageWidth() {
-        return 0;
-    }
-
-    @Override
-    public boolean isEnableStandardErrorHandling() {
-        return true;
-    }
-
-    @Override
-    public boolean isUseHtmlBasedEngine() {
-        return false;
-    }
-
-    @Override
-    public boolean isUseImageBasedPrinting() {
-        return true;
-    }
-
-    @Override
-    public boolean isDownloadPdfFile() {
-        return false;
-    }
-
-    @Override
-    public boolean isSearchForSeparateWords() {
-        return false;
-    }
-
-    @Override
-    public boolean isPreventTouchEventsBubbling() {
-        return false;
-    }
-
-    @Override
-    public boolean isUseInnerThumbnails() {
-        return true;
-    }
-
-    @Override
-    public String getWatermarkText() {
-        return null;
-    }
-
-    @Override
-    public String getWatermarkColor() {
-        return null;
-    }
-
-    @Override
-    public boolean isSupportPageReordering() {
-        return false;
-    }
-
-    @Override
-    public boolean isOnlyShrinkLargePages() {
-        return true;
-    }
-
-    @Override
-    public String getSearchHighlightColor() {
-        return null;
-    }
-
-    @Override
-    public String getCurrentSearchHighlightColor() {
-        return null;
-    }
-
-    @Override
-    public boolean isTreatPhrasesInDoubleQuotesAsExactPhrases() {
-        return false;
-    }
-
-    @Override
-    public boolean isUsePngImagesForHtmlBasedEngine() {
-        return false;
-    }
-
-    @Override
-    public boolean isShowOnePageInRow() {
-        return false;
-    }
-
-    @Override
-    public boolean isLoadAllPagesOnSearch() {
-        return false;
-    }
-
-    @Override
     public boolean isUseEmScaling() {
         return false;
     }
 
-
+    @Override
     public boolean isShowFileExplorer() {
         return true;
     }
 
+    @Override
     public boolean isEnableRightClickMenu() {
         return true;
     }
 
+    @Override
     public boolean isShowToolbar() {
         return true;
     }
 
+    @Override
     public boolean isEnableSidePanel() {
         return true;
     }
 
+    @Override
     public boolean isScrollOnFocus() {
         return true;
     }
 
+    @Override
     public String getStrikeOutColor() {
         return "";
     }
 
+    @Override
     public int getEnabledTools() {
         return 2047;
     }
 
+    @Override
     public int getConnectorPosition() {
         return 0;
     }
 
+    @Override
     public boolean isSaveReplyOnFocusLoss() {
         return false;
     }
 
+    @Override
     public boolean isClickableAnnotations() {
         return true;
     }
 
+    @Override
     public boolean isDisconnectUncommented() {
         return false;
     }
 
+    @Override
     public int getStrikeoutMode() {
         return 1;
     }
 
+    @Override
     public String getSidebarContainerSelector() {
         return "div.comments_sidebar_wrapper";
     }
 
+    @Override
     public boolean isUsePageNumberInUrlHash() {
         return false;
     }
 
+    @Override
     public boolean isTextSelectionSynchronousCalculation() {
         return true;
     }
 
+    @Override
     public boolean isVariableHeightPageSupport() {
         return true;
     }
 
+    @Override
     public boolean isUseJavaScriptDocumentDescription() {
         return true;
     }
 
+    @Override
     public boolean isRightPanelEnabled() {
         return true;
     }
 
+    @Override
     public boolean isCreateMarkup() {
         return true;
     }
 
+    @Override
     public boolean isUse_pdf() {
         return true;
     }
 
+    @Override
     public String getMode() {
         return "annotatedDocument";
     }
 
+    @Override
     public String getSelectionContainerSelector() {
         return "[name='selection-content']";
     }
 
+    @Override
     public String getGraphicsContainerSelector() {
         return ".annotationsContainer";
     }
 
+    @Override
     public String getWidgetId() {
         return "annotation-widget";
     }
