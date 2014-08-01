@@ -58,7 +58,7 @@ public class UploadFileServlet extends AnnotationServlet {
             part.write(tempFile.getAbsolutePath());
             uploadInputStream = new FileInputStream(tempFile);
 
-            writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.uploadFileHandler(userId, fld, uploadFileName, uploadInputStream, 0, request, response));
+            writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.uploadFileHandler(userId, uploadFileName, uploadInputStream, true));
         }
     }
 
