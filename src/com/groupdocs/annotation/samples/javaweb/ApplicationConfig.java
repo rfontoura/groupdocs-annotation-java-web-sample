@@ -163,7 +163,7 @@ public class ApplicationConfig extends ServiceConfigurationBase {
 
     @Override
     public int getEnabledTools() {
-        return 2047;
+        return 8191;
     }
 
     @Override
@@ -249,5 +249,10 @@ public class ApplicationConfig extends ServiceConfigurationBase {
     @Override
     public String getWidgetId() {
         return "annotation-widget";
+    }
+
+    @Override
+    public boolean isUndoEnabled(){
+        return true;
     }
 }

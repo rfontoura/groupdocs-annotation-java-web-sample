@@ -1,4 +1,4 @@
-Groupdocs Annotation for Java (Java WEB Sample) 1.5.0
+Groupdocs Annotation for Java (Java WEB Sample) 1.6.0
 ===============================================
 
 1. Download and extract GroupDocs Annotation for Java into desired directory. http://groupdocs.com/java/document-annotation-library
