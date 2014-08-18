@@ -1,11 +1,13 @@
 package com.groupdocs.annotation.samples.javaweb;
 
 import com.groupdocs.annotation.domain.AccessRights;
+import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.handler.AnnotationHandler;
 import com.groupdocs.annotation.utils.Utils;
 import com.groupdocs.viewer.domain.path.EncodedPath;
 import com.groupdocs.viewer.domain.path.GroupDocsPath;
 import com.groupdocs.viewer.domain.path.TokenId;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 /**
  * @author imy
@@ -44,7 +45,12 @@ public class IndexServlet extends AnnotationServlet {
         }
         final String initialPath = (path == null ? "" : path.getPath());
 
-        final String userGuid = annotationHandler.addCollaborator(userName, initialPath, AccessRights.All.value(), getIntFromColor(Color.RED));
+        String userGuid = null;
+        try {
+            userGuid = annotationHandler.addCollaborator(userName, initialPath, AccessRights.All.value(), getIntFromColor(Color.RED));
+        } catch (AnnotationException e) {
+            Logger.getLogger(this.getClass()).error(e);
+        }
         request.setAttribute("annotation_scripts", annotationHandler.getAnnotationScript(null, initialPath, userName, userGuid));
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("annotation/index.jsp");
         requestDispatcher.forward(request, response);

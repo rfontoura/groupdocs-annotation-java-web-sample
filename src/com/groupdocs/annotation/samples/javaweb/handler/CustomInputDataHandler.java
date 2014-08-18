@@ -38,7 +38,7 @@ public class CustomInputDataHandler extends InputDataHandler {
     public InputStream getFile(String guid) {
         try {
             return new FileInputStream(fileId2FilePath.get(guid));
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             return null;
         }
     }

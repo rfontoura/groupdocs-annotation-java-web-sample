@@ -62,6 +62,11 @@ public class ApplicationConfig extends ServiceConfigurationBase {
     }
 
     @Override
+    public String getUploadPath() {
+        return "/";
+    }
+
+    @Override
     public int getQuality() {
         return 100;
     }
@@ -252,7 +257,7 @@ public class ApplicationConfig extends ServiceConfigurationBase {
     }
 
     @Override
-    public boolean isUndoEnabled(){
+    public boolean isUndoEnabled() {
         return true;
     }
 }
