@@ -10,6 +10,7 @@ import java.io.IOException;
 /**
  * @author imy
  */
+@Deprecated
 public class GetPdf2JavaScriptServlet extends AnnotationServlet {
 
     @Override

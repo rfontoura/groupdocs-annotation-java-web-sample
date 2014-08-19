@@ -25,7 +25,7 @@ public class IndexServlet extends AnnotationServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         addCORSHeaders(request, response);
-        request.setAttribute("annotation_head", annotationHandler.getHeader());
+        request.setAttribute("annotation_head", annotationHandler.getHeader(applicationConfig.getApplicationPath()));
         final String userName = Utils.or(request.getParameter("userName"), AnnotationHandler.ANONIMOUS_USERNAME);
 
         String file = request.getParameter("file");
@@ -51,7 +51,7 @@ public class IndexServlet extends AnnotationServlet {
         } catch (AnnotationException e) {
             Logger.getLogger(this.getClass()).error(e);
         }
-        request.setAttribute("annotation_scripts", annotationHandler.getAnnotationScript(null, initialPath, userName, userGuid));
+        request.setAttribute("annotation_scripts", annotationHandler.getAnnotationScript(initialPath, userName, userGuid));
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("annotation/index.jsp");
         requestDispatcher.forward(request, response);
     }

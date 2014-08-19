@@ -1,4 +1,4 @@
-package com.groupdocs.annotation.samples.javaweb;
+package com.groupdocs.annotation.samples.javaweb.config;
 
 import com.groupdocs.annotation.config.ServiceConfigurationBase;
 

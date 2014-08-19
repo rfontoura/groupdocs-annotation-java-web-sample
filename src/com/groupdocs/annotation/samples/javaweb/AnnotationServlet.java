@@ -1,6 +1,7 @@
 package com.groupdocs.annotation.samples.javaweb;
 
 import com.groupdocs.annotation.handler.AnnotationHandler;
+import com.groupdocs.annotation.samples.javaweb.config.ApplicationConfig;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 import com.groupdocs.annotation.utils.Utils;
 import com.groupdocs.viewer.config.ServiceConfiguration;
