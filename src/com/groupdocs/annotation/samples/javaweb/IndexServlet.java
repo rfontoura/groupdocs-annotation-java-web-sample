@@ -25,7 +25,7 @@ public class IndexServlet extends AnnotationServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         addCORSHeaders(request, response);
-        request.setAttribute("annotation_head", annotationHandler.getHeader(applicationConfig.getApplicationPath()));
+        request.setAttribute("annotation_head", annotationHandler.getHeader(applicationConfig.getApplicationPath(), request));
         final String userName = Utils.or(request.getParameter("userName"), AnnotationHandler.ANONIMOUS_USERNAME);
 
         String file = request.getParameter("file");
