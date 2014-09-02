@@ -217,11 +217,6 @@ public class ApplicationConfig extends ServiceConfigurationBase {
     }
 
     @Override
-    public boolean isUseJavaScriptDocumentDescription() {
-        return true;
-    }
-
-    @Override
     public boolean isRightPanelEnabled() {
         return true;
     }
