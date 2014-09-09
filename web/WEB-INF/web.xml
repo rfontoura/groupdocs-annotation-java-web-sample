@@ -56,8 +56,7 @@
         <url-pattern>/document-viewer/GetDocumentPageImageHandler/*</url-pattern>
     </servlet-mapping>
 
-
-    <servlet>
+        <servlet>
         <servlet-name>GetFileServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.GetFileServlet</servlet-class>
     </servlet>
@@ -287,6 +286,16 @@
     <servlet-mapping>
         <servlet-name>UploadFileServlet</servlet-name>
         <url-pattern>/document-annotation/UploadFileHandler/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>GetPrintDocumentPageImageServlet</servlet-name>
+        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetPrintDocumentPageImageServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetPrintDocumentPageImageServlet</servlet-name>
+        <url-pattern>/document-annotation/GetPrintDocumentPageImageHandler/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
