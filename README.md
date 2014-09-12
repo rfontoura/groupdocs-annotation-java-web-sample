@@ -15,7 +15,7 @@ How-to install/run
 5. Open `build.properties` file for editing.
 6. Change `project.tomcat.home` property (on line 11) to your tomcat path.
 7. This step should be followed **ONLY** if step 4 was skipped. Update `project.m2.home` property (on line 2) and `project.annotation.path` property (on line 3), where `project.m2.home` is the path to GroupDocs.Annotation for Java library and `project.annotation.path` is the name of the file.
-Ex: `project.m2.home=C:/temp/GroupDocs.Annotation_1.5.0_java/lib/`, `project.annotation.path=GroupDocs.Annotation.jar`.
+<br>*Ex:* `project.m2.home=C:/temp/GroupDocs.Annotation_1.5.0_java/lib/`, `project.annotation.path=GroupDocs.Annotation.jar`.
 8. Open `web/WEB-INF/application.properties` file for editing. Edit properties to fill your needs.
 9. Open cmd/console/terminal and type and run command `ant war`.
 10. Go to `dist` folder created after step 9.
