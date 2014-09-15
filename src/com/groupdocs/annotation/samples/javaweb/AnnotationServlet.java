@@ -1,6 +1,7 @@
 package com.groupdocs.annotation.samples.javaweb;
 
 import com.groupdocs.annotation.handler.AnnotationHandler;
+import com.groupdocs.annotation.samples.connector.CustomDatabaseConnector;
 import com.groupdocs.annotation.samples.javaweb.config.ApplicationConfig;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 import com.groupdocs.annotation.utils.Utils;
@@ -35,9 +36,11 @@ public abstract class AnnotationServlet extends HttpServlet {
                 applicationConfig = new ApplicationConfig(
                         properties.getProperty("applicationPath"),
                         properties.getProperty("basePath"),
-                        properties.getProperty("licensePath"));
+                        properties.getProperty("licensePath"),
+                        properties.getProperty("dbDriver"),
+                        properties.getProperty("dbConnection"));
                 serviceConfiguration = new ServiceConfiguration(applicationConfig);
-                annotationHandler = new AnnotationHandler(serviceConfiguration);
+                annotationHandler = new AnnotationHandler(serviceConfiguration, null, new CustomDatabaseConnector(applicationConfig));
             }
         } catch (Exception ex) {
             Logger.getLogger(this.getClass()).error(ex);

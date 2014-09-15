@@ -9,11 +9,15 @@ public class ApplicationConfig extends ServiceConfigurationBase {
     private final String appPath;
     private final String basePath;
     private final String licensePath;
+    private final String dbDriver;
+    private final String dbConnection;
 
-    public ApplicationConfig(String appPath, String basePath, String licensePath) {
+    public ApplicationConfig(String appPath, String basePath, String licensePath, String dbDriver, String dbConnection) {
         this.appPath = appPath;
         this.basePath = basePath;
         this.licensePath = licensePath;
+        this.dbDriver = dbDriver;
+        this.dbConnection = dbConnection;
     }
 
     @Override
@@ -65,6 +69,15 @@ public class ApplicationConfig extends ServiceConfigurationBase {
     public String getUploadPath() {
         return "/";
     }
+
+    public String getDbDriver() {
+        return dbDriver;
+    }
+
+    public String getDbConnection() {
+        return dbConnection;
+    }
+
 
     @Override
     public int getQuality() {
