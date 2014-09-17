@@ -47,7 +47,7 @@ public class IndexServlet extends AnnotationServlet {
 
         String userGuid = null;
         try {
-            userGuid = annotationHandler.addCollaborator(userName, initialPath, AccessRights.All.value(), getIntFromColor(Color.RED));
+            userGuid = annotationHandler.addCollaborator(userName, initialPath, AccessRights.All.value(), Utils.colorToInt(Color.RED));
         } catch (AnnotationException e) {
             Logger.getLogger(this.getClass()).error(e);
         }
@@ -59,21 +59,5 @@ public class IndexServlet extends AnnotationServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public int getIntFromColor(Color color) {
-        return getIntFromColor(color.getRed(), color.getGreen(), color.getBlue());
-    }
-
-    public int getIntFromColor(float red, float green, float blue) {
-        int R = Math.round(255 * red);
-        int G = Math.round(255 * green);
-        int B = Math.round(255 * blue);
-
-        R = (R << 16) & 0x00FF0000;
-        G = (G << 8) & 0x0000FF00;
-        B = B & 0x000000FF;
-
-        return 0xFF000000 | R | G | B;
     }
 }
