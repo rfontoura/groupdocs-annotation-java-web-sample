@@ -15,7 +15,7 @@ public class GetAvatarServlet extends AnnotationServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         addCORSHeaders(request, response);
-        annotationHandler.getAvatarHandler(request, response, AnnotationHandler.ANONIMOUS_USERNAME);
+        annotationHandler.getAvatarHandler(request, response, AnnotationHandler.ANONYMOUS_USERNAME);
     }
 
     @Override
