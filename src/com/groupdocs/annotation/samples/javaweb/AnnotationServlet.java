@@ -20,10 +20,14 @@ import java.util.Properties;
  * @author imy
  */
 public abstract class AnnotationServlet extends HttpServlet {
-    private final String DEFAULT_ENCODING = "UTF-8";
     protected static AnnotationHandler annotationHandler = null;
     protected static ApplicationConfig applicationConfig;
     protected static ServiceConfiguration serviceConfiguration;
+    private final String DEFAULT_ENCODING = "UTF-8";
+
+    public static AnnotationHandler getAnnotationHandler() {
+        return annotationHandler;
+    }
 
     @Override
     public void init() throws ServletException {
@@ -73,9 +77,5 @@ public abstract class AnnotationServlet extends HttpServlet {
         response.addHeader("Access-Control-Allow-Credentials", "true");
         response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         response.addHeader("Access-Control-Allow-Headers", "X-Requested-With,Origin,Content-Type, Accept");
-    }
-
-    public static AnnotationHandler getAnnotationHandler() {
-        return annotationHandler;
     }
 }

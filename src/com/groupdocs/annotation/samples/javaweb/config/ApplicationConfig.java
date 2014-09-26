@@ -175,11 +175,6 @@ public class ApplicationConfig extends ServiceConfigurationBase {
     }
 
     @Override
-    public String getStrikeOutColor() {
-        return "";
-    }
-
-    @Override
     public int getEnabledTools() {
         return 8191;
     }
@@ -267,5 +262,15 @@ public class ApplicationConfig extends ServiceConfigurationBase {
     @Override
     public boolean isUndoEnabled() {
         return true;
+    }
+
+    @Override
+    public boolean isAnyToolSelection() {
+        return true;
+    }
+
+    @Override
+    public Long getMaxCacheSize() {
+        return 10L;
     }
 }

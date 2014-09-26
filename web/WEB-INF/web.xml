@@ -76,18 +76,6 @@
         <url-pattern>/document-viewer/GetImageUrlsHandler</url-pattern>
     </servlet-mapping>
 
-
-    <servlet>
-        <servlet-name>GetPdf2JavaScriptServlet</servlet-name>
-        <servlet-class>com.groupdocs.annotation.samples.javaweb.GetPdf2JavaScriptServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>GetPdf2JavaScriptServlet</servlet-name>
-        <url-pattern>/document-viewer/GetPdf2JavaScriptHandler</url-pattern>
-    </servlet-mapping>
-
-
     <servlet>
         <servlet-name>GetPrintableHtmlServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.GetPrintableHtmlServlet</servlet-class>
