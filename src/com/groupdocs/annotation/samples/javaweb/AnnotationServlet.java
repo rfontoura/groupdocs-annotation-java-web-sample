@@ -1,6 +1,16 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import com.groupdocs.annotation.connector.IConnector;
+import com.groupdocs.annotation.connector.StorageType;
+import com.groupdocs.annotation.connector.StoreLogic;
+import com.groupdocs.annotation.connector.data.JsonDataConnector;
+import com.groupdocs.annotation.connector.data.XmlDataConnector;
+import com.groupdocs.annotation.connector.db.MssqlDatabaseConnector;
+import com.groupdocs.annotation.connector.db.MysqlDatabaseConnector;
+import com.groupdocs.annotation.connector.db.PostgresqlDatabaseConnector;
+import com.groupdocs.annotation.connector.db.SqliteDatabaseConnector;
 import com.groupdocs.annotation.handler.AnnotationHandler;
+import com.groupdocs.annotation.samples.connector.CustomXmlDataConnector;
 import com.groupdocs.annotation.samples.javaweb.config.ApplicationConfig;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 import com.groupdocs.annotation.utils.Utils;
@@ -36,15 +46,52 @@ public abstract class AnnotationServlet extends HttpServlet {
             if (annotationHandler == null) {
                 Properties properties = new Properties();
                 properties.load(resourceStreamAux);
-                applicationConfig = new ApplicationConfig(
-                        properties.getProperty("applicationPath"),
-                        properties.getProperty("basePath"),
-                        properties.getProperty("licensePath"),
-                        properties.getProperty("dbDriver"),
-                        properties.getProperty("dbConnection"));
+                applicationConfig = new ApplicationConfig(properties);
                 serviceConfiguration = new ServiceConfiguration(applicationConfig);
-//                annotationHandler = new AnnotationHandler(serviceConfiguration, null, new CustomDatabaseConnector(applicationConfig));
-                annotationHandler = new AnnotationHandler(serviceConfiguration);
+                String tempPath = serviceConfiguration.getImagesPath();
+//                annotationHandler = new AnnotationHandler(serviceConfiguration);
+
+                IConnector connector = null;
+                String storageType = applicationConfig.getStorageType();
+                String dbServer = applicationConfig.getDbServer();
+                Integer dbPort = applicationConfig.getDbPort();
+                String dbName = applicationConfig.getDbName();
+                String dbUsername = applicationConfig.getDbUsername();
+                String dbPassword = applicationConfig.getDbPassword();
+                StoreLogic storeLogic = StoreLogic.fromValue(applicationConfig.getStoreLogic());
+                String storagePath = Utils.or(applicationConfig.getStoragePath(), tempPath);
+
+
+                if (storageType != null && !storageType.isEmpty()) {
+                    switch (StorageType.fromValue(storageType)) {
+                        case DEFAULT:
+                            connector = null;
+                            break;
+                        case SQLITE:
+                            connector = new SqliteDatabaseConnector(storagePath, "customSQLITEdatabaseStorage.db");
+                            break;
+                        case MYSQL:
+                            connector = new MysqlDatabaseConnector(dbServer, dbPort, dbName, dbUsername, dbPassword);
+                            break;
+                        case MSSQL:
+                            connector = new MssqlDatabaseConnector(dbServer, dbPort, dbName, dbUsername, dbPassword);
+                            break;
+                        case JSON:
+                            connector = new JsonDataConnector(storagePath, storeLogic);
+                            break;
+                        case XML:
+                            connector = new XmlDataConnector(storagePath, storeLogic);
+                            break;
+                        case POSTGRE:
+                            connector = new PostgresqlDatabaseConnector(dbServer, dbPort, dbName, dbUsername, dbPassword);
+                            break;
+                        case CUSTOM:
+                            connector = new CustomXmlDataConnector();
+//                            connector = new CustomDatabaseConnector(dbServer, dbPort, dbName, dbUsername, dbPassword);
+                            break;
+                    }
+                }
+                annotationHandler = new AnnotationHandler(serviceConfiguration, connector);
             }
         } catch (Exception ex) {
             Logger.getLogger(this.getClass()).error(ex);

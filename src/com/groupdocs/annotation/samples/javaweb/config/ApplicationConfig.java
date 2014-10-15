@@ -2,56 +2,94 @@ package com.groupdocs.annotation.samples.javaweb.config;
 
 import com.groupdocs.annotation.config.ServiceConfigurationBase;
 
+import java.util.Properties;
+
 /**
  * @author Aleksey Permyakov on 05.06.14.
  */
 public class ApplicationConfig extends ServiceConfigurationBase {
-    private final String appPath;
-    private final String basePath;
-    private final String licensePath;
-    private final String dbDriver;
-    private final String dbConnection;
+    private final Properties properties;
 
-    public ApplicationConfig(String appPath, String basePath, String licensePath, String dbDriver, String dbConnection) {
-        this.appPath = appPath;
-        this.basePath = basePath;
-        this.licensePath = licensePath;
-        this.dbDriver = dbDriver;
-        this.dbConnection = dbConnection;
+    public ApplicationConfig(Properties properties) {
+        this.properties = properties;
     }
 
     @Override
     public String getLicensePath() {
-        return licensePath;
+        return properties.getProperty("licensePath", null);
     }
 
     @Override
     public String getApplicationPath() {
-        return appPath;
+        return properties.getProperty("applicationPath", null);
     }
 
     @Override
     public String getBasePath() {
-        return basePath;
+        return properties.getProperty("basePath", null);
     }
 
     @Override
-    public boolean isUseAuthorization() {
+    public String getUploadPath() {
+        return properties.getProperty("uploadPath", null);
+    }
+
+    @Override
+    public Boolean isUseCache() {
+        return Boolean.parseBoolean(properties.getProperty("useCache", "false"));
+    }
+
+
+    public String getStorageType() {
+        return properties.getProperty("storageType", null);
+    }
+
+    public String getDbServer() {
+        return properties.getProperty("dbServer", null);
+    }
+
+
+    public Integer getDbPort() {
+        return Integer.parseInt(properties.getProperty("dbPort", "0"));
+    }
+
+
+    public String getDbName() {
+        return properties.getProperty("dbName", null);
+    }
+
+
+    public String getDbUsername() {
+        return properties.getProperty("dbUsername", null);
+    }
+
+
+    public String getDbPassword() {
+        return properties.getProperty("dbPassword", null);
+    }
+
+
+    public String getStoragePath() {
+        String storagePath = properties.getProperty("storagePath", null);
+        return storagePath == null || "null".equals(storagePath) ? null : storagePath;
+    }
+
+    public String getStoreLogic() {
+        return properties.getProperty("storeLogic", null);
+    }
+
+    @Override
+    public Boolean isUseAuthorization() {
         return false;
     }
 
     @Override
-    public boolean isUseCache() {
+    public Boolean isUseBrowserCache() {
         return false;
     }
 
     @Override
-    public boolean isUseBrowserCache() {
-        return false;
-    }
-
-    @Override
-    public int getExpirationDate() {
+    public Integer getExpirationDate() {
         return 5;
     }
 
@@ -66,141 +104,172 @@ public class ApplicationConfig extends ServiceConfigurationBase {
     }
 
     @Override
-    public String getUploadPath() {
-        return "/";
-    }
-
-    public String getDbDriver() {
-        return dbDriver;
-    }
-
-    public String getDbConnection() {
-        return dbConnection;
-    }
-
-
-    @Override
-    public int getQuality() {
+    public Integer getQuality() {
         return 100;
     }
 
     @Override
-    public boolean isShowThumbnails() {
+    public Boolean isShowThumbnails() {
         return true;
     }
 
     @Override
-    public boolean isOpenThumbnails() {
+    public Boolean isOpenThumbnails() {
         return false;
     }
 
     @Override
-    public int getInitialZoom() {
+    public Integer getInitialZoom() {
         return 100;
     }
 
     @Override
-    public boolean isZoomToFitWidth() {
+    public String getJqueryFileDownloadCookieName() {
+        return null;
+    }
+
+    @Override
+    public Boolean isZoomToFitWidth() {
         return true;
     }
 
     @Override
-    public boolean isZoomToFitHeight() {
+    public Boolean isZoomToFitHeight() {
         return false;
     }
 
     @Override
-    public int getWidth() {
+    public Integer getWidth() {
         return 1000;
     }
 
     @Override
-    public int getHeight() {
+    public Boolean isConvertWordDocumentsCompletely() {
+        return false;
+    }
+
+    @Override
+    public String getFileDisplayName() {
+        return null;
+    }
+
+    @Override
+    public Integer getHeight() {
         return 800;
     }
 
     @Override
-    public boolean isShowPrint() {
-        return true;
-    }
-
-    @Override
-    public boolean isShowZoom() {
-        return true;
-    }
-
-    @Override
-    public boolean isShowPaging() {
-        return true;
-    }
-
-    @Override
-    public int getPreloadPagesCount() {
-        return 0;
-    }
-
-    @Override
-    public boolean isShowHeader() {
-        return true;
-    }
-
-    @Override
-    public boolean isUseEmScaling() {
+    public Boolean isIgnoreDocumentAbsence() {
         return false;
     }
 
     @Override
-    public boolean isShowFileExplorer() {
+    public Boolean isShowPrint() {
         return true;
     }
 
     @Override
-    public boolean isEnableRightClickMenu() {
+    public Boolean isShowZoom() {
         return true;
     }
 
     @Override
-    public boolean isShowToolbar() {
+    public Boolean isSupportPageRotation() {
+        return false;
+    }
+
+    @Override
+    public Boolean isShowPaging() {
         return true;
     }
 
     @Override
-    public boolean isEnableSidePanel() {
+    public Integer getPreloadPagesCount() {
+        return 0;
+    }
+
+    @Override
+    public Boolean isPreloadPagesOnBrowserSide() {
+        return false;
+    }
+
+    @Override
+    public Boolean isPrintWithWatermark() {
+        return false;
+    }
+
+    @Override
+    public Boolean isShowHeader() {
         return true;
     }
 
     @Override
-    public boolean isScrollOnFocus() {
+    public Boolean isUseEmScaling() {
+        return false;
+    }
+
+    @Override
+    public Integer getWatermarkFontSize() {
+        return 24;
+    }
+
+    @Override
+    public String getWatermarkPosition() {
+        return null;
+    }
+
+    @Override
+    public Boolean isShowFileExplorer() {
         return true;
     }
 
     @Override
-    public int getEnabledTools() {
+    public Boolean isEnableRightClickMenu() {
+        return true;
+    }
+
+    @Override
+    public Boolean isShowToolbar() {
+        return true;
+    }
+
+    @Override
+    public Boolean isEnableSidePanel() {
+        return true;
+    }
+
+    @Override
+    public Boolean isScrollOnFocus() {
+        return true;
+    }
+
+    @Override
+    public Integer getEnabledTools() {
         return 8191;
     }
 
     @Override
-    public int getConnectorPosition() {
+    public Integer getConnectorPosition() {
         return 0;
     }
 
     @Override
-    public boolean isSaveReplyOnFocusLoss() {
+    public Boolean isSaveReplyOnFocusLoss() {
         return false;
     }
 
     @Override
-    public boolean isClickableAnnotations() {
+    public Boolean isClickableAnnotations() {
         return true;
     }
 
     @Override
-    public boolean isDisconnectUncommented() {
+    public Boolean isDisconnectUncommented() {
         return false;
     }
 
     @Override
-    public int getStrikeoutMode() {
+    public Integer getStrikeoutMode() {
         return 1;
     }
 
@@ -210,32 +279,32 @@ public class ApplicationConfig extends ServiceConfigurationBase {
     }
 
     @Override
-    public boolean isUsePageNumberInUrlHash() {
+    public Boolean isUsePageNumberInUrlHash() {
         return false;
     }
 
     @Override
-    public boolean isTextSelectionSynchronousCalculation() {
+    public Boolean isTextSelectionSynchronousCalculation() {
         return true;
     }
 
     @Override
-    public boolean isVariableHeightPageSupport() {
+    public Boolean isVariableHeightPageSupport() {
         return true;
     }
 
     @Override
-    public boolean isRightPanelEnabled() {
+    public Boolean isRightPanelEnabled() {
         return true;
     }
 
     @Override
-    public boolean isCreateMarkup() {
+    public Boolean isCreateMarkup() {
         return true;
     }
 
     @Override
-    public boolean isUse_pdf() {
+    public Boolean isUse_pdf() {
         return true;
     }
 
@@ -260,12 +329,12 @@ public class ApplicationConfig extends ServiceConfigurationBase {
     }
 
     @Override
-    public boolean isUndoEnabled() {
+    public Boolean isUndoEnabled() {
         return true;
     }
 
     @Override
-    public boolean isAnyToolSelection() {
+    public Boolean isAnyToolSelection() {
         return true;
     }
 

@@ -1,6 +1,9 @@
 package com.groupdocs.annotation.samples.connector;
 
-import com.groupdocs.annotation.connector.IDatabaseConnector;
+import com.groupdocs.annotation.connector.StorageType;
+import com.groupdocs.annotation.connector.db.AbstractDatabaseConnector;
+import com.groupdocs.annotation.connector.db.IDatabaseConnector;
+import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.samples.javaweb.config.ApplicationConfig;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.support.ConnectionSource;
@@ -9,27 +12,40 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @author Aleksey Permyakov (09.09.2014)
+ * Custom connector for MySQL database.
+ * GroupDocs.Annotation have embedded MySQL connector.
+ * So this connector just example.
+ *
+ * @author Aleksey Permyakov (15.10.2014)
  */
-public class CustomDatabaseConnector implements IDatabaseConnector {
-    private String dbDriver;
-    private String dbConnection;
+public class CustomDatabaseConnector extends AbstractDatabaseConnector {
+    private static final String CONNECTION_STRING = "jdbc:mysql://%s:%d/%s?user=%s&password=%s";
+    private static final String DEFAULT_DATABASE_DRIVER = com.mysql.jdbc.Driver.class.getName();
 
-    public CustomDatabaseConnector(ApplicationConfig applicationConfig) {
-        dbDriver = applicationConfig.getDbDriver();
-        dbConnection = applicationConfig.getDbConnection();
+    /**
+     * Create database connector
+     *
+     * @param dbServer   database server
+     * @param dbPort     database port
+     * @param dbName     database name
+     * @param dbUsername database user name
+     * @param dbPassword database user password
+     */
+    public CustomDatabaseConnector(String dbServer, int dbPort, String dbName, String dbUsername, String dbPassword) throws AnnotationException {
+        this(DEFAULT_DATABASE_DRIVER, dbServer, dbPort, dbName, dbUsername, dbPassword);
     }
 
-    @Override
-    public ConnectionSource getConnection() {
-        try {
-            // Load driver class
-            Class.forName(dbDriver);
-            // create a connection source to our database
-            return new JdbcConnectionSource(dbConnection);
-        } catch (Exception ex) {
-            Logger.getLogger(CustomDatabaseConnector.class.getName()).log(Level.SEVERE, "Error during create Sql connection (Will be used default SQLite database): " + ex.getMessage());
-            return null;
-        }
+    /**
+     * Create database connector
+     *
+     * @param dbDriver   database driver class name
+     * @param dbServer   database server
+     * @param dbPort     database port
+     * @param dbName     database name
+     * @param dbUsername database user name
+     * @param dbPassword database user password
+     */
+    public CustomDatabaseConnector(String dbDriver, String dbServer, int dbPort, String dbName, String dbUsername, String dbPassword) throws AnnotationException {
+        super(dbDriver, String.format(CONNECTION_STRING, dbServer, dbPort, dbName, dbUsername, dbPassword));
     }
 }

@@ -1,7 +1,7 @@
 package com.groupdocs.annotation.samples.javaweb;
 
 import com.groupdocs.annotation.domain.AccessRights;
-import com.groupdocs.annotation.domain.request.ImportAnnotationsRequest;
+import com.groupdocs.annotation.domain.request.ImportAnnotationsData;
 import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 import com.groupdocs.annotation.utils.Utils;
@@ -26,21 +26,21 @@ public class ImportAnnotationsServlet extends AnnotationServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         addCORSHeaders(request, response);
-        ImportAnnotationsRequest importAnnotationsRequest = null;
+        ImportAnnotationsData importAnnotationsData = null;
         try {
-            importAnnotationsRequest = Utils.getObjectData(Utils.getBody(request), ImportAnnotationsRequest.class);
-            String fileGuid = importAnnotationsRequest.getFileGuid();
-            String userGuid = importAnnotationsRequest.getUserId();
+            importAnnotationsData = Utils.getObjectData(Utils.getBody(request), ImportAnnotationsData.class);
+            String fileGuid = importAnnotationsData.getFileGuid();
+            String userGuid = importAnnotationsData.getUserId();
             annotationHandler.addCollaboratorByGuid(
                     userGuid,
                     fileGuid,
                     AccessRights.All,
                     Utils.colorToInt(Color.black)
             );
+            writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.importAnnotations(importAnnotationsData.getFileGuid(), importAnnotationsData.getUserId()));
         } catch (AnnotationException e) {
             e.printStackTrace(); // Logger
         }
-        writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.importAnnotationsHandler(importAnnotationsRequest));
     }
 
     /**

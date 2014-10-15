@@ -1,5 +1,6 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 
 import javax.servlet.ServletException;
@@ -45,8 +46,6 @@ public class UploadFileServlet extends AnnotationServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         addCORSHeaders(request, response);
-        String userId = request.getParameter("user_id");
-        String fld = request.getParameter("fld");
 
         String uploadFileName;
         InputStream uploadInputStream;
@@ -58,7 +57,11 @@ public class UploadFileServlet extends AnnotationServlet {
             part.write(tempFile.getAbsolutePath());
             uploadInputStream = new FileInputStream(tempFile);
 
-            writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.uploadFileHandler(userId, uploadFileName, uploadInputStream, true));
+            try {
+                writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.uploadFile(uploadFileName, uploadInputStream));
+            } catch (AnnotationException e) {
+                e.printStackTrace(); // TODO: Logger
+            }
         }
     }
 
