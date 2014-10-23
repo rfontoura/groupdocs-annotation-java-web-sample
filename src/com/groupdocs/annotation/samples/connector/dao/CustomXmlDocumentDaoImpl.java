@@ -1,8 +1,8 @@
 package com.groupdocs.annotation.samples.connector.dao;
 
-import com.groupdocs.annotation.db.dao.interfaces.IDocumentDao;
-import com.groupdocs.annotation.db.tables.interfaces.IDocument;
-import com.groupdocs.annotation.utils.Utils;
+import com.groupdocs.annotation.common.Utils;
+import com.groupdocs.annotation.data.dao.interfaces.IDocumentDao;
+import com.groupdocs.annotation.data.tables.interfaces.IDocument;
 
 import java.io.*;
 import java.util.ArrayList;

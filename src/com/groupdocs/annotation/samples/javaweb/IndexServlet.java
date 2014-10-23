@@ -1,9 +1,9 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import com.groupdocs.annotation.common.Utils;
 import com.groupdocs.annotation.domain.AccessRights;
 import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.handler.AnnotationHandler;
-import com.groupdocs.annotation.utils.Utils;
 import com.groupdocs.viewer.domain.path.EncodedPath;
 import com.groupdocs.viewer.domain.path.GroupDocsPath;
 import com.groupdocs.viewer.domain.path.TokenId;

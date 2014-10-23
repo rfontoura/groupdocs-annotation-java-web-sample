@@ -1,19 +1,19 @@
 package com.groupdocs.annotation.samples.javaweb;
 
-import com.groupdocs.annotation.connector.IConnector;
-import com.groupdocs.annotation.connector.StorageType;
-import com.groupdocs.annotation.connector.StoreLogic;
-import com.groupdocs.annotation.connector.data.JsonDataConnector;
-import com.groupdocs.annotation.connector.data.XmlDataConnector;
-import com.groupdocs.annotation.connector.db.MssqlDatabaseConnector;
-import com.groupdocs.annotation.connector.db.MysqlDatabaseConnector;
-import com.groupdocs.annotation.connector.db.PostgresqlDatabaseConnector;
-import com.groupdocs.annotation.connector.db.SqliteDatabaseConnector;
+import com.groupdocs.annotation.common.Utils;
+import com.groupdocs.annotation.data.common.StorageType;
+import com.groupdocs.annotation.data.common.StoreLogic;
+import com.groupdocs.annotation.data.connector.IConnector;
+import com.groupdocs.annotation.data.connector.data.JsonDataConnector;
+import com.groupdocs.annotation.data.connector.data.XmlDataConnector;
+import com.groupdocs.annotation.data.connector.db.MssqlDatabaseConnector;
+import com.groupdocs.annotation.data.connector.db.MysqlDatabaseConnector;
+import com.groupdocs.annotation.data.connector.db.PostgresqlDatabaseConnector;
+import com.groupdocs.annotation.data.connector.db.SqliteDatabaseConnector;
 import com.groupdocs.annotation.handler.AnnotationHandler;
 import com.groupdocs.annotation.samples.connector.CustomXmlDataConnector;
 import com.groupdocs.annotation.samples.javaweb.config.ApplicationConfig;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
-import com.groupdocs.annotation.utils.Utils;
 import com.groupdocs.viewer.config.ServiceConfiguration;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
@@ -30,10 +30,10 @@ import java.util.Properties;
  * @author imy
  */
 public abstract class AnnotationServlet extends HttpServlet {
+    protected static final String DEFAULT_ENCODING = "UTF-8";
     protected static AnnotationHandler annotationHandler = null;
     protected static ApplicationConfig applicationConfig;
     protected static ServiceConfiguration serviceConfiguration;
-    private final String DEFAULT_ENCODING = "UTF-8";
 
     public static AnnotationHandler getAnnotationHandler() {
         return annotationHandler;
@@ -48,7 +48,6 @@ public abstract class AnnotationServlet extends HttpServlet {
                 properties.load(resourceStreamAux);
                 applicationConfig = new ApplicationConfig(properties);
                 serviceConfiguration = new ServiceConfiguration(applicationConfig);
-                String tempPath = serviceConfiguration.getImagesPath();
 //                annotationHandler = new AnnotationHandler(serviceConfiguration);
 
                 IConnector connector = null;
@@ -58,6 +57,8 @@ public abstract class AnnotationServlet extends HttpServlet {
                 String dbName = applicationConfig.getDbName();
                 String dbUsername = applicationConfig.getDbUsername();
                 String dbPassword = applicationConfig.getDbPassword();
+                ServiceConfiguration serviceConfiguration = new ServiceConfiguration(applicationConfig);
+                String tempPath = serviceConfiguration.getImagesPath();
                 StoreLogic storeLogic = StoreLogic.fromValue(applicationConfig.getStoreLogic());
                 String storagePath = Utils.or(applicationConfig.getStoragePath(), tempPath);
 

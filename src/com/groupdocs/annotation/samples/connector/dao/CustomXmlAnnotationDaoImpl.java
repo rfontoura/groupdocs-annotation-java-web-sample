@@ -1,14 +1,14 @@
 package com.groupdocs.annotation.samples.connector.dao;
 
-import com.groupdocs.annotation.db.DaoFactory;
-import com.groupdocs.annotation.db.dao.interfaces.IAnnotationDao;
-import com.groupdocs.annotation.db.dao.interfaces.IDocumentDao;
-import com.groupdocs.annotation.db.dao.interfaces.ISessionDao;
-import com.groupdocs.annotation.db.tables.interfaces.IAnnotation;
-import com.groupdocs.annotation.db.tables.interfaces.IDocument;
-import com.groupdocs.annotation.db.tables.interfaces.ISession;
+import com.groupdocs.annotation.common.Utils;
+import com.groupdocs.annotation.data.DaoFactory;
+import com.groupdocs.annotation.data.dao.interfaces.IAnnotationDao;
+import com.groupdocs.annotation.data.dao.interfaces.IDocumentDao;
+import com.groupdocs.annotation.data.dao.interfaces.ISessionDao;
+import com.groupdocs.annotation.data.tables.interfaces.IAnnotation;
+import com.groupdocs.annotation.data.tables.interfaces.IDocument;
+import com.groupdocs.annotation.data.tables.interfaces.ISession;
 import com.groupdocs.annotation.exception.AnnotationException;
-import com.groupdocs.annotation.utils.Utils;
 
 import java.io.*;
 import java.util.*;

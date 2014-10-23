@@ -1,10 +1,10 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import com.groupdocs.annotation.common.Utils;
 import com.groupdocs.annotation.domain.AccessRights;
 import com.groupdocs.annotation.domain.request.ImportAnnotationsData;
 import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
-import com.groupdocs.annotation.utils.Utils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

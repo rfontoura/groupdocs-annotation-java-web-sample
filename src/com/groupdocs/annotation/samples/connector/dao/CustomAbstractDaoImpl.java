@@ -3,10 +3,10 @@ package com.groupdocs.annotation.samples.connector.dao;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.groupdocs.annotation.db.dao.interfaces.IDao;
-import com.groupdocs.annotation.db.tables.interfaces.ITable;
+import com.groupdocs.annotation.common.Utils;
+import com.groupdocs.annotation.data.dao.interfaces.IDao;
+import com.groupdocs.annotation.data.tables.interfaces.ITable;
 import com.groupdocs.annotation.exception.AnnotationException;
-import com.groupdocs.annotation.utils.Utils;
 
 import java.io.IOException;
 import java.io.OutputStream;
