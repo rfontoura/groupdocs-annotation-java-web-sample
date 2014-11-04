@@ -43,9 +43,4 @@ public class CustomXmlDataConnector extends AbstractDataConnector {
     public IUserDao getUserDao() throws AnnotationException {
         return new CustomXmlUserDaoImpl();
     }
-
-    @Override
-    public IAnnDocDao getAnnDocDao() throws AnnotationException {
-        return new CustomXmlAnnDocDaoImpl();
-    }
 }

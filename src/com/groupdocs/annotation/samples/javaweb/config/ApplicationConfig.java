@@ -458,7 +458,7 @@ public class ApplicationConfig extends ServiceConfigurationBase {
      */
     @Override
     public String getAreaToolOptionsPenColor() {
-        return null;
+        return "#00FF00";
     }
 
     /**
@@ -473,8 +473,8 @@ public class ApplicationConfig extends ServiceConfigurationBase {
      * {@inheritDoc}
      */
     @Override
-    public Integer getAreaToolOptionsBrushColor() {
-        return 654;
+    public String getAreaToolOptionsBrushColor() {
+        return "#00FF00";
     }
 
     /**
@@ -490,7 +490,7 @@ public class ApplicationConfig extends ServiceConfigurationBase {
      */
     @Override
     public String getPolylineToolOptionsPenColor() {
-        return null;
+        return "#FF0000";
     }
 
     /**
@@ -505,8 +505,8 @@ public class ApplicationConfig extends ServiceConfigurationBase {
      * {@inheritDoc}
      */
     @Override
-    public Integer getPolylineToolOptionsBrushColor() {
-        return 654;
+    public String getPolylineToolOptionsBrushColor() {
+        return "#0000FF";
     }
 
     /**
@@ -522,7 +522,7 @@ public class ApplicationConfig extends ServiceConfigurationBase {
      */
     @Override
     public String getArrowToolOptionsPenColor() {
-        return null;
+        return "#FF0000";
     }
 
     /**
@@ -537,8 +537,32 @@ public class ApplicationConfig extends ServiceConfigurationBase {
      * {@inheritDoc}
      */
     @Override
-    public Integer getArrowToolOptionsBrushColor() {
-        return 654;
+    public String getArrowToolOptionsBrushColor() {
+        return "#FF00FF";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Integer getPenWidth() {
+        return super.getPenWidth();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getPenColor() {
+        return "#FFFF00";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Integer getPenStyle() {
+        return super.getPenStyle();
     }
 
     /**
