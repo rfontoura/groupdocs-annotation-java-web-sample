@@ -11,7 +11,7 @@ import com.groupdocs.annotation.data.connector.db.MysqlDatabaseConnector;
 import com.groupdocs.annotation.data.connector.db.PostgresqlDatabaseConnector;
 import com.groupdocs.annotation.data.connector.db.SqliteDatabaseConnector;
 import com.groupdocs.annotation.handler.AnnotationHandler;
-import com.groupdocs.annotation.samples.connector.CustomXmlDataConnector;
+import com.groupdocs.annotation.samples.connector.CustomDatabaseConnector;
 import com.groupdocs.annotation.samples.javaweb.config.ApplicationConfig;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 import com.groupdocs.viewer.config.ServiceConfiguration;
@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Locale;
 import java.util.Properties;
 
 /**
@@ -62,7 +63,6 @@ public abstract class AnnotationServlet extends HttpServlet {
                 StoreLogic storeLogic = StoreLogic.fromValue(applicationConfig.getStoreLogic());
                 String storagePath = Utils.or(applicationConfig.getStoragePath(), tempPath);
 
-
                 if (storageType != null && !storageType.isEmpty()) {
                     switch (StorageType.fromValue(storageType)) {
                         case DEFAULT:
@@ -87,12 +87,48 @@ public abstract class AnnotationServlet extends HttpServlet {
                             connector = new PostgresqlDatabaseConnector(dbServer, dbPort, dbName, dbUsername, dbPassword);
                             break;
                         case CUSTOM:
-                            connector = new CustomXmlDataConnector();
-//                            connector = new CustomDatabaseConnector(dbServer, dbPort, dbName, dbUsername, dbPassword);
+                            connector = new CustomDatabaseConnector(dbServer, dbPort, dbName, dbUsername, dbPassword);
                             break;
                     }
                 }
-                annotationHandler = new AnnotationHandler(serviceConfiguration, connector);
+//                // Initialize constructors for create custom entities instead of embedded
+//                AnnotationConstructor.setConstructor(new IConstructor<IAnnotation>() {
+//                    @Override
+//                    public IAnnotation create() {
+//                        return new MyCustomEntityClass();
+//                    }
+//
+//                    @Override
+//                    public IAnnotation create(IAnnotation obj) {
+//                        MyCustomEntityClass /* MyCustomEntityClass implements IAnnotation */ myCustomEntityClass = new MyCustomEntityClass();
+//                        myCustomEntityClass.setAnyPropertyIfNeed(object.getAnyproperty());
+//                        return myCustomEntityClass;
+//                    }
+//                });
+//                CollaboratorConstructor.setConstructor(...); ...
+
+                annotationHandler = AnnotationHandler.create(serviceConfiguration)
+                        .withConnector(connector)
+                        .withLocale(Locale.CANADA)
+//                        .withInputDataHandler(new CustomInputDataHandler(applicationConfig))
+//                        .withAccessCallback(new ICallback<Boolean, Three<AnnotationEvent, IUser, IDocument>>() {
+//                            @Override
+//                            public Boolean onCallback(Three<AnnotationEvent, IUser, IDocument> param) {
+//                                AnnotationEvent annotationEvent = param.one;
+//                                switch (annotationEvent) {
+//                                    case CreateAnnotation:
+//                                        // Check permissions and return true of false
+//                                        break;
+//                                    case DeleteAnnotation:
+//                                        // Check permissions and return true of false
+//                                        break;
+//                                    // ...
+//                                }
+//                                return true;
+//                            }
+//                        })
+                        .end();
+//                InputDataHandler.setInputDataHandler(new CustomInputDataHandler(config));
             }
         } catch (Exception ex) {
             Logger.getLogger(this.getClass()).error(ex);

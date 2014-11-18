@@ -1,6 +1,5 @@
 package com.groupdocs.annotation.samples.javaweb;
 
-import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 
 import javax.servlet.ServletException;
@@ -57,11 +56,7 @@ public class UploadFileServlet extends AnnotationServlet {
             part.write(tempFile.getAbsolutePath());
             uploadInputStream = new FileInputStream(tempFile);
 
-            try {
-                writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.uploadFile(uploadFileName, uploadInputStream));
-            } catch (AnnotationException e) {
-                e.printStackTrace(); // TODO: Logger
-            }
+            writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.uploadFileHandler(uploadFileName, uploadInputStream));
         }
     }
 

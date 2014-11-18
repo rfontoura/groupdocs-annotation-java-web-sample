@@ -1,6 +1,6 @@
 package com.groupdocs.annotation.samples.javaweb.config;
 
-import com.groupdocs.annotation.config.ServiceConfigurationBase;
+import com.groupdocs.annotation.config.ServiceConfiguration;
 
 import java.util.Properties;
 
@@ -9,7 +9,7 @@ import java.util.Properties;
  *
  * @author Aleksey Permyakov on 05.06.14.
  */
-public class ApplicationConfig extends ServiceConfigurationBase {
+public class ApplicationConfig extends ServiceConfiguration {
     private final Properties properties;
 
     /**
@@ -51,6 +51,14 @@ public class ApplicationConfig extends ServiceConfigurationBase {
     @Override
     public String getUploadPath() {
         return properties.getProperty("uploadPath", null);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getLocalization() {
+        return properties.getProperty("localization", null);
     }
 
     /**

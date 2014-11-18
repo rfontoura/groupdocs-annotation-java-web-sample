@@ -1,9 +1,12 @@
 package com.groupdocs.annotation.samples.javaweb;
 
 import com.groupdocs.annotation.common.Utils;
-import com.groupdocs.annotation.domain.AccessRights;
+import com.groupdocs.annotation.enums.AccessRights;
 import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.handler.AnnotationHandler;
+import com.groupdocs.annotation.localization.ILocalization;
+import com.groupdocs.annotation.localization.LocalizationRU;
+import com.groupdocs.annotation.samples.localization.LocalizationGE;
 import com.groupdocs.viewer.domain.path.EncodedPath;
 import com.groupdocs.viewer.domain.path.GroupDocsPath;
 import com.groupdocs.viewer.domain.path.TokenId;
@@ -25,7 +28,20 @@ public class IndexServlet extends AnnotationServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         addCORSHeaders(request, response);
-        request.setAttribute("annotation_head", annotationHandler.getHeader(applicationConfig.getApplicationPath(), request));
+        // Configure localization
+        ILocalization localization = null;
+        if ("RU".equalsIgnoreCase(applicationConfig.getLocalization())) {
+            localization = new LocalizationRU();
+        } else if ("GE".equalsIgnoreCase(applicationConfig.getLocalization())) {
+            localization = new LocalizationGE();
+        }
+        String header = "";
+        try {
+            header = annotationHandler.getHeader(applicationConfig.getApplicationPath(), request);
+        } catch (AnnotationException e) {
+            Logger.getLogger(this.getClass()).error(e);
+        }
+        request.setAttribute("annotation_head", header);
         final String userName = Utils.or(request.getParameter("userName"), AnnotationHandler.ANONYMOUS_USERNAME);
 
         String file = request.getParameter("file");

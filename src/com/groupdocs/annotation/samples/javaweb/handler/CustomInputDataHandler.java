@@ -53,7 +53,7 @@ public class CustomInputDataHandler extends InputDataHandler {
     }
 
     @Override
-    public String saveFile(InputStream inputStream, String fileName, Integer timeToLive) {
+    public String saveFile(InputStream inputStream, String fileName, Integer timeToLive, String value) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
