@@ -1,5 +1,7 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import com.groupdocs.annotation.handler.AnnotationHandler;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +16,13 @@ public class GetCssServlet extends AnnotationServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Content-type", "text/css");
         addCORSHeaders(request, response);
-        writeOutput((InputStream) annotationHandler.getCssHandler(request.getParameter("script"), response), response);
+        long dateSince = request.getDateHeader("If-Modified-Since");
+        if (annotationHandler.isResourceModified(dateSince)) {
+            response.setDateHeader("Last-Modified", AnnotationHandler.LAST_RESOURCE_MODIFIED);
+            writeOutput((InputStream) annotationHandler.getCssHandler(request.getParameter("script"), response), response);
+        } else {
+            response.setStatus(304);
+        }
     }
 
     @Override
