@@ -1,7 +1,6 @@
 package com.groupdocs.annotation.samples.javaweb;
 
 import com.groupdocs.annotation.common.Utils;
-import com.groupdocs.annotation.enums.AccessRights;
 import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.handler.AnnotationHandler;
 import com.groupdocs.annotation.localization.ILocalization;
@@ -16,7 +15,6 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -63,13 +61,13 @@ public class IndexServlet extends AnnotationServlet {
 
         String userGuid = null;
         try {
-            userGuid = annotationHandler.addCollaborator(userName, initialPath, AccessRights.All.value(), Utils.colorToInt(Color.RED));
+            userGuid = annotationHandler.getUserGuid(userName);
+            request.setAttribute("annotation_scripts", annotationHandler.getAnnotationScript(initialPath, userName, userGuid));
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("annotation/index.jsp");
+            requestDispatcher.forward(request, response);
         } catch (AnnotationException e) {
             Logger.getLogger(this.getClass()).error(e);
         }
-        request.setAttribute("annotation_scripts", annotationHandler.getAnnotationScript(initialPath, userName, userGuid));
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("annotation/index.jsp");
-        requestDispatcher.forward(request, response);
     }
 
     @Override

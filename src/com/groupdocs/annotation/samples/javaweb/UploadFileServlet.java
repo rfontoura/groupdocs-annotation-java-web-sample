@@ -1,5 +1,7 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import com.groupdocs.annotation.domain.response.StatusResult;
+import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 
 import javax.servlet.ServletException;
@@ -12,6 +14,10 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static com.groupdocs.annotation.common.Utils.toJson;
 
 /**
  * @author Aleksey Permyakov (16.07.14).
@@ -56,7 +62,12 @@ public class UploadFileServlet extends AnnotationServlet {
             part.write(tempFile.getAbsolutePath());
             uploadInputStream = new FileInputStream(tempFile);
 
-            writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.uploadFileHandler(uploadFileName, uploadInputStream));
+            try {
+                writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.uploadFileHandler(uploadFileName, uploadInputStream));
+            } catch (AnnotationException e) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, MESSAGE_HANDLER_THROWS, e.getMessage());
+                writeOutput(MediaType.APPLICATION_JSON, response, toJson(new StatusResult(false, e.getMessage())));
+            }
         }
     }
 

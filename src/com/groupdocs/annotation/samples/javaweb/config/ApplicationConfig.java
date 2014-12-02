@@ -264,14 +264,6 @@ public class ApplicationConfig extends ServiceConfiguration {
      * {@inheritDoc}
      */
     @Override
-    public String getFileDisplayName() {
-        return null;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public Integer getHeight() {
         return 800;
     }

@@ -1,5 +1,6 @@
 package com.groupdocs.annotation.samples.service;
 
+import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.samples.javaweb.AnnotationServlet;
 import org.atmosphere.config.service.ManagedService;
 import org.atmosphere.config.service.Message;
@@ -7,11 +8,15 @@ import org.atmosphere.config.service.Post;
 import org.atmosphere.config.service.Ready;
 import org.atmosphere.cpr.AtmosphereResource;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * @author Aleksey Permyakov (16.07.14).
  */
 @ManagedService(path = "/annotation")
 public class AtmosphereManagedService {
+    private static final String MESSAGE_HANDLER_THROWS = "Handler throws exception: {0}";
 
     /**
      * On ready handler
@@ -20,7 +25,11 @@ public class AtmosphereManagedService {
      */
     @Ready
     public void onReady(final AtmosphereResource resource) {
-        AnnotationServlet.getAnnotationHandler().onAtmosphereReady(resource);
+        try {
+            AnnotationServlet.getAnnotationHandler().onAtmosphereReady(resource);
+        } catch (AnnotationException e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, MESSAGE_HANDLER_THROWS, e.getMessage());
+        }
     }
 
     /**
@@ -31,6 +40,10 @@ public class AtmosphereManagedService {
     @Post
     @Message
     public void onMessage(AtmosphereResource resource) {
-        AnnotationServlet.getAnnotationHandler().onAtmosphereMessage(resource);
+        try {
+            AnnotationServlet.getAnnotationHandler().onAtmosphereMessage(resource);
+        } catch (AnnotationException e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, MESSAGE_HANDLER_THROWS, e.getMessage());
+        }
     }
 }
