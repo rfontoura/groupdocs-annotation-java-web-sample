@@ -66,7 +66,7 @@ public abstract class AnnotationServlet extends HttpServlet {
                 String dbUsername = applicationConfig.getDbUsername();
                 String dbPassword = applicationConfig.getDbPassword();
                 ServiceConfiguration serviceConfiguration = new ServiceConfiguration(applicationConfig);
-                String tempPath = serviceConfiguration.getImagesPath();
+                String tempPath = serviceConfiguration.getTempDir();
                 StoreLogic storeLogic = StoreLogic.fromValue(applicationConfig.getStoreLogic());
                 String storagePath = Utils.or(applicationConfig.getStoragePath(), tempPath);
 

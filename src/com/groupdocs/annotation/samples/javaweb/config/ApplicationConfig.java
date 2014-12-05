@@ -152,14 +152,6 @@ public class ApplicationConfig extends ServiceConfiguration {
      * {@inheritDoc}
      */
     @Override
-    public Boolean isUseAuthorization() {
-        return false;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public Boolean isUseBrowserCache() {
         return false;
     }
@@ -258,6 +250,14 @@ public class ApplicationConfig extends ServiceConfiguration {
     @Override
     public Boolean isConvertWordDocumentsCompletely() {
         return false;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getFileDisplayName() {
+        return null;
     }
 
     /**
