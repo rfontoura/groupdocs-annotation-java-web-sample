@@ -1,10 +1,11 @@
-package com.groupdocs.annotation.samples.connector.dao;
+package com.groupdocs.annotation.samples.data.dao;
 
 import com.groupdocs.annotation.common.Utils;
 import com.groupdocs.annotation.data.DaoFactory;
 import com.groupdocs.annotation.data.dao.interfaces.IAnnotationDao;
 import com.groupdocs.annotation.data.dao.interfaces.IDocumentDao;
 import com.groupdocs.annotation.data.dao.interfaces.ISessionDao;
+import com.groupdocs.annotation.data.environment.IEnvironmentCreator;
 import com.groupdocs.annotation.data.tables.interfaces.IAnnotation;
 import com.groupdocs.annotation.data.tables.interfaces.IDocument;
 import com.groupdocs.annotation.data.tables.interfaces.ISession;
@@ -18,8 +19,14 @@ import java.util.logging.Logger;
  * @author Aleksey Permyakov (13.10.2014)
  */
 public class CustomXmlAnnotationDaoImpl extends CustomAbstractDaoImpl<IAnnotation> implements IAnnotationDao {
+    protected DaoFactory daoFactory;
 
     public static final String ANNOTATION_FILE_NAME = "annotation.xml";
+
+    public CustomXmlAnnotationDaoImpl(IEnvironmentCreator environmentCreator, DaoFactory daoFactory) {
+        super(environmentCreator);
+        this.daoFactory = daoFactory;
+    }
 
     @Override
     protected void saveData(List<IAnnotation> data) {

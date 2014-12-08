@@ -1,8 +1,9 @@
-package com.groupdocs.annotation.samples.connector.dao;
+package com.groupdocs.annotation.samples.data.dao;
 
 import com.groupdocs.annotation.common.Utils;
-import com.groupdocs.annotation.data.dao.interfaces.IUserDao;
-import com.groupdocs.annotation.data.tables.interfaces.IUser;
+import com.groupdocs.annotation.data.dao.interfaces.ISessionDao;
+import com.groupdocs.annotation.data.environment.IEnvironmentCreator;
+import com.groupdocs.annotation.data.tables.interfaces.ISession;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,14 +12,18 @@ import java.util.List;
 /**
  * @author Aleksey Permyakov (13.10.2014)
  */
-public class CustomXmlUserDaoImpl extends CustomAbstractDaoImpl<IUser> implements IUserDao {
+public class CustomXmlSessionDaoImpl extends CustomAbstractDaoImpl<ISession> implements ISessionDao {
 
-    public static final String USER_FILE_NAME = "User.xml";
+    public static final String SESSION_FILE_NAME = "Session.xml";
+
+    public CustomXmlSessionDaoImpl(IEnvironmentCreator environmentCreator) {
+        super(environmentCreator);
+    }
 
     @Override
-    protected void saveData(List<IUser> data) {
+    protected void saveData(List<ISession> data) {
         String tempPath = Utils.getTempPath();
-        File file = new File(tempPath + File.separator + USER_FILE_NAME);
+        File file = new File(tempPath + File.separator + SESSION_FILE_NAME);
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(file);
@@ -31,11 +36,11 @@ public class CustomXmlUserDaoImpl extends CustomAbstractDaoImpl<IUser> implement
     }
 
     @Override
-    protected List<IUser> loadData() {
+    protected List<ISession> loadData() {
         String tempPath = Utils.getTempPath();
-        File file = new File(tempPath + File.separator + USER_FILE_NAME);
+        File file = new File(tempPath + File.separator + SESSION_FILE_NAME);
         if (!file.exists() || !file.isFile()) {
-            return new ArrayList<IUser>();
+            return new ArrayList<ISession>();
         }
         DataInputStream dataInputStream = null;
         FileInputStream fileInputStream = null;
@@ -50,6 +55,6 @@ public class CustomXmlUserDaoImpl extends CustomAbstractDaoImpl<IUser> implement
         } finally {
             Utils.closeStreams(dataInputStream, fileInputStream);
         }
-        return new ArrayList<IUser>();
+        return new ArrayList<ISession>();
     }
 }

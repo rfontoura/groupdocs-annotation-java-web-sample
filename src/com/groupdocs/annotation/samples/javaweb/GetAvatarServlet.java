@@ -2,7 +2,6 @@ package com.groupdocs.annotation.samples.javaweb;
 
 import com.groupdocs.annotation.domain.response.StatusResult;
 import com.groupdocs.annotation.exception.AnnotationException;
-import com.groupdocs.annotation.handler.AnnotationHandler;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 
 import javax.servlet.ServletException;
@@ -23,7 +22,8 @@ public class GetAvatarServlet extends AnnotationServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             addCORSHeaders(request, response);
-            annotationHandler.getAvatarHandler(request, response, AnnotationHandler.ANONYMOUS_USERNAME);
+            String userGuid = request.getParameter("userId");
+            annotationHandler.getAvatarHandler(request, response, userGuid);
         } catch (AnnotationException e) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, MESSAGE_HANDLER_THROWS, e.getMessage());
             writeOutput(MediaType.APPLICATION_JSON, response, toJson(new StatusResult(false, e.getMessage())));

@@ -1,8 +1,9 @@
-package com.groupdocs.annotation.samples.connector.dao;
+package com.groupdocs.annotation.samples.data.dao;
 
 import com.groupdocs.annotation.common.Utils;
-import com.groupdocs.annotation.data.dao.interfaces.ICollaboratorDao;
-import com.groupdocs.annotation.data.tables.interfaces.ICollaborator;
+import com.groupdocs.annotation.data.dao.interfaces.ISystemInfoDao;
+import com.groupdocs.annotation.data.environment.IEnvironmentCreator;
+import com.groupdocs.annotation.data.tables.interfaces.ISystemInfo;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,14 +12,18 @@ import java.util.List;
 /**
  * @author Aleksey Permyakov (13.10.2014)
  */
-public class CustomXmlCollaboratorDaoImpl extends CustomAbstractDaoImpl<ICollaborator> implements ICollaboratorDao {
+public class CustomXmlSystemInfoDaoImpl extends CustomAbstractDaoImpl<ISystemInfo> implements ISystemInfoDao {
 
-    public static final String COLLABORATOR_FILE_NAME = "Collaborator.xml";
+    public static final String SYSTEM_INFO_FILE_NAME = "SystemInfo.xml";
+
+    public CustomXmlSystemInfoDaoImpl(IEnvironmentCreator environmentCreator) {
+        super(environmentCreator);
+    }
 
     @Override
-    protected void saveData(List<ICollaborator> data) {
+    protected void saveData(List<ISystemInfo> data) {
         String tempPath = Utils.getTempPath();
-        File file = new File(tempPath + File.separator + COLLABORATOR_FILE_NAME);
+        File file = new File(tempPath + File.separator + SYSTEM_INFO_FILE_NAME);
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(file);
@@ -31,11 +36,11 @@ public class CustomXmlCollaboratorDaoImpl extends CustomAbstractDaoImpl<ICollabo
     }
 
     @Override
-    protected List<ICollaborator> loadData() {
+    protected List<ISystemInfo> loadData() {
         String tempPath = Utils.getTempPath();
-        File file = new File(tempPath + File.separator + COLLABORATOR_FILE_NAME);
+        File file = new File(tempPath + File.separator + SYSTEM_INFO_FILE_NAME);
         if (!file.exists() || !file.isFile()) {
-            return new ArrayList<ICollaborator>();
+            return new ArrayList<ISystemInfo>();
         }
         DataInputStream dataInputStream = null;
         FileInputStream fileInputStream = null;
@@ -50,6 +55,6 @@ public class CustomXmlCollaboratorDaoImpl extends CustomAbstractDaoImpl<ICollabo
         } finally {
             Utils.closeStreams(dataInputStream, fileInputStream);
         }
-        return new ArrayList<ICollaborator>();
+        return new ArrayList<ISystemInfo>();
     }
 }

@@ -16,7 +16,8 @@ import com.groupdocs.annotation.data.tables.interfaces.IDocument;
 import com.groupdocs.annotation.data.tables.interfaces.IUser;
 import com.groupdocs.annotation.enums.AccessRights;
 import com.groupdocs.annotation.handler.AnnotationHandler;
-import com.groupdocs.annotation.samples.connector.CustomDatabaseConnector;
+import com.groupdocs.annotation.samples.data.connector.CustomDatabaseConnector;
+import com.groupdocs.annotation.samples.data.connector.ICustomConnector;
 import com.groupdocs.annotation.samples.javaweb.config.ApplicationConfig;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 import com.groupdocs.viewer.config.ServiceConfiguration;
@@ -118,6 +119,9 @@ public abstract class AnnotationServlet extends HttpServlet {
                 Locale.setDefault(Locale.CANADA);
                 //
                 annotationHandler = new AnnotationHandler(serviceConfiguration, connector);
+                if (connector instanceof ICustomConnector){
+                    ((ICustomConnector)connector).setEnvironmentCreator(annotationHandler);
+                }
                 // This callback will be called for each case when collaborator should be created
                 annotationHandler.setCollaboratorCallback(new ICallback<Pair<Integer, Color>, Pair<IUser, IDocument>>() {
                     @Override

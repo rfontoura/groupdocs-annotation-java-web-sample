@@ -1,4 +1,4 @@
-package com.groupdocs.annotation.samples.connector;
+package com.groupdocs.annotation.samples.data.connector;
 
 import com.groupdocs.annotation.data.connector.db.AbstractDatabaseConnector;
 import com.groupdocs.annotation.exception.AnnotationException;
@@ -8,7 +8,7 @@ import com.groupdocs.annotation.exception.AnnotationException;
  * GroupDocs.Annotation have embedded MySQL connector.
  * So this connector just example.
  *
- * @author Aleksey Permyakov (15.10.2014)
+ * @author Aleksey Permyakov (09.09.2014)
  */
 public class CustomDatabaseConnector extends AbstractDatabaseConnector {
     private static final String CONNECTION_STRING = "jdbc:mysql://%s:%d/%s?user=%s&password=%s";
