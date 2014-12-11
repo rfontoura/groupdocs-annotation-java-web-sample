@@ -16,7 +16,7 @@ public class CustomXmlDataConnector extends AbstractDataConnector implements ICu
 
     @Override
     public IAnnotationDao getAnnotationDao() throws AnnotationException {
-        return new CustomXmlAnnotationDaoImpl(environmentCreator, getDaoFactory());
+        return new CustomXmlAnnotationDaoImpl(environmentCreator);
     }
 
     @Override

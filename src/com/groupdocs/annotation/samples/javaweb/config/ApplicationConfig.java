@@ -65,6 +65,14 @@ public class ApplicationConfig extends ServiceConfiguration {
      * {@inheritDoc}
      */
     @Override
+    public Boolean isDisableAtmosphere() {
+        return Boolean.parseBoolean(properties.getProperty("disableAtmosphere", "false"));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Boolean isUseCache() {
         return Boolean.parseBoolean(properties.getProperty("useCache", "false"));
     }

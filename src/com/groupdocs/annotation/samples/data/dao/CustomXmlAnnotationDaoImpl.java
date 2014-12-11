@@ -12,20 +12,15 @@ import com.groupdocs.annotation.data.tables.interfaces.ISession;
 
 import java.io.*;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Aleksey Permyakov (13.10.2014)
  */
 public class CustomXmlAnnotationDaoImpl extends CustomAbstractDaoImpl<IAnnotation> implements IAnnotationDao {
-    protected DaoFactory daoFactory;
-
     public static final String ANNOTATION_FILE_NAME = "annotation.xml";
 
-    public CustomXmlAnnotationDaoImpl(IEnvironmentCreator environmentCreator, DaoFactory daoFactory) {
+    public CustomXmlAnnotationDaoImpl(IEnvironmentCreator environmentCreator) {
         super(environmentCreator);
-        this.daoFactory = daoFactory;
     }
 
     @Override
@@ -63,15 +58,12 @@ public class CustomXmlAnnotationDaoImpl extends CustomAbstractDaoImpl<IAnnotatio
                 }
             }
         } catch (Exception e) {
-            Logger.getLogger(CustomXmlAnnotationDaoImpl.class.getName()).log(Level.SEVERE, "Can't save data:" + e.getMessage());
+            Utils.log(this.getClass(), e);
         }
     }
 
     @Override
     protected List<IAnnotation> loadData() {
-//        // You can use AnnotationConstructor.create().end() for create new entity instance
-//        IAnnotation createdAnnotationObject = AnnotationConstructor.create().end();
-
         String tempPath = Utils.getTempPath();
         File tempDirectory = new File(tempPath);
         if (!tempDirectory.exists() || tempDirectory.isFile()) {
