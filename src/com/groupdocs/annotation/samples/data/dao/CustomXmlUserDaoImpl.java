@@ -9,13 +9,23 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.groupdocs.annotation.data.dao.xml.AbstractXmlDao.fromXml;
+
 /**
  * @author Aleksey Permyakov (13.10.2014)
  */
 public class CustomXmlUserDaoImpl extends CustomAbstractDaoImpl<IUser> implements IUserDao {
 
+    /**
+     * The constant USER_FILE_NAME.
+     */
     public static final String USER_FILE_NAME = "User.xml";
 
+    /**
+     * Instantiates a new Custom xml user dao impl.
+     *
+     * @param environmentCreator the environment creator
+     */
     public CustomXmlUserDaoImpl(IEnvironmentCreator environmentCreator) {
         super(environmentCreator);
     }
@@ -49,7 +59,7 @@ public class CustomXmlUserDaoImpl extends CustomAbstractDaoImpl<IUser> implement
             dataInputStream = new DataInputStream(fileInputStream);
             byte[] bytes = new byte[dataInputStream.available()];
             dataInputStream.readFully(bytes);
-            return Utils.fromXml(new String(bytes));
+            return fromXml(new String(bytes));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

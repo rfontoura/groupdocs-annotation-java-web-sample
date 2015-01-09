@@ -12,7 +12,7 @@ import com.groupdocs.annotation.exception.AnnotationException;
  */
 public class CustomDatabaseConnector extends AbstractDatabaseConnector {
     private static final String CONNECTION_STRING = "jdbc:mysql://%s:%d/%s?user=%s&password=%s";
-    private static final String DEFAULT_DATABASE_DRIVER = com.mysql.jdbc.Driver.class.getName();
+    private static final String DEFAULT_DATABASE_DRIVER = "com.mysql.jdbc.Driver";
 
     /**
      * Create database connector

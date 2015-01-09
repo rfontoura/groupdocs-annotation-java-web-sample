@@ -13,6 +13,8 @@ import com.groupdocs.annotation.data.tables.interfaces.ISession;
 import java.io.*;
 import java.util.*;
 
+import static com.groupdocs.annotation.data.dao.xml.AbstractXmlDao.fromXml;
+
 /**
  * @author Aleksey Permyakov (13.10.2014)
  */
@@ -90,7 +92,7 @@ public class CustomXmlAnnotationDaoImpl extends CustomAbstractDaoImpl<IAnnotatio
                     dataInputStream = new DataInputStream(fileInputStream);
                     byte[] bytes = new byte[dataInputStream.available()];
                     dataInputStream.readFully(bytes);
-                    List<IAnnotation> fileAnnotations = Utils.fromXml(new String(bytes));
+                    List<IAnnotation> fileAnnotations = fromXml(new String(bytes));
                     annotations.addAll(fileAnnotations);
                 } catch (Exception e) {
                     e.printStackTrace();

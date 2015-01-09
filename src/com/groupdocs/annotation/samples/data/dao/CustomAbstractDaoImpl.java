@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.groupdocs.annotation.data.dao.xml.AbstractXmlDao.toXml;
+
 /**
  * @author Aleksey Permyakov (13.10.2014)
  */
@@ -131,7 +133,7 @@ public abstract class CustomAbstractDaoImpl<T extends ITable> implements IDao<T>
     }
 
     protected boolean saveObjectAsXml(Object object, OutputStream outputStream) {
-        String json = Utils.toXml(object);
+        String json = toXml(object);
         try {
             outputStream.write(json.getBytes());
         } catch (IOException e) {

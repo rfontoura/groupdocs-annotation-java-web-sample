@@ -9,6 +9,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.groupdocs.annotation.data.dao.xml.AbstractXmlDao.fromXml;
+
 /**
  * @author Aleksey Permyakov (13.10.2014)
  */
@@ -49,7 +51,7 @@ public class CustomXmlSystemInfoDaoImpl extends CustomAbstractDaoImpl<ISystemInf
             dataInputStream = new DataInputStream(fileInputStream);
             byte[] bytes = new byte[dataInputStream.available()];
             dataInputStream.readFully(bytes);
-            return Utils.fromXml(new String(bytes));
+            return fromXml(new String(bytes));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
