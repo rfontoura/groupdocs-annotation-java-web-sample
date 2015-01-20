@@ -13,8 +13,6 @@ import com.groupdocs.annotation.data.tables.interfaces.ISession;
 import java.io.*;
 import java.util.*;
 
-import static com.groupdocs.annotation.data.dao.xml.AbstractXmlDao.fromXml;
-
 /**
  * @author Aleksey Permyakov (13.10.2014)
  */

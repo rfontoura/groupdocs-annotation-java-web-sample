@@ -9,8 +9,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.groupdocs.annotation.data.dao.xml.AbstractXmlDao.fromXml;
-
 /**
  * @author Aleksey Permyakov (13.10.2014)
  */
@@ -23,7 +21,6 @@ public class CustomXmlUserDaoImpl extends CustomAbstractDaoImpl<IUser> implement
 
     /**
      * Instantiates a new Custom xml user dao impl.
-     *
      * @param environmentCreator the environment creator
      */
     public CustomXmlUserDaoImpl(IEnvironmentCreator environmentCreator) {

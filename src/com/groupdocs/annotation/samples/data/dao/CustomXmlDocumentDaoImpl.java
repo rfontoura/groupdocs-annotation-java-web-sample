@@ -9,8 +9,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.groupdocs.annotation.data.dao.xml.AbstractXmlDao.fromXml;
-
 /**
  * @author Aleksey Permyakov (13.10.2014)
  */

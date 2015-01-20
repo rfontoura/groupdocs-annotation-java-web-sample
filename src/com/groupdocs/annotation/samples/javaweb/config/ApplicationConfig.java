@@ -69,6 +69,11 @@ public class ApplicationConfig extends ServiceConfiguration {
         return Boolean.parseBoolean(properties.getProperty("disableAtmosphere", "false"));
     }
 
+    @Override
+    public Boolean isCaseSensitive() {
+        return false;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -739,5 +744,13 @@ public class ApplicationConfig extends ServiceConfiguration {
     @Override
     public Long getMaxCacheSize() {
         return 10L;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Boolean isSearchForSeparateWords() {
+        return true;
     }
 }

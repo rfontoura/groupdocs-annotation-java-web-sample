@@ -4,7 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.groupdocs.annotation.common.Utils;
-import com.groupdocs.annotation.data.DaoFactory;
+import com.groupdocs.annotation.data.constructor.*;
 import com.groupdocs.annotation.data.dao.interfaces.IDao;
 import com.groupdocs.annotation.data.environment.Environment;
 import com.groupdocs.annotation.data.environment.IEnvironmentCreator;
@@ -18,8 +18,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.groupdocs.annotation.data.dao.xml.AbstractXmlDao.toXml;
-
 /**
  * @author Aleksey Permyakov (13.10.2014)
  */
@@ -28,6 +26,43 @@ public abstract class CustomAbstractDaoImpl<T extends ITable> implements IDao<T>
 
     public CustomAbstractDaoImpl(IEnvironmentCreator environmentCreator) {
         this.environmentCreator = environmentCreator;
+    }
+
+    /**
+     * Convert object to XML
+     * @param obj object to convert
+     * @return xml string
+     */
+    public static String toXml(Object obj) {
+        return initializeXStreamWithModels(new com.thoughtworks.xstream.XStream(new com.thoughtworks.xstream.io.xml.StaxDriver())).toXML(obj);
+    }
+
+    /**
+     * Initialize {@link com.thoughtworks.xstream.XStream} with models objects
+     * @param xStream xstream object
+     * @return initialized {@link com.thoughtworks.xstream.XStream} object
+     */
+    public static com.thoughtworks.xstream.XStream initializeXStreamWithModels(com.thoughtworks.xstream.XStream xStream) {
+        // Initialize xstream
+        xStream.processAnnotations(AnnotationConstructor.getClazz());
+        xStream.processAnnotations(CollaboratorConstructor.getClazz());
+        xStream.processAnnotations(DocumentConstructor.getClazz());
+        xStream.processAnnotations(ReplyConstructor.getClazz());
+        xStream.processAnnotations(SessionConstructor.getClazz());
+        xStream.processAnnotations(SystemInfoConstructor.getClazz());
+        xStream.processAnnotations(UserConstructor.getClazz());
+        return xStream;
+    }
+
+    /**
+     * Restore Java object from xml
+     * @param xmlString xml string
+     * @param <T> type of java object
+     * @return restored object
+     */
+    @SuppressWarnings("unchecked")
+    public static <T> T fromXml(String xmlString) {
+        return (T) initializeXStreamWithModels(new com.thoughtworks.xstream.XStream(new com.thoughtworks.xstream.io.xml.StaxDriver())).fromXML(xmlString);
     }
 
     @Override
@@ -149,10 +184,9 @@ public abstract class CustomAbstractDaoImpl<T extends ITable> implements IDao<T>
 
     /**
      * Get environment.
-     *
      * @return the environment
      */
-    protected Environment getEnvironment(){
+    protected Environment getEnvironment() {
         return environmentCreator.createEnvironment();
     }
 }
