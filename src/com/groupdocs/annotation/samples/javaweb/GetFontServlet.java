@@ -1,5 +1,8 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import com.groupdocs.annotation.common.Utils;
+import com.groupdocs.annotation.exception.AnnotationException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,7 +20,11 @@ public class GetFontServlet extends AnnotationServlet {
         addCORSHeaders(request, response);
         String[] split = request.getRequestURI().split("/");
         if (split.length > 0) {
-            writeOutput((InputStream) annotationHandler.getFontHandler(split[split.length - 1], response), response);
+            try {
+                writeOutput((InputStream) annotationHandler.getFontHandler(split[split.length - 1], response), response);
+            } catch (AnnotationException e) {
+                Utils.log(AnnotationServlet.class, e);
+            }
         }
     }
 }

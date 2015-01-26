@@ -1,6 +1,9 @@
 package com.groupdocs.annotation.samples.javaweb;
 
 
+import com.groupdocs.annotation.common.Utils;
+import com.groupdocs.annotation.exception.AnnotationException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,7 +23,12 @@ public class GetDocumentPageImageServlet extends AnnotationServlet {
         boolean usePdf = Boolean.valueOf(request.getParameter("usePdf"));
         int pageIndex = Integer.valueOf(request.getParameter("pageIndex"));
         String path = request.getParameter("path");
-        Object o = annotationHandler.getDocumentPageImageHandler(path, width, quality, usePdf, pageIndex, response);
+        Object o = null;
+        try {
+            o = annotationHandler.getDocumentPageImageHandler(path, width, quality, usePdf, pageIndex, response);
+        } catch (AnnotationException e) {
+            Utils.log(AnnotationServlet.class, e);
+        }
         if (o instanceof InputStream) {
             writeOutput((InputStream) o, response);
         }

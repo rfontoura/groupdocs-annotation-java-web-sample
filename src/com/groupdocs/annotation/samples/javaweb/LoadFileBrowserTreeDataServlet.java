@@ -1,5 +1,7 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import com.groupdocs.annotation.common.Utils;
+import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 
 import javax.servlet.ServletException;
@@ -20,6 +22,10 @@ public class LoadFileBrowserTreeDataServlet extends AnnotationServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         addCORSHeaders(request, response);
-        writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.loadFileBrowserTreeDataHandler(request, response));
+        try {
+            writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.loadFileBrowserTreeDataHandler(request, response));
+        } catch (AnnotationException e) {
+            Utils.log(AnnotationServlet.class, e);
+        }
     }
 }
