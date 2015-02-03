@@ -22,11 +22,12 @@ public class GetDocumentPageImageServlet extends AnnotationServlet {
         int quality = Integer.valueOf(request.getParameter("quality"));
         boolean usePdf = Boolean.valueOf(request.getParameter("usePdf"));
         int pageIndex = Integer.valueOf(request.getParameter("pageIndex"));
+        boolean isPrint = Boolean.valueOf(request.getParameter("isPrint"));
         String path = request.getParameter("path");
         Object o = null;
         try {
-            o = annotationHandler.getDocumentPageImageHandler(path, width, quality, usePdf, pageIndex, response);
-        } catch (AnnotationException e) {
+            o = annotationHandler.getDocumentPageImageHandler(path, width, quality, usePdf, pageIndex, isPrint, response);
+        } catch (Exception e) {
             Utils.log(AnnotationServlet.class, e);
         }
         if (o instanceof InputStream) {
