@@ -3,16 +3,14 @@ package com.groupdocs.annotation.samples.javaweb;
 import com.groupdocs.annotation.domain.response.StatusResult;
 import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
+import org.apache.commons.io.IOUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,8 +27,7 @@ import static com.groupdocs.annotation.common.Utils.toJson;
 public class UploadFileServlet extends AnnotationServlet {
     /**
      * GET request
-     *
-     * @param request  object
+     * @param request object
      * @param response object
      * @throws ServletException
      * @throws IOException
@@ -42,8 +39,7 @@ public class UploadFileServlet extends AnnotationServlet {
 
     /**
      * POST request
-     *
-     * @param request  object
+     * @param request object
      * @param response object
      * @throws ServletException
      * @throws IOException
@@ -53,32 +49,16 @@ public class UploadFileServlet extends AnnotationServlet {
         addCORSHeaders(request, response);
 
         String uploadFileName;
-        InputStream uploadInputStream;
-        Collection<Part> parts = request.getParts();
-        if (parts.size() > 0) {
-            Part part = parts.iterator().next();
-            uploadFileName = extractFileName(part);
-            File tempFile = File.createTempFile("annotation-upload", "_" + uploadFileName);
-            part.write(tempFile.getAbsolutePath());
-            uploadInputStream = new FileInputStream(tempFile);
-
-            try {
-                writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.uploadFileHandler(uploadFileName, uploadInputStream));
-            } catch (AnnotationException e) {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, MESSAGE_HANDLER_THROWS, e.getMessage());
-                writeOutput(MediaType.APPLICATION_JSON, response, toJson(new StatusResult(false, e.getMessage())));
-            }
+        uploadFileName = request.getParameter("fileName");
+        File tempFile = File.createTempFile("annotation-upload", "_" + uploadFileName);
+        try (FileOutputStream outputStream = new FileOutputStream(tempFile)) {
+            IOUtils.copy(request.getInputStream(), outputStream);
         }
-    }
-
-    private String extractFileName(Part part) {
-        String contentDisposition = part.getHeader("content-disposition");
-        String[] items = contentDisposition.split(";");
-        for (String s : items) {
-            if (s.trim().startsWith("filename")) {
-                return s.substring(s.indexOf("=") + 2, s.length() - 1);
-            }
+        try (InputStream uploadInputStream = new FileInputStream(tempFile)) {
+            writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.uploadFileHandler(uploadFileName, uploadInputStream));
+        } catch (AnnotationException e) {
+            Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, MESSAGE_HANDLER_THROWS, e.getMessage());
+            writeOutput(MediaType.APPLICATION_JSON, response, toJson(new StatusResult(false, e.getMessage())));
         }
-        return null;
     }
 }
