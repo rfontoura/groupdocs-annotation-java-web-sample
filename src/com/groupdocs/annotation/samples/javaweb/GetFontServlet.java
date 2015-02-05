@@ -23,7 +23,7 @@ public class GetFontServlet extends AnnotationServlet {
             try {
                 writeOutput((InputStream) annotationHandler.getFontHandler(split[split.length - 1], response), response);
             } catch (AnnotationException e) {
-                Utils.log(AnnotationServlet.class, e);
+                Utils.err(AnnotationServlet.class, e);
             }
         }
     }

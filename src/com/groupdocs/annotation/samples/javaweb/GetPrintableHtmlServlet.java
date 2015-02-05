@@ -25,7 +25,7 @@ public class GetPrintableHtmlServlet extends AnnotationServlet {
         try {
             writeOutput(MediaType.TEXT_PLAIN, response, annotationHandler.getPrintableHtmlHandler(request, response));
         } catch (AnnotationException e) {
-            Utils.log(AnnotationServlet.class, e);
+            Utils.err(AnnotationServlet.class, e);
         }
     }
 }

@@ -22,7 +22,7 @@ public class GetFileServlet extends AnnotationServlet {
         try {
             writeOutput((InputStream) annotationHandler.getFileHandler(path, false, response), response);
         } catch (AnnotationException e) {
-            Utils.log(AnnotationServlet.class, e);
+            Utils.err(AnnotationServlet.class, e);
         }
     }
 }

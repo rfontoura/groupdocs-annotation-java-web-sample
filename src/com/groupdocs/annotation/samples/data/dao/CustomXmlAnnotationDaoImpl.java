@@ -58,7 +58,7 @@ public class CustomXmlAnnotationDaoImpl extends CustomAbstractDaoImpl<IAnnotatio
                 }
             }
         } catch (Exception e) {
-            Utils.log(this.getClass(), e);
+            Utils.err(this.getClass(), e);
         }
     }
 

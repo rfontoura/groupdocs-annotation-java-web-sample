@@ -25,7 +25,7 @@ public class GetImageUrlsServlet extends AnnotationServlet {
         try {
             writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.getImageUrlsHandler(request, response));
         } catch (AnnotationException e) {
-            Utils.log(AnnotationServlet.class, e);
+            Utils.err(AnnotationServlet.class, e);
             
         }
         response.setStatus(HttpServletResponse.SC_CREATED);

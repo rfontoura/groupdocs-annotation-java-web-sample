@@ -20,7 +20,7 @@ public class GetCssServlet extends AnnotationServlet {
         try {
             writeOutput((InputStream) annotationHandler.getCssHandler(request.getParameter("script"), response), response);
         } catch (AnnotationException e) {
-            Utils.log(AnnotationServlet.class, e);
+            Utils.err(AnnotationServlet.class, e);
         }
     }
 

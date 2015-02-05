@@ -28,7 +28,7 @@ public class GetDocumentPageImageServlet extends AnnotationServlet {
         try {
             o = annotationHandler.getDocumentPageImageHandler(path, width, quality, usePdf, pageIndex, isPrint, response);
         } catch (Exception e) {
-            Utils.log(AnnotationServlet.class, e);
+            Utils.err(AnnotationServlet.class, e);
         }
         if (o instanceof InputStream) {
             writeOutput((InputStream) o, response);

@@ -20,7 +20,7 @@ public class GetJsServlet extends AnnotationServlet {
         try {
             writeOutput((InputStream) annotationHandler.getJsHandler(request.getParameter("script"), response), response);
         } catch (AnnotationException e) {
-            Utils.log(AnnotationServlet.class, e);
+            Utils.err(AnnotationServlet.class, e);
         }
     }
 }

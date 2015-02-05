@@ -25,7 +25,7 @@ public class LoadFileBrowserTreeDataServlet extends AnnotationServlet {
         try {
             writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.loadFileBrowserTreeDataHandler(request, response));
         } catch (AnnotationException e) {
-            Utils.log(AnnotationServlet.class, e);
+            Utils.err(AnnotationServlet.class, e);
         }
     }
 }

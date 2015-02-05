@@ -25,7 +25,7 @@ public class RotatePageServlet extends AnnotationServlet {
         try {
             writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.rotatePageHandler(request, response));
         } catch (AnnotationException e) {
-            Utils.log(AnnotationServlet.class, e);
+            Utils.err(AnnotationServlet.class, e);
         }
     }
 }
