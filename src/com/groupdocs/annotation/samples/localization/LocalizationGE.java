@@ -72,6 +72,7 @@ public class LocalizationGE implements ILocalization {
         put(LocalizationKeys.Thumbs, "Die Miniaturen");
         put(LocalizationKeys.DOCWithComments, "DOC mit Anmerkungen");
         put(LocalizationKeys.ImportingInternalDocumentAnnotations, "Importieren internen Dokument Anmerkungen");
+        put(LocalizationKeys.TrialViewLimitMessage, "Ohne eine Evaluierungslizenz, nur 15 Seiten in 60 Minuten zu sehen. Bitte kontaktieren Sie das Vertriebsteam für eine kostenlose 30-Tage-Testlizenz.");
     }};
 
     /**
