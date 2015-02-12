@@ -14,7 +14,7 @@ import java.util.Map;
 public class LocalizationGE implements ILocalization {
     private static final Map<LocalizationKeys, String> keys2strings = new HashMap<LocalizationKeys, String>() {{
         put(LocalizationKeys.FirstPage, "Die erste Seite");
-        put(LocalizationKeys.Size, "Размер");
+        put(LocalizationKeys.Size, "Größe");
         put(LocalizationKeys.Print, "Umfang");
         put(LocalizationKeys.SelectTool, "Arm");
         put(LocalizationKeys.TextReplacementTool, "Der Ersatz des Textes");
