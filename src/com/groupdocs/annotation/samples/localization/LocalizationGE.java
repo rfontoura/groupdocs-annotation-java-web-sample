@@ -75,6 +75,16 @@ public class LocalizationGE implements ILocalization {
         put(LocalizationKeys.ImportingInternalDocumentAnnotations, "Importieren internen Dokument Anmerkungen");
         put(LocalizationKeys.TrialViewLimitMessage, "Ohne eine Evaluierungslizenz, nur 15 Seiten in 60 Minuten zu sehen. Bitte kontaktieren Sie das Vertriebsteam für eine kostenlose 30-Tage-Testlizenz.");
         put(LocalizationKeys.ExportingTheDocument, "Das Dokument exportieren...");
+        put(LocalizationKeys.LessThanAMinuteAgo, "weniger als eine Minute");
+        put(LocalizationKeys.Ago, "vor");
+        put(LocalizationKeys.Hour, "stunde");
+        put(LocalizationKeys.Hours, "stunden");
+        put(LocalizationKeys.Minute, "minute");
+        put(LocalizationKeys.Minutes, "minuten");
+        put(LocalizationKeys.Day, "tag");
+        put(LocalizationKeys.Days, "tage");
+        put(LocalizationKeys.Week, "woche");
+        put(LocalizationKeys.Weeks, "wochen");
     }};
 
     /**
