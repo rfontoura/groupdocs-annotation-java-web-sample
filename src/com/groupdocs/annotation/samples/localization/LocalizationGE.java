@@ -54,6 +54,7 @@ public class LocalizationGE implements ILocalization {
         put(LocalizationKeys.ZoomIn, "Vergrößern");
         put(LocalizationKeys.FitWidth, "Nach der Breite anzupassen");
         put(LocalizationKeys.Edit, "Editieren");
+        put(LocalizationKeys.Delete, "löschen");
         put(LocalizationKeys.Undo, "Cancel");
         put(LocalizationKeys.OpenFile, "Die Datei zu öffnen");
         put(LocalizationKeys.Redo, "Zurückgeben");
