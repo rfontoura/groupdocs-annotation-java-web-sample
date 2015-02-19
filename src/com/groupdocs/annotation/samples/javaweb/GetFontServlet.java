@@ -21,7 +21,7 @@ public class GetFontServlet extends AnnotationServlet {
         String[] split = request.getRequestURI().split("/");
         if (split.length > 0) {
             try {
-                writeOutput((InputStream) annotationHandler.getFontHandler(split[split.length - 1], response), response);
+                writeOutput((InputStream) annotationHandler.getFontHandler(split[split.length - 1], request, response), response);
             } catch (AnnotationException e) {
                 Utils.err(AnnotationServlet.class, e);
             }

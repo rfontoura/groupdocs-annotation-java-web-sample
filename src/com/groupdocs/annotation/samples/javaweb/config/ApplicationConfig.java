@@ -49,6 +49,14 @@ public class ApplicationConfig extends ServiceConfiguration {
      * {@inheritDoc}
      */
     @Override
+    public String getCachePath() {
+        return properties.getProperty("cachePath", null);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public String getUploadPath() {
         return properties.getProperty("uploadPath", null);
     }

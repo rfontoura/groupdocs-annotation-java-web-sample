@@ -18,7 +18,7 @@ public class GetCssServlet extends AnnotationServlet {
         response.setHeader("Content-type", "text/css");
         addCORSHeaders(request, response);
         try {
-            writeOutput((InputStream) annotationHandler.getCssHandler(request.getParameter("script"), response), response);
+            writeOutput((InputStream) annotationHandler.getCssHandler(request.getParameter("script"), request, response), response);
         } catch (AnnotationException e) {
             Utils.err(AnnotationServlet.class, e);
         }

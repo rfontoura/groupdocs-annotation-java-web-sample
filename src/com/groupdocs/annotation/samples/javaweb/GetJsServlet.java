@@ -18,7 +18,7 @@ public class GetJsServlet extends AnnotationServlet {
         response.setHeader("Content-type", "text/javascript");
         addCORSHeaders(request, response);
         try {
-            writeOutput((InputStream) annotationHandler.getJsHandler(request.getParameter("script"), response), response);
+            writeOutput((InputStream) annotationHandler.getJsHandler(request.getParameter("script"), request, response), response);
         } catch (AnnotationException e) {
             Utils.err(AnnotationServlet.class, e);
         }

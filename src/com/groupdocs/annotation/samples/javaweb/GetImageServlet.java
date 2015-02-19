@@ -19,7 +19,7 @@ public class GetImageServlet extends AnnotationServlet {
         String contextPath = request.getPathInfo();
         String[] path = contextPath.split("/");
         try {
-            writeOutput((InputStream) annotationHandler.getImageHandler(path[path.length - 1], response), response);
+            writeOutput((InputStream) annotationHandler.getImageHandler(path[path.length - 1], request, response), response);
         } catch (AnnotationException e) {
             e.printStackTrace();
         }
