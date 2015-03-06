@@ -7,8 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Russian localization
- *
+ * German localization
  * @author liosha (06.11.2014)
  */
 public class LocalizationGE implements ILocalization {
@@ -74,6 +73,7 @@ public class LocalizationGE implements ILocalization {
         put(LocalizationKeys.DOCWithComments, "DOC mit Anmerkungen");
         put(LocalizationKeys.ImportingInternalDocumentAnnotations, "Importieren internen Dokument Anmerkungen");
         put(LocalizationKeys.TrialViewLimitMessage, "Ohne eine Evaluierungslizenz, nur 15 Seiten in 60 Minuten zu sehen. Bitte kontaktieren Sie das Vertriebsteam für eine kostenlose 30-Tage-Testlizenz.");
+        put(LocalizationKeys.TrialCreateAnnotationsLimitMessage, "Testversion Genehmigung nur 3 anmerkungen zu einem Dokument zu erstellen.");
         put(LocalizationKeys.ExportingTheDocument, "Das Dokument exportieren...");
         put(LocalizationKeys.LessThanAMinuteAgo, "weniger als eine Minute");
         put(LocalizationKeys.Ago, "vor");
