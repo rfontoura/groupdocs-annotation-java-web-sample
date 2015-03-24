@@ -566,6 +566,14 @@ public class ApplicationConfig extends ServiceConfiguration {
      * {@inheritDoc}
      */
     @Override
+    public String getDistanceToolOptionsPenColor() {
+        return "#0000FF";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Integer getPenWidth() {
         return super.getPenWidth();
     }
