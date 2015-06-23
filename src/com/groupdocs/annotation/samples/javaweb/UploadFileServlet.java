@@ -51,10 +51,12 @@ public class UploadFileServlet extends AnnotationServlet {
         String uploadFileName;
         uploadFileName = request.getParameter("fileName");
         File tempFile = File.createTempFile("annotation-upload", "_" + uploadFileName);
-        try (FileOutputStream outputStream = new FileOutputStream(tempFile)) {
+        FileOutputStream outputStream = null;
+        InputStream uploadInputStream = null;
+        try {
+            outputStream = new FileOutputStream(tempFile);
+            uploadInputStream = new FileInputStream(tempFile);
             IOUtils.copy(request.getInputStream(), outputStream);
-        }
-        try (InputStream uploadInputStream = new FileInputStream(tempFile)) {
             writeOutput(MediaType.APPLICATION_JSON, response, annotationHandler.uploadFileHandler(uploadFileName, uploadInputStream));
         } catch (AnnotationException e) {
             Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, MESSAGE_HANDLER_THROWS, e.getMessage());

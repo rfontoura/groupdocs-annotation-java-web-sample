@@ -93,7 +93,7 @@
     
     <servlet-mapping>
         <servlet-name>ListAnnotationsServlet</servlet-name>
-        <url-pattern>/document-annotation/ListAnnotationsHandler</url-pattern>
+        <url-pattern>/ListAnnotationsHandler</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -103,7 +103,7 @@
     
     <servlet-mapping>
         <servlet-name>ExportAnnotationsServlet</servlet-name>
-        <url-pattern>/document-annotation/ExportAnnotationsHandler</url-pattern>
+        <url-pattern>/ExportAnnotationsHandler</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -113,7 +113,7 @@
     
     <servlet-mapping>
         <servlet-name>GetPdfVersionOfDocumentServlet</servlet-name>
-        <url-pattern>/document-annotation/GetPdfVersionOfDocumentHandler</url-pattern>
+        <url-pattern>/GetPdfVersionOfDocumentHandler</url-pattern>
     </servlet-mapping>
     
     <servlet>
@@ -123,7 +123,7 @@
     
     <servlet-mapping>
         <servlet-name>CreateAnnotationServlet</servlet-name>
-        <url-pattern>/document-annotation/CreateAnnotationHandler</url-pattern>
+        <url-pattern>/CreateAnnotationHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -133,7 +133,7 @@
 
     <servlet-mapping>
         <servlet-name>GetAvatarServlet</servlet-name>
-        <url-pattern>/document-annotation/GetAvatarHandler</url-pattern>
+        <url-pattern>/GetAvatarHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -143,7 +143,7 @@
 
     <servlet-mapping>
         <servlet-name>AddAnnotationReplyServlet</servlet-name>
-        <url-pattern>/document-annotation/AddAnnotationReplyHandler</url-pattern>
+        <url-pattern>/AddAnnotationReplyHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -153,7 +153,7 @@
 
     <servlet-mapping>
         <servlet-name>EditAnnotationReplyServlet</servlet-name>
-        <url-pattern>/document-annotation/EditAnnotationReplyHandler</url-pattern>
+        <url-pattern>/EditAnnotationReplyHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -163,7 +163,7 @@
     
     <servlet-mapping>
         <servlet-name>DeleteAnnotationReplyServlet</servlet-name>
-        <url-pattern>/document-annotation/DeleteAnnotationReplyHandler</url-pattern>
+        <url-pattern>/DeleteAnnotationReplyHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -173,7 +173,7 @@
     
     <servlet-mapping>
         <servlet-name>DeleteAnnotationServlet</servlet-name>
-        <url-pattern>/document-annotation/DeleteAnnotationHandler</url-pattern>
+        <url-pattern>/DeleteAnnotationHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -183,7 +183,7 @@
     
     <servlet-mapping>
         <servlet-name>SaveTextFieldServlet</servlet-name>
-        <url-pattern>/document-annotation/SaveTextFieldHandler</url-pattern>
+        <url-pattern>/SaveTextFieldHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -193,7 +193,7 @@
     
     <servlet-mapping>
         <servlet-name>SetTextFieldColorServlet</servlet-name>
-        <url-pattern>/document-annotation/SetTextFieldColorHandler</url-pattern>
+        <url-pattern>/SetTextFieldColorHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -203,7 +203,7 @@
     
     <servlet-mapping>
         <servlet-name>MoveAnnotationMarkerServlet</servlet-name>
-        <url-pattern>/document-annotation/MoveAnnotationMarkerHandler</url-pattern>
+        <url-pattern>/MoveAnnotationMarkerHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -243,7 +243,7 @@
 
     <servlet-mapping>
         <servlet-name>GetDocumentCollaboratorsServlet</servlet-name>
-        <url-pattern>/document-annotation/GetDocumentCollaboratorsHandler/*</url-pattern>
+        <url-pattern>/GetDocumentCollaboratorsHandler/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -253,7 +253,7 @@
 
     <servlet-mapping>
         <servlet-name>GetPrintViewServlet</servlet-name>
-        <url-pattern>/document-annotation/GetPrintViewHandler/*</url-pattern>
+        <url-pattern>/GetPrintViewHandler/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -263,7 +263,7 @@
 
     <servlet-mapping>
         <servlet-name>ImportAnnotationsServlet</servlet-name>
-        <url-pattern>/document-annotation/ImportAnnotationsHandler/*</url-pattern>
+        <url-pattern>/ImportAnnotationsHandler/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -273,7 +273,7 @@
 
     <servlet-mapping>
         <servlet-name>UploadFileServlet</servlet-name>
-        <url-pattern>/document-annotation/UploadFileHandler/*</url-pattern>
+        <url-pattern>/UploadFileHandler/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -283,7 +283,7 @@
 
     <servlet-mapping>
         <servlet-name>GetPrintDocumentPageImageServlet</servlet-name>
-        <url-pattern>/document-annotation/GetPrintDocumentPageImageHandler/*</url-pattern>
+        <url-pattern>/GetPrintDocumentPageImageHandler/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -293,7 +293,7 @@
 
     <servlet-mapping>
         <servlet-name>RestoreAnnotationRepliesServlet</servlet-name>
-        <url-pattern>/document-annotation/RestoreAnnotationRepliesHandler/*</url-pattern>
+        <url-pattern>/RestoreAnnotationRepliesHandler/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -308,7 +308,7 @@
 
     <servlet-mapping>
         <servlet-name>default</servlet-name>
-        <url-pattern>/document-annotation/assets/*</url-pattern>
+        <url-pattern>/assets/*</url-pattern>
         <url-pattern>*.js</url-pattern>
         <url-pattern>*.css</url-pattern>
         <url-pattern>*.png</url-pattern>

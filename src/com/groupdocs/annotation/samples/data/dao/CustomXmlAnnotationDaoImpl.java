@@ -25,7 +25,9 @@ public class CustomXmlAnnotationDaoImpl extends CustomAbstractDaoImpl<IAnnotatio
 
     @Override
     protected void saveData(List<IAnnotation> data) {
-        try (DaoFactory daoFactory = DaoFactory.create()) {
+        DaoFactory daoFactory = null;
+        try {
+            daoFactory = DaoFactory.create();
             ISessionDao sessionDao = daoFactory.getSessionDao();
             IDocumentDao documentDao = daoFactory.getDocumentDao();
             String tempPath = Utils.getTempPath();
@@ -59,6 +61,8 @@ public class CustomXmlAnnotationDaoImpl extends CustomAbstractDaoImpl<IAnnotatio
             }
         } catch (Exception e) {
             Utils.err(this.getClass(), e);
+        } finally {
+            Utils.closeStreams(daoFactory);
         }
     }
 

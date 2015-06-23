@@ -27,7 +27,7 @@ public class CustomInputDataHandler extends InputDataHandler {
     @Override
     public List<GroupDocsFileDescription> getFileDescriptionList(String directory) {
         File[] files = new File(basePath + directory).listFiles();
-        List<GroupDocsFileDescription> fileList = new ArrayList<>();
+        List<GroupDocsFileDescription> fileList = new ArrayList<GroupDocsFileDescription>();
         for (File file : files) {
             //Generate file ID
             String guid = Base64.encodeBase64String(file.getName().getBytes());

@@ -90,6 +90,16 @@ public class ApplicationConfig extends ServiceConfiguration {
         return Boolean.parseBoolean(properties.getProperty("useCache", "false"));
     }
 
+    @Override
+    public String getEncoding() {
+        return properties.getProperty("encoding", null);
+    }
+
+    @Override
+    public String getFontsPath() {
+        return properties.getProperty("fontsPath", null);
+    }
+
 
     /**
      * Gets storage type.
@@ -366,6 +376,11 @@ public class ApplicationConfig extends ServiceConfiguration {
      */
     @Override
     public Boolean isUseEmScaling() {
+        return false;
+    }
+
+    @Override
+    public Boolean isPdfPrintMarginsEnabled() {
         return false;
     }
 

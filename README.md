@@ -1,5 +1,5 @@
 ##GroupDocs.Annotation for Java
-####Servlet Sample 1.9.0
+####Servlet Sample 2.0.0
 ![Alt text](https://media.licdn.com/media/p/7/005/059/258/39b2da3.png "Optional title")
 
 <br/><br/>
@@ -21,7 +21,7 @@ How-to install/run
 10. Go to `dist` folder created after step 9.
 11. Copy war file into your tomcat webapps directory.
 12. Run tomcat.
-13. Open URL `http://127.0.0.1:8080/document-annotation/` in your browser, make sure that port 8080 is free (you can change port number in your tomcat configuration).
+13. Open URL `http://127.0.0.1:8080/` in your browser, make sure that port 8080 is free (you can change port number in your tomcat configuration).
 <br/><br/><br/><br/>
 
 How to view/open file documents

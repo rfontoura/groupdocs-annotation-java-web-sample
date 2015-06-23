@@ -45,9 +45,6 @@ public class IndexServlet extends AnnotationServlet {
         String file = request.getParameter("file");
         String tokenId = request.getParameter("tokenId");
 
-        if (file == null && tokenId == null) {
-            file = new File(applicationConfig.getBasePath() + "/GroupDocs_Demo.doc").getAbsolutePath();
-        }
         GroupDocsPath path = null;
         if (file != null && !file.isEmpty()) {
             path = new EncodedPath(file, annotationHandler.getConfiguration());
