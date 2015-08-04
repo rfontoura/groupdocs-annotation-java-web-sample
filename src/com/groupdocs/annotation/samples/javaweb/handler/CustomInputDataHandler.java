@@ -2,6 +2,7 @@ package com.groupdocs.annotation.samples.javaweb.handler;
 
 import com.groupdocs.viewer.config.ServiceConfiguration;
 import com.groupdocs.viewer.domain.GroupDocsFileDescription;
+import com.groupdocs.viewer.domain.path.EncodedPath;
 import com.groupdocs.viewer.handlers.input.InputDataHandler;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
@@ -10,27 +11,39 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Input data handler - custom implementation
- *
  * @author Aleksey Permyakov, Alex Bobkov
  */
 public class CustomInputDataHandler extends InputDataHandler {
     private final HashMap<String, File> fileMap = new HashMap<String, File>();
+    private final ServiceConfiguration serviceConfiguration;
     private String basePath = null;
 
     public CustomInputDataHandler(ServiceConfiguration serviceConfiguration) {
-        basePath = serviceConfiguration.getRootDir();
+        this.basePath = serviceConfiguration.getRootDir();
+        this.serviceConfiguration = serviceConfiguration;
     }
 
     @Override
     public List<GroupDocsFileDescription> getFileDescriptionList(String directory) {
-        File[] files = new File(basePath + directory).listFiles();
+        File path = new File(basePath + directory);
+        if (!path.exists()) {
+            path = fileMap.get(directory);
+        }
+        File[] files = path.listFiles();
+        if (files == null) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, "File#listFiles return null for path '" + path + "'");
+//            throw new FileNotFoundException("File#listFiles return null for path '" + path + "'");
+            return null;
+        }
         List<GroupDocsFileDescription> fileList = new ArrayList<GroupDocsFileDescription>();
         for (File file : files) {
-            //Generate file ID
-            String guid = Base64.encodeBase64String(file.getName().getBytes());
+            //Generate file ID with custom encoder
+            String guid = new EncodedPath(file.getName(), serviceConfiguration).getPath();
             //Create file description object
             GroupDocsFileDescription fileDescription = new GroupDocsFileDescription();
             fileDescription.setGuid(guid);
@@ -61,6 +74,9 @@ public class CustomInputDataHandler extends InputDataHandler {
         } else {
             //Get file
             File file = fileMap.get(guid);
+            if (file == null) {
+                throw new FileNotFoundException("File with guid '" + guid + "' is not found in CustomInputDataHandler#fileMap");
+            }
             fileDescription.setName(file.getName());
             if (file.exists() && file.isFile()) {
                 //If file

@@ -100,19 +100,35 @@ public abstract class AnnotationServlet extends HttpServlet {
                     }
                 }
 //                // Initialize constructors for create custom entities instead of embedded
-//                AnnotationConstructor.setConstructor(new IConstructor<IAnnotation>() {
-//                    @Override
-//                    public IAnnotation create() {
-//                        return new MyCustomEntityClass();
-//                    }
-//
-//                    @Override
-//                    public IAnnotation create(IAnnotation obj) {
-//                        MyCustomEntityClass /* MyCustomEntityClass implements IAnnotation */ myCustomEntityClass = new MyCustomEntityClass();
-//                        myCustomEntityClass.setAnyPropertyIfNeed(object.getAnyproperty());
-//                        return myCustomEntityClass;
-//                    }
-//                });
+                /*
+                // Use custom entity
+                AnnotationConstructor.setConstructor(new IConstructor<IAnnotation>() {
+                    @Override
+                    public IAnnotation create() {
+                        return new CustomAnnotation();
+                    }
+
+                    @Override
+                    public IAnnotation create(IAnnotation obj) {
+                        return new CustomAnnotation();
+                    }
+
+                    @Override
+                    public Class getClazz() {
+                        return CustomAnnotation.class;
+                    }
+
+                    @Override
+                    public String getFieldName(String defaultFieldName) {
+                        // Replace original guid field name (column name in table) to custom
+                        Map<String, String> customFields = new HashMap<String, String>() {{
+                            // Replace GUID_DEFAULT to CUSTOM_GUID_FIELD_NAME, also use CUSTOM_GUID_FIELD_NAME for annotate entity field
+                            put(IAnnotation.GUID_DEFAULT, CustomAnnotation.CUSTOM_GUID_FIELD_NAME);
+                        }};
+                        return customFields.containsKey(defaultFieldName) ? customFields.get(defaultFieldName) : defaultFieldName;
+                    }
+                });
+                */
 //                CollaboratorConstructor.setConstructor(...); ...
 
                 // It need for date formatting
@@ -136,8 +152,7 @@ public abstract class AnnotationServlet extends HttpServlet {
                     }
                 });
 
-//        AnnotationHandler annotationHandler = new AnnotationHandler(serviceConfiguration, connector, new CustomInputDataHandler(applicationConfig));
-//        annotationHandler.setInputDataHandler(new CustomInputDataHandler(applicationConfig));
+//        AnnotationHandler annotationHandler = new AnnotationHandler(serviceConfiguration, connector, new CustomInputDataHandler(serviceConfiguration));
 
                 // Will be called for each case when collaborators ask access to some event from AnnotationEvent
                 // The access callback result has higher priority than AccessRights from the collaborator callback (annotationHandler.setCollaboratorCallback).
