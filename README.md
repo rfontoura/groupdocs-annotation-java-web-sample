@@ -19,9 +19,10 @@ How-to install/run
 8. Open `web/WEB-INF/application.properties` file for editing. Edit properties to fill your needs.
 9. Open cmd/console/terminal and type and run command `ant war`.
 10. Go to `dist` folder created after step 9.
-11. Copy war file into your tomcat webapps directory.
-12. Run tomcat.
-13. Open URL `http://127.0.0.1:8080/` in your browser, make sure that port 8080 is free (you can change port number in your tomcat configuration).
+11. Rename `document-annotation.war` to `ROOT.war`
+12. Copy war file into your tomcat webapps directory.
+13. Run tomcat.
+14. Open URL `http://127.0.0.1:8080/` in your browser, make sure that port 8080 is free (you can change port number in your tomcat configuration).
 <br/><br/><br/><br/>
 
 How to view/open file documents
