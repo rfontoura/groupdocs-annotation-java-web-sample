@@ -100,6 +100,21 @@ public class ApplicationConfig extends ServiceConfiguration {
         return properties.getProperty("fontsPath", null);
     }
 
+    @Override
+    public Integer getImageWebRequestTimeout() {
+        return null;
+    }
+
+    @Override
+    public Integer getImageResolution() {
+        return null;
+    }
+
+    @Override
+    public Boolean isShowHiddenSlides() {
+        return null;
+    }
+
 
     /**
      * Gets storage type.
@@ -257,6 +272,16 @@ public class ApplicationConfig extends ServiceConfiguration {
     @Override
     public Boolean isZoomToFitWidth() {
         return true;
+    }
+
+    @Override
+    public String getCustomDocumentCss() {
+        return null;
+    }
+
+    @Override
+    public boolean isUseVirtualScrolling() {
+        return false;
     }
 
     /**

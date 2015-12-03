@@ -3,6 +3,7 @@ package com.groupdocs.annotation.samples.javaweb;
 import com.groupdocs.annotation.common.ICallback;
 import com.groupdocs.annotation.common.Pair;
 import com.groupdocs.annotation.common.Utils;
+import com.groupdocs.annotation.config.ext.ServiceConfiguration;
 import com.groupdocs.annotation.data.common.StorageType;
 import com.groupdocs.annotation.data.common.StoreLogic;
 import com.groupdocs.annotation.data.connector.IConnector;
@@ -20,7 +21,6 @@ import com.groupdocs.annotation.samples.data.connector.CustomDatabaseConnector;
 import com.groupdocs.annotation.samples.data.connector.ICustomConnector;
 import com.groupdocs.annotation.samples.javaweb.config.ApplicationConfig;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
-import com.groupdocs.viewer.config.ServiceConfiguration;
 import org.apache.commons.io.IOUtils;
 import org.apache.log4j.Logger;
 

@@ -1,21 +1,21 @@
 package com.groupdocs.annotation.samples.javaweb;
 
 import com.groupdocs.annotation.common.Utils;
+import com.groupdocs.annotation.domain.path.EncodedPath;
+import com.groupdocs.annotation.domain.path.GroupDocsPath;
+import com.groupdocs.annotation.domain.path.TokenId;
 import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.handler.AnnotationHandler;
 import com.groupdocs.annotation.localization.ILocalization;
 import com.groupdocs.annotation.localization.LocalizationRU;
 import com.groupdocs.annotation.samples.localization.LocalizationGE;
-import com.groupdocs.viewer.domain.path.EncodedPath;
-import com.groupdocs.viewer.domain.path.GroupDocsPath;
-import com.groupdocs.viewer.domain.path.TokenId;
 import org.apache.log4j.Logger;
 
+import javax.naming.NoPermissionException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
 
 /**
@@ -46,13 +46,17 @@ public class IndexServlet extends AnnotationServlet {
         String tokenId = request.getParameter("tokenId");
 
         GroupDocsPath path = null;
+        try {
         if (file != null && !file.isEmpty()) {
-            path = new EncodedPath(file, annotationHandler.getConfiguration());
+                path = new EncodedPath(file, annotationHandler.getConfiguration());
         } else if (tokenId != null && !tokenId.isEmpty()) {
             TokenId tki = new TokenId(tokenId, applicationConfig.getEncryptionKey());
             if (!tki.isExpired()) {
                 path = tki;
             }
+        }
+        } catch (NoPermissionException e) {
+            e.printStackTrace();
         }
         final String initialPath = (path == null ? "" : path.getPath());
 

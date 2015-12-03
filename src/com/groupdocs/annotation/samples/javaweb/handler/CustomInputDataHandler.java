@@ -1,12 +1,13 @@
 package com.groupdocs.annotation.samples.javaweb.handler;
 
-import com.groupdocs.viewer.config.ServiceConfiguration;
-import com.groupdocs.viewer.domain.GroupDocsFileDescription;
-import com.groupdocs.viewer.domain.path.EncodedPath;
-import com.groupdocs.viewer.handlers.input.InputDataHandler;
+import com.groupdocs.annotation.config.ext.ServiceConfiguration;
+import com.groupdocs.annotation.domain.GroupDocsFileDescription;
+import com.groupdocs.annotation.domain.path.EncodedPath;
+import com.groupdocs.annotation.handler.input.InputDataHandler;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 
+import javax.naming.NoPermissionException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,7 +30,7 @@ public class CustomInputDataHandler extends InputDataHandler {
     }
 
     @Override
-    public List<GroupDocsFileDescription> getFileDescriptionList(String directory) {
+    public List<GroupDocsFileDescription> getFileDescriptionList(String directory) throws NoPermissionException {
         File path = new File(basePath + directory);
         if (!path.exists()) {
             path = fileMap.get(directory);

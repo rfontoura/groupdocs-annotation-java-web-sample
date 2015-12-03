@@ -53,7 +53,7 @@
 
     <servlet-mapping>
         <servlet-name>GetDocumentPageImageServlet</servlet-name>
-        <url-pattern>/document-viewer/GetDocumentPageImageHandler/*</url-pattern>
+        <url-pattern>/GetDocumentPageImageHandler/*</url-pattern>
     </servlet-mapping>
 
         <servlet>
@@ -63,7 +63,7 @@
 
     <servlet-mapping>
         <servlet-name>GetFileServlet</servlet-name>
-        <url-pattern>/document-viewer/GetFileHandler/*</url-pattern>
+        <url-pattern>/GetFileHandler/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -73,7 +73,7 @@
 
     <servlet-mapping>
         <servlet-name>GetImageUrlsServlet</servlet-name>
-        <url-pattern>/document-viewer/GetImageUrlsHandler</url-pattern>
+        <url-pattern>/GetImageUrlsHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -83,7 +83,7 @@
 
     <servlet-mapping>
         <servlet-name>GetPrintableHtmlServlet</servlet-name>
-        <url-pattern>/document-viewer/GetPrintableHtmlHandler</url-pattern>
+        <url-pattern>/GetPrintableHtmlHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -213,7 +213,7 @@
 
     <servlet-mapping>
         <servlet-name>LoadFileBrowserTreeDataServlet</servlet-name>
-        <url-pattern>/document-viewer/LoadFileBrowserTreeDataHandler</url-pattern>
+        <url-pattern>/LoadFileBrowserTreeDataHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -223,7 +223,7 @@
 
     <servlet-mapping>
         <servlet-name>ViewDocumentServlet</servlet-name>
-        <url-pattern>/document-viewer/ViewDocumentHandler</url-pattern>
+        <url-pattern>/ViewDocumentHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -303,7 +303,7 @@
 
     <servlet-mapping>
         <servlet-name>RotatePageServlet</servlet-name>
-        <url-pattern>/document-viewer/RotatePageHandler/*</url-pattern>
+        <url-pattern>/RotatePageHandler/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
