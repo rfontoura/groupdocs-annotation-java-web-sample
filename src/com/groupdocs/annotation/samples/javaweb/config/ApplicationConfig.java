@@ -794,6 +794,11 @@ public class ApplicationConfig extends ServiceConfiguration {
         return true;
     }
 
+    @Override
+    public Boolean isTypewriterImportEnabled() {
+        return false;
+    }
+
     /**
      * {@inheritDoc}
      */
