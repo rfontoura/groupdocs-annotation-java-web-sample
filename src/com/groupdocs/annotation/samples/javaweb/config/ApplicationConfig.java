@@ -6,7 +6,6 @@ import java.util.Properties;
 
 /**
  * The type Application config.
- *
  * @author Aleksey Permyakov on 05.06.14.
  */
 public class ApplicationConfig extends ServiceConfiguration {
@@ -14,7 +13,6 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * Instantiates a new Application config.
-     *
      * @param properties the properties
      */
     public ApplicationConfig(Properties properties) {
@@ -23,6 +21,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the license path
      */
     @Override
     public String getLicensePath() {
@@ -31,6 +30,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the application path
      */
     @Override
     public String getApplicationPath() {
@@ -39,6 +39,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the base path
      */
     @Override
     public String getBasePath() {
@@ -47,6 +48,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the cache path
      */
     @Override
     public String getCachePath() {
@@ -55,6 +57,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the upload path
      */
     @Override
     public String getUploadPath() {
@@ -63,6 +66,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the localization
      */
     @Override
     public String getLocalization() {
@@ -71,12 +75,17 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isDisableAtmosphere() {
         return Boolean.parseBoolean(properties.getProperty("disableAtmosphere", "false"));
     }
 
+    /**
+     * Is case sensitive boolean.
+     * @return the boolean
+     */
     @Override
     public Boolean isCaseSensitive() {
         return false;
@@ -84,32 +93,53 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isUseCache() {
         return Boolean.parseBoolean(properties.getProperty("useCache", "false"));
     }
 
+    /**
+     * Gets encoding.
+     * @return the encoding
+     */
     @Override
     public String getEncoding() {
         return properties.getProperty("encoding", null);
     }
 
+    /**
+     * Gets fonts path.
+     * @return the fonts path
+     */
     @Override
     public String getFontsPath() {
         return properties.getProperty("fontsPath", null);
     }
 
+    /**
+     * Gets image web request timeout.
+     * @return the image web request timeout
+     */
     @Override
     public Integer getImageWebRequestTimeout() {
         return null;
     }
 
+    /**
+     * Gets image resolution.
+     * @return the image resolution
+     */
     @Override
     public Integer getImageResolution() {
         return null;
     }
 
+    /**
+     * Is show hidden slides boolean.
+     * @return the boolean
+     */
     @Override
     public Boolean isShowHiddenSlides() {
         return null;
@@ -118,7 +148,6 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * Gets storage type.
-     *
      * @return the storage type
      */
     public String getStorageType() {
@@ -127,7 +156,6 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * Gets db server.
-     *
      * @return the db server
      */
     public String getDbServer() {
@@ -137,7 +165,6 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * Gets db port.
-     *
      * @return the db port
      */
     public Integer getDbPort() {
@@ -147,7 +174,6 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * Gets db name.
-     *
      * @return the db name
      */
     public String getDbName() {
@@ -157,7 +183,6 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * Gets db username.
-     *
      * @return the db username
      */
     public String getDbUsername() {
@@ -167,7 +192,6 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * Gets db password.
-     *
      * @return the db password
      */
     public String getDbPassword() {
@@ -177,7 +201,6 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * Gets storage path.
-     *
      * @return the storage path
      */
     public String getStoragePath() {
@@ -187,7 +210,6 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * Gets store logic.
-     *
      * @return the store logic
      */
     public String getStoreLogic() {
@@ -196,6 +218,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isUseBrowserCache() {
@@ -204,6 +227,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the expiration date
      */
     @Override
     public Integer getExpirationDate() {
@@ -212,6 +236,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the encryption key
      */
     @Override
     public String getEncryptionKey() {
@@ -220,6 +245,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the locales path
      */
     @Override
     public String getLocalesPath() {
@@ -228,6 +254,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the quality
      */
     @Override
     public Integer getQuality() {
@@ -236,6 +263,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isShowThumbnails() {
@@ -244,6 +272,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isOpenThumbnails() {
@@ -252,6 +281,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the initial zoom
      */
     @Override
     public Integer getInitialZoom() {
@@ -260,6 +290,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the jquery file download cookie name
      */
     @Override
     public String getJqueryFileDownloadCookieName() {
@@ -268,17 +299,26 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isZoomToFitWidth() {
         return true;
     }
 
+    /**
+     * Gets custom document css.
+     * @return the custom document css
+     */
     @Override
     public String getCustomDocumentCss() {
         return null;
     }
 
+    /**
+     * Is use virtual scrolling boolean.
+     * @return the boolean
+     */
     @Override
     public boolean isUseVirtualScrolling() {
         return false;
@@ -286,6 +326,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isZoomToFitHeight() {
@@ -294,6 +335,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the width
      */
     @Override
     public Integer getWidth() {
@@ -302,6 +344,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isConvertWordDocumentsCompletely() {
@@ -310,6 +353,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the file display name
      */
     @Override
     public String getFileDisplayName() {
@@ -318,6 +362,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the height
      */
     @Override
     public Integer getHeight() {
@@ -326,6 +371,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isIgnoreDocumentAbsence() {
@@ -334,6 +380,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isShowPrint() {
@@ -342,6 +389,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isShowZoom() {
@@ -350,6 +398,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isSupportPageRotation() {
@@ -358,6 +407,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isShowPaging() {
@@ -366,6 +416,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the preload pages count
      */
     @Override
     public Integer getPreloadPagesCount() {
@@ -374,6 +425,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isPreloadPagesOnBrowserSide() {
@@ -382,6 +434,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isPrintWithWatermark() {
@@ -390,6 +443,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isShowHeader() {
@@ -398,12 +452,17 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isUseEmScaling() {
         return false;
     }
 
+    /**
+     * Is pdf print margins enabled boolean.
+     * @return the boolean
+     */
     @Override
     public Boolean isPdfPrintMarginsEnabled() {
         return false;
@@ -411,6 +470,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the watermark font size
      */
     @Override
     public Integer getWatermarkFontSize() {
@@ -419,6 +479,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the watermark position
      */
     @Override
     public String getWatermarkPosition() {
@@ -427,6 +488,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isShowFileExplorer() {
@@ -435,6 +497,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isEnableRightClickMenu() {
@@ -443,6 +506,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isShowToolbar() {
@@ -451,6 +515,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isEnableSidePanel() {
@@ -459,6 +524,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isScrollOnFocus() {
@@ -468,6 +534,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the strike out color
      */
     @Override
     public String getStrikeOutColor() {
@@ -476,6 +543,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the highlight color
      */
     @Override
     public String getHighlightColor() {
@@ -484,6 +552,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the underline color
      */
     @Override
     public String getUnderlineColor() {
@@ -492,6 +561,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the text field background color
      */
     @Override
     public String getTextFieldBackgroundColor() {
@@ -500,6 +570,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isTabNavigationEnabled() {
@@ -508,6 +579,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the area tool options pen width
      */
     @Override
     public Integer getAreaToolOptionsPenWidth() {
@@ -516,6 +588,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the area tool options pen color
      */
     @Override
     public String getAreaToolOptionsPenColor() {
@@ -524,6 +597,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the area tool options pen dash style
      */
     @Override
     public Integer getAreaToolOptionsPenDashStyle() {
@@ -532,6 +606,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the area tool options brush color
      */
     @Override
     public String getAreaToolOptionsBrushColor() {
@@ -540,6 +615,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the polyline tool options pen width
      */
     @Override
     public Integer getPolylineToolOptionsPenWidth() {
@@ -548,6 +624,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the polyline tool options pen color
      */
     @Override
     public String getPolylineToolOptionsPenColor() {
@@ -556,6 +633,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the polyline tool options pen dash style
      */
     @Override
     public Integer getPolylineToolOptionsPenDashStyle() {
@@ -564,6 +642,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the polyline tool options brush color
      */
     @Override
     public String getPolylineToolOptionsBrushColor() {
@@ -572,6 +651,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the arrow tool options pen width
      */
     @Override
     public Integer getArrowToolOptionsPenWidth() {
@@ -580,6 +660,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the arrow tool options pen color
      */
     @Override
     public String getArrowToolOptionsPenColor() {
@@ -588,6 +669,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the arrow tool options pen dash style
      */
     @Override
     public Integer getArrowToolOptionsPenDashStyle() {
@@ -596,6 +678,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the arrow tool options brush color
      */
     @Override
     public String getArrowToolOptionsBrushColor() {
@@ -604,6 +687,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the distance tool options pen color
      */
     @Override
     public String getDistanceToolOptionsPenColor() {
@@ -612,6 +696,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the pen width
      */
     @Override
     public Integer getPenWidth() {
@@ -620,6 +705,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the pen color
      */
     @Override
     public String getPenColor() {
@@ -628,6 +714,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the pen style
      */
     @Override
     public Integer getPenStyle() {
@@ -636,6 +723,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the enabled tools
      */
     @Override
     public Integer getEnabledTools() {
@@ -644,6 +732,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the connector position
      */
     @Override
     public Integer getConnectorPosition() {
@@ -652,6 +741,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isSaveReplyOnFocusLoss() {
@@ -660,6 +750,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isClickableAnnotations() {
@@ -668,6 +759,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isDisconnectUncommented() {
@@ -676,6 +768,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the strikeout mode
      */
     @Override
     public Integer getStrikeoutMode() {
@@ -684,6 +777,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the sidebar container selector
      */
     @Override
     public String getSidebarContainerSelector() {
@@ -692,6 +786,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isUsePageNumberInUrlHash() {
@@ -700,6 +795,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isTextSelectionSynchronousCalculation() {
@@ -708,6 +804,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isVariableHeightPageSupport() {
@@ -716,6 +813,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isRightPanelEnabled() {
@@ -724,6 +822,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isCreateMarkup() {
@@ -732,6 +831,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isUse_pdf() {
@@ -740,6 +840,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the mode
      */
     @Override
     public String getMode() {
@@ -748,6 +849,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the selection container selector
      */
     @Override
     public String getSelectionContainerSelector() {
@@ -756,6 +858,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the graphics container selector
      */
     @Override
     public String getGraphicsContainerSelector() {
@@ -764,6 +867,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the widget id
      */
     @Override
     public String getWidgetId() {
@@ -772,6 +876,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isUndoEnabled() {
@@ -780,6 +885,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isAnyToolSelection() {
@@ -788,12 +894,17 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isPrintAnnotations() {
         return true;
     }
 
+    /**
+     * Is typewriter import enabled boolean.
+     * @return the boolean
+     */
     @Override
     public Boolean isTypewriterImportEnabled() {
         return false;
@@ -801,6 +912,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the max cache size
      */
     @Override
     public Long getMaxCacheSize() {
@@ -809,6 +921,7 @@ public class ApplicationConfig extends ServiceConfiguration {
 
     /**
      * {@inheritDoc}
+     * @return the boolean
      */
     @Override
     public Boolean isSearchForSeparateWords() {

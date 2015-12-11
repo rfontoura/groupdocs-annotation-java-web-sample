@@ -10,16 +10,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The type Custom xml reply dao.
  * @author Aleksey Permyakov (13.10.2014)
  */
 public class CustomXmlReplyDaoImpl extends CustomAbstractDaoImpl<IReply> implements IReplyDao {
 
+    /**
+     * The constant REPLY_FILE_NAME.
+     */
     public static final String REPLY_FILE_NAME = "Reply.xml";
 
+    /**
+     * Instantiates a new Custom xml reply dao.
+     * @param environmentCreator the environment creator
+     */
     public CustomXmlReplyDaoImpl(IEnvironmentCreator environmentCreator) {
         super(environmentCreator);
     }
 
+    /**
+     * Save data.
+     * @param data the data
+     */
     @Override
     protected void saveData(List<IReply> data) {
         String tempPath = Utils.getTempPath();
@@ -35,6 +47,10 @@ public class CustomXmlReplyDaoImpl extends CustomAbstractDaoImpl<IReply> impleme
         }
     }
 
+    /**
+     * Load data list.
+     * @return the list
+     */
     @Override
     protected List<IReply> loadData() {
         String tempPath = Utils.getTempPath();

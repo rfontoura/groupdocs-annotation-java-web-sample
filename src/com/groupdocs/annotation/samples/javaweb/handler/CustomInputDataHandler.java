@@ -24,11 +24,21 @@ public class CustomInputDataHandler extends InputDataHandler {
     private final ServiceConfiguration serviceConfiguration;
     private String basePath = null;
 
+    /**
+     * Instantiates a new Custom input data handler.
+     * @param serviceConfiguration the service configuration
+     */
     public CustomInputDataHandler(ServiceConfiguration serviceConfiguration) {
         this.basePath = serviceConfiguration.getRootDir();
         this.serviceConfiguration = serviceConfiguration;
     }
 
+    /**
+     * Gets file description list.
+     * @param directory the directory
+     * @return the file description list
+     * @throws NoPermissionException the no permission exception
+     */
     @Override
     public List<GroupDocsFileDescription> getFileDescriptionList(String directory) throws NoPermissionException {
         File path = new File(basePath + directory);
@@ -64,6 +74,12 @@ public class CustomInputDataHandler extends InputDataHandler {
         return fileList;
     }
 
+    /**
+     * Gets file description.
+     * @param guid the guid
+     * @return the file description
+     * @throws Exception the exception
+     */
     @Override
     public GroupDocsFileDescription getFileDescription(String guid) throws Exception {
         //Create file description object
@@ -92,6 +108,11 @@ public class CustomInputDataHandler extends InputDataHandler {
         return fileDescription;
     }
 
+    /**
+     * Gets file.
+     * @param guid the guid
+     * @return the file
+     */
     @Override
     public InputStream getFile(String guid) {
         try {
@@ -101,6 +122,16 @@ public class CustomInputDataHandler extends InputDataHandler {
         }
     }
 
+    /**
+     * Save file string.
+     * @param inputStream  the input stream
+     * @param fileName     the file name
+     * @param timeToLive   the time to live
+     * @param encryptedKey the encrypted key
+     * @return the string
+     * @throws FileNotFoundException the file not found exception
+     * @throws IOException           the io exception
+     */
     @Override
     public String saveFile(InputStream inputStream, String fileName, Integer timeToLive, String encryptedKey) throws FileNotFoundException, IOException {
         //Generate file ID

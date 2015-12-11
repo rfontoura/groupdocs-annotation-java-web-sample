@@ -11,10 +11,18 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * The type Get file servlet.
  * @author imy
  */
 public class GetFileServlet extends AnnotationServlet {
 
+    /**
+     * Do get.
+     * @param request  the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         addCORSHeaders(request, response);

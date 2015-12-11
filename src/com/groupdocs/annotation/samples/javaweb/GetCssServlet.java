@@ -10,9 +10,17 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * The type Get css servlet.
  * @author imy
  */
 public class GetCssServlet extends AnnotationServlet {
+    /**
+     * Do get.
+     * @param request  the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Content-type", "text/css");
@@ -24,6 +32,13 @@ public class GetCssServlet extends AnnotationServlet {
         }
     }
 
+    /**
+     * Do post.
+     * @param request  the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
+     */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Not required

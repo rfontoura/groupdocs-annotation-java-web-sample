@@ -89,6 +89,8 @@ public class LocalizationGE implements ILocalization {
 
     /**
      * {@inheritDoc}
+     * @param localizationKeys the localization keys
+     * @return the localized string
      */
     @Override
     public String getLocalizedString(LocalizationKeys localizationKeys) {
@@ -97,6 +99,7 @@ public class LocalizationGE implements ILocalization {
 
     /**
      * {@inheritDoc}
+     * @return the localized right panel image
      */
     @Override
     public String getLocalizedRightPanelImage() {

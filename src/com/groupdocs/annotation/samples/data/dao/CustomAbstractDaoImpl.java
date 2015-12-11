@@ -18,11 +18,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * The type Custom abstract dao.
+ * @param <T> the type parameter
  * @author Aleksey Permyakov (13.10.2014)
  */
 public abstract class CustomAbstractDaoImpl<T extends ITable> implements IDao<T> {
     private final IEnvironmentCreator environmentCreator;
 
+    /**
+     * Instantiates a new Custom abstract dao.
+     * @param environmentCreator the environment creator
+     */
     public CustomAbstractDaoImpl(IEnvironmentCreator environmentCreator) {
         this.environmentCreator = environmentCreator;
     }
@@ -55,8 +61,8 @@ public abstract class CustomAbstractDaoImpl<T extends ITable> implements IDao<T>
 
     /**
      * Restore Java object from xml
+     * @param <T>       type of java object
      * @param xmlString xml string
-     * @param <T> type of java object
      * @return restored object
      */
     @SuppressWarnings("unchecked")
@@ -64,10 +70,21 @@ public abstract class CustomAbstractDaoImpl<T extends ITable> implements IDao<T>
         return (T) initializeXStreamWithModels(new com.thoughtworks.xstream.XStream(new com.thoughtworks.xstream.io.xml.StaxDriver())).fromXML(xmlString);
     }
 
+    /**
+     * Create table if not exists.
+     * @throws AnnotationException the annotation exception
+     */
     @Override
     public void createTableIfNotExists() throws AnnotationException {
     }
 
+    /**
+     * Select by t.
+     * @param fieldNames  the field names
+     * @param fieldValues the field values
+     * @return the t
+     * @throws AnnotationException the annotation exception
+     */
     @Override
     public T selectBy(final List<String> fieldNames, final Object... fieldValues) throws AnnotationException {
         return Utils.first(loadData(), new Utils.IFirst<T>() {
@@ -98,6 +115,13 @@ public abstract class CustomAbstractDaoImpl<T extends ITable> implements IDao<T>
         });
     }
 
+    /**
+     * Select all by list.
+     * @param fieldNames  the field names
+     * @param fieldValues the field values
+     * @return the list
+     * @throws AnnotationException the annotation exception
+     */
     @Override
     public List<T> selectAllBy(final List<String> fieldNames, final Object... fieldValues) throws AnnotationException {
         return Utils.where(loadData(), new Utils.IWhere<T>() {
@@ -125,6 +149,11 @@ public abstract class CustomAbstractDaoImpl<T extends ITable> implements IDao<T>
         });
     }
 
+    /**
+     * Insert int.
+     * @param entity the entity
+     * @return the int
+     */
     @Override
     public int insert(T entity) {
         try {
@@ -139,6 +168,11 @@ public abstract class CustomAbstractDaoImpl<T extends ITable> implements IDao<T>
         }
     }
 
+    /**
+     * Update int.
+     * @param entity the entity
+     * @return the int
+     */
     @Override
     public int update(final T entity) {
         try {
@@ -159,6 +193,11 @@ public abstract class CustomAbstractDaoImpl<T extends ITable> implements IDao<T>
         }
     }
 
+    /**
+     * Delete int.
+     * @param entity the entity
+     * @return the int
+     */
     @Override
     public int delete(final T entity) {
         try {
@@ -178,6 +217,12 @@ public abstract class CustomAbstractDaoImpl<T extends ITable> implements IDao<T>
         }
     }
 
+    /**
+     * Save object as xml boolean.
+     * @param object       the object
+     * @param outputStream the output stream
+     * @return the boolean
+     */
     protected boolean saveObjectAsXml(Object object, OutputStream outputStream) {
         String json = toXml(object);
         try {
@@ -189,8 +234,16 @@ public abstract class CustomAbstractDaoImpl<T extends ITable> implements IDao<T>
         return true;
     }
 
+    /**
+     * Save data.
+     * @param data the data
+     */
     protected abstract void saveData(List<T> data);
 
+    /**
+     * Load data list.
+     * @return the list
+     */
     protected abstract List<T> loadData();
 
     /**

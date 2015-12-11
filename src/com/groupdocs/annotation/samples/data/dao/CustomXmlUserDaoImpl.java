@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The type Custom xml user dao.
  * @author Aleksey Permyakov (13.10.2014)
  */
 public class CustomXmlUserDaoImpl extends CustomAbstractDaoImpl<IUser> implements IUserDao {
@@ -27,6 +28,10 @@ public class CustomXmlUserDaoImpl extends CustomAbstractDaoImpl<IUser> implement
         super(environmentCreator);
     }
 
+    /**
+     * Save data.
+     * @param data the data
+     */
     @Override
     protected void saveData(List<IUser> data) {
         String tempPath = Utils.getTempPath();
@@ -42,6 +47,10 @@ public class CustomXmlUserDaoImpl extends CustomAbstractDaoImpl<IUser> implement
         }
     }
 
+    /**
+     * Load data list.
+     * @return the list
+     */
     @Override
     protected List<IUser> loadData() {
         String tempPath = Utils.getTempPath();

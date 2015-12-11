@@ -10,16 +10,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The type Custom xml collaborator dao.
  * @author Aleksey Permyakov (13.10.2014)
  */
 public class CustomXmlCollaboratorDaoImpl extends CustomAbstractDaoImpl<ICollaborator> implements ICollaboratorDao {
 
+    /**
+     * The constant COLLABORATOR_FILE_NAME.
+     */
     public static final String COLLABORATOR_FILE_NAME = "Collaborator.xml";
 
+    /**
+     * Instantiates a new Custom xml collaborator dao.
+     * @param environmentCreator the environment creator
+     */
     public CustomXmlCollaboratorDaoImpl(IEnvironmentCreator environmentCreator) {
         super(environmentCreator);
     }
 
+    /**
+     * Save data.
+     * @param data the data
+     */
     @Override
     protected void saveData(List<ICollaborator> data) {
         String tempPath = Utils.getTempPath();
@@ -35,6 +47,10 @@ public class CustomXmlCollaboratorDaoImpl extends CustomAbstractDaoImpl<ICollabo
         }
     }
 
+    /**
+     * Load data list.
+     * @return the list
+     */
     @Override
     protected List<ICollaborator> loadData() {
         String tempPath = Utils.getTempPath();

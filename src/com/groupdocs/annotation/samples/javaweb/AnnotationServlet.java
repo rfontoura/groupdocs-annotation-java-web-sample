@@ -35,19 +35,43 @@ import java.util.Locale;
 import java.util.Properties;
 
 /**
+ * The type Annotation servlet.
  * @author imy
  */
 public abstract class AnnotationServlet extends HttpServlet {
+    /**
+     * The constant MESSAGE_HANDLER_THROWS.
+     */
     protected static final String MESSAGE_HANDLER_THROWS = "Handler throws exception: {0}";
+    /**
+     * The constant DEFAULT_ENCODING.
+     */
     protected static final String DEFAULT_ENCODING = "UTF-8";
+    /**
+     * The constant annotationHandler.
+     */
     protected static AnnotationHandler annotationHandler = null;
+    /**
+     * The constant applicationConfig.
+     */
     protected static ApplicationConfig applicationConfig;
+    /**
+     * The constant serviceConfiguration.
+     */
     protected static ServiceConfiguration serviceConfiguration;
 
+    /**
+     * Gets annotation handler.
+     * @return the annotation handler
+     */
     public static AnnotationHandler getAnnotationHandler() {
         return annotationHandler;
     }
 
+    /**
+     * Init.
+     * @throws ServletException the servlet exception
+     */
     @Override
     public void init() throws ServletException {
         InputStream resourceStreamAux = getServletContext().getResourceAsStream("WEB-INF/application.properties");
@@ -180,6 +204,13 @@ public abstract class AnnotationServlet extends HttpServlet {
         }
     }
 
+    /**
+     * Write output.
+     * @param contentType the content type
+     * @param response    the response
+     * @param object      the object
+     * @throws IOException the io exception
+     */
     protected void writeOutput(MediaType contentType, HttpServletResponse response, Object object) throws IOException {
         String json = (String) object;
         if (contentType != null && !contentType.toString().isEmpty()) {
@@ -188,6 +219,12 @@ public abstract class AnnotationServlet extends HttpServlet {
         response.getOutputStream().write(json.getBytes(DEFAULT_ENCODING));
     }
 
+    /**
+     * Write output.
+     * @param inputStream the input stream
+     * @param response    the response
+     * @throws IOException the io exception
+     */
     protected void writeOutput(InputStream inputStream, HttpServletResponse response) throws IOException {
         if (inputStream == null) {
             Logger.getLogger(this.getClass()).error("inputStream is null");
@@ -196,6 +233,11 @@ public abstract class AnnotationServlet extends HttpServlet {
         Utils.closeStreams(inputStream, response.getOutputStream());
     }
 
+    /**
+     * Add cors headers.
+     * @param request  the request
+     * @param response the response
+     */
     protected void addCORSHeaders(HttpServletRequest request, HttpServletResponse response) {
         String origin = request.getHeader("origin");
         if (origin == null || "".equals(origin)) {

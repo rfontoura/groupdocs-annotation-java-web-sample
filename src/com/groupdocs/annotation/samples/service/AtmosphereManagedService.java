@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * The type Atmosphere managed service.
  * @author Aleksey Permyakov (16.07.14).
  */
 @ManagedService(path = "/annotation")
@@ -20,7 +21,6 @@ public class AtmosphereManagedService {
 
     /**
      * On ready handler
-     *
      * @param resource resource data received from socket
      */
     @Ready
@@ -34,7 +34,6 @@ public class AtmosphereManagedService {
 
     /**
      * On message handler [POST]
-     *
      * @param resource resource data received from socket
      */
     @Post
