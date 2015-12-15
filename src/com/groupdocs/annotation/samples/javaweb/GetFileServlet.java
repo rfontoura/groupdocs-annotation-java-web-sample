@@ -3,6 +3,8 @@ package com.groupdocs.annotation.samples.javaweb;
 
 import com.groupdocs.annotation.common.Utils;
 import com.groupdocs.annotation.exception.AnnotationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import java.io.InputStream;
  * @author imy
  */
 public class GetFileServlet extends AnnotationServlet {
+    private static Logger logger = LoggerFactory.getLogger(GetFileServlet.class);
 
     /**
      * Do get.
@@ -30,7 +33,7 @@ public class GetFileServlet extends AnnotationServlet {
         try {
             writeOutput((InputStream) annotationHandler.getFileHandler(path, false, response), response);
         } catch (AnnotationException e) {
-            Utils.err(AnnotationServlet.class, e);
+            logger.error("get file handler", e);
         }
     }
 }

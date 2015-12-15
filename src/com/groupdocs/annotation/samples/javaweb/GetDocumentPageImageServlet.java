@@ -2,6 +2,8 @@ package com.groupdocs.annotation.samples.javaweb;
 
 
 import com.groupdocs.annotation.common.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import java.io.InputStream;
  * @author imy
  */
 public class GetDocumentPageImageServlet extends AnnotationServlet {
+    private static Logger logger = LoggerFactory.getLogger(GetDocumentPageImageServlet.class);
     /**
      * Do get.
      * @param request  the request
@@ -41,7 +44,7 @@ public class GetDocumentPageImageServlet extends AnnotationServlet {
         try {
             o = annotationHandler.getDocumentPageImageHandler(path, width, quality, usePdf, pageIndex, isPrint, watermarkPosition, watermarkFontSize, useHtmlBasedEngine, rotate, response);
         } catch (Exception e) {
-            Utils.err(AnnotationServlet.class, e);
+            logger.error("get document page image handler", e);
         }
         if (o instanceof InputStream) {
             writeOutput((InputStream) o, response);

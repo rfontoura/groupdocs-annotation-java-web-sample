@@ -14,7 +14,10 @@ import com.groupdocs.annotation.handler.input.InputDataHandler;
 import com.groupdocs.annotation.localization.ILocalization;
 import com.groupdocs.annotation.localization.LocalizationRU;
 import com.groupdocs.annotation.samples.localization.LocalizationGE;
-import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import javax.naming.NoPermissionException;
 import javax.servlet.RequestDispatcher;
@@ -30,6 +33,12 @@ import java.io.IOException;
  * @author imy
  */
 public class IndexServlet extends AnnotationServlet {
+    private static Logger logger = LoggerFactory.getLogger(IndexServlet.class);
+
+    static {
+        // Configure logger
+        BasicConfigurator.configure();
+    }
 
     /**
      * Do get.
@@ -52,7 +61,7 @@ public class IndexServlet extends AnnotationServlet {
         try {
             header = annotationHandler.getHeader(applicationConfig.getApplicationPath(), request);
         } catch (AnnotationException e) {
-            Logger.getLogger(this.getClass()).error(e);
+            logger.error("Can't init application!", e);
         }
         request.setAttribute("annotation_head", header);
         final String userName = Utils.or(request.getParameter("userName"), AnnotationHandler.ANONYMOUS_USERNAME);
@@ -82,7 +91,7 @@ public class IndexServlet extends AnnotationServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("annotation/index.jsp");
             requestDispatcher.forward(request, response);
         } catch (AnnotationException e) {
-            Logger.getLogger(this.getClass()).error(e);
+            logger.error("Can't init application", e);
         }
     }
 

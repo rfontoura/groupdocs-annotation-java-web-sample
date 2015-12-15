@@ -22,7 +22,9 @@ import com.groupdocs.annotation.samples.data.connector.ICustomConnector;
 import com.groupdocs.annotation.samples.javaweb.config.ApplicationConfig;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,6 +41,7 @@ import java.util.Properties;
  * @author imy
  */
 public abstract class AnnotationServlet extends HttpServlet {
+    private static Logger logger = LoggerFactory.getLogger(AnnotationServlet.class);
     /**
      * The constant MESSAGE_HANDLER_THROWS.
      */
@@ -198,7 +201,7 @@ public abstract class AnnotationServlet extends HttpServlet {
 //                });
             }
         } catch (Exception ex) {
-            Logger.getLogger(this.getClass()).error(ex);
+            logger.error("Can't init application!", ex);
         } finally {
             Utils.closeStreams(resourceStreamAux);
         }
@@ -227,7 +230,7 @@ public abstract class AnnotationServlet extends HttpServlet {
      */
     protected void writeOutput(InputStream inputStream, HttpServletResponse response) throws IOException {
         if (inputStream == null) {
-            Logger.getLogger(this.getClass()).error("inputStream is null");
+            logger.error("inputStream is null");
         }
         IOUtils.copy(inputStream, response.getOutputStream());
         Utils.closeStreams(inputStream, response.getOutputStream());

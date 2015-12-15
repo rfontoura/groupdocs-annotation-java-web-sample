@@ -3,6 +3,8 @@ package com.groupdocs.annotation.samples.javaweb;
 import com.groupdocs.annotation.common.Utils;
 import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +16,7 @@ import java.io.IOException;
  * @author imy
  */
 public class GetPrintableHtmlServlet extends AnnotationServlet {
+    private static Logger logger = LoggerFactory.getLogger(GetPrintableHtmlServlet.class);
 
     /**
      * Do get.
@@ -40,7 +43,7 @@ public class GetPrintableHtmlServlet extends AnnotationServlet {
         try {
             writeOutput(MediaType.TEXT_PLAIN, response, annotationHandler.getPrintableHtmlHandler(request, response));
         } catch (AnnotationException e) {
-            Utils.err(AnnotationServlet.class, e);
+            logger.error("get printable html handler", e);
         }
     }
 }
