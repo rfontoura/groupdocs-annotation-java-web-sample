@@ -6,3 +6,7 @@
 /nbbuild.xml
 /lib/GroupDocs.*
 /web/annotation/META-INF/context.xml
+/target/
+/.settings/
+/.classpath
+/.project
