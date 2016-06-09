@@ -1,8 +1,8 @@
 package com.groupdocs.annotation.samples.javaweb.config;
 
-import com.groupdocs.annotation.config.ServiceConfiguration;
-
 import java.util.Properties;
+
+import com.groupdocs.annotation.config.ServiceConfiguration;
 
 /**
  * The type Application config.
@@ -100,7 +100,6 @@ public class ApplicationConfig extends ServiceConfiguration {
         return properties.getProperty("fontsPath", null);
     }
 
-
     /**
      * Gets storage type.
      *
@@ -119,7 +118,6 @@ public class ApplicationConfig extends ServiceConfiguration {
         return properties.getProperty("dbServer", null);
     }
 
-
     /**
      * Gets db port.
      *
@@ -128,7 +126,6 @@ public class ApplicationConfig extends ServiceConfiguration {
     public Integer getDbPort() {
         return Integer.parseInt(properties.getProperty("dbPort", "0"));
     }
-
 
     /**
      * Gets db name.
@@ -139,7 +136,6 @@ public class ApplicationConfig extends ServiceConfiguration {
         return properties.getProperty("dbName", null);
     }
 
-
     /**
      * Gets db username.
      *
@@ -149,7 +145,6 @@ public class ApplicationConfig extends ServiceConfiguration {
         return properties.getProperty("dbUsername", null);
     }
 
-
     /**
      * Gets db password.
      *
@@ -158,7 +153,6 @@ public class ApplicationConfig extends ServiceConfiguration {
     public String getDbPassword() {
         return properties.getProperty("dbPassword", null);
     }
-
 
     /**
      * Gets storage path.
@@ -439,7 +433,6 @@ public class ApplicationConfig extends ServiceConfiguration {
     public Boolean isScrollOnFocus() {
         return true;
     }
-
 
     /**
      * {@inheritDoc}
@@ -783,5 +776,9 @@ public class ApplicationConfig extends ServiceConfiguration {
     @Override
     public Boolean isSearchForSeparateWords() {
         return true;
+    }
+
+    public void setApplicationPath(String applicationPath) {
+        properties.setProperty("applicationPath", applicationPath);
     }
 }

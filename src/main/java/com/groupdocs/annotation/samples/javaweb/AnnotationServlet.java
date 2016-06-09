@@ -1,5 +1,20 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import java.awt.Color;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Locale;
+import java.util.Properties;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
+
 import com.groupdocs.annotation.common.ICallback;
 import com.groupdocs.annotation.common.Pair;
 import com.groupdocs.annotation.common.Utils;
@@ -21,18 +36,6 @@ import com.groupdocs.annotation.samples.data.connector.ICustomConnector;
 import com.groupdocs.annotation.samples.javaweb.config.ApplicationConfig;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
 import com.groupdocs.viewer.config.ServiceConfiguration;
-import org.apache.commons.io.IOUtils;
-import org.apache.log4j.Logger;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.awt.*;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Locale;
-import java.util.Properties;
 
 /**
  * @author imy
@@ -204,5 +207,17 @@ public abstract class AnnotationServlet extends HttpServlet {
         response.addHeader("Access-Control-Allow-Credentials", "true");
         response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         response.addHeader("Access-Control-Allow-Headers", "X-Requested-With,Origin,Content-Type, Accept");
+    }
+
+    protected void configureApplicationPath(HttpServletRequest request) {
+        String path = applicationConfig.getApplicationPath();
+        if (StringUtils.isBlank(path) || "null".equalsIgnoreCase(path)) {
+            String porta = ":" + request.getServerPort();
+            if (":80".equals(porta)) {
+                porta = "";
+            }
+            String url = request.getScheme() + "://" + request.getServerName() + porta + request.getContextPath();
+            applicationConfig.setApplicationPath(url);
+        }
     }
 }

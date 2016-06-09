@@ -1,5 +1,14 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+
 import com.groupdocs.annotation.common.Utils;
 import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.handler.AnnotationHandler;
@@ -9,14 +18,6 @@ import com.groupdocs.annotation.samples.localization.LocalizationGE;
 import com.groupdocs.viewer.domain.path.EncodedPath;
 import com.groupdocs.viewer.domain.path.GroupDocsPath;
 import com.groupdocs.viewer.domain.path.TokenId;
-import org.apache.log4j.Logger;
-
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * @author imy
@@ -26,6 +27,8 @@ public class IndexServlet extends AnnotationServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         addCORSHeaders(request, response);
+        configureApplicationPath(request);
+
         // Configure localization
         ILocalization localization = null;
         if ("RU".equalsIgnoreCase(applicationConfig.getLocalization())) {
@@ -53,13 +56,16 @@ public class IndexServlet extends AnnotationServlet {
             if (!tki.isExpired()) {
                 path = tki;
             }
+        } else {
+            String defaultFile = request.getServletContext().getRealPath("example.pdf");
+            path = new EncodedPath(defaultFile, annotationHandler.getConfiguration());
         }
         final String initialPath = (path == null ? "" : path.getPath());
 
         String userGuid = null;
         try {
             userGuid = annotationHandler.getUserGuid(userName);
-            request.setAttribute("annotation_scripts", annotationHandler.getAnnotationScript(initialPath, userName, userGuid));
+            request.setAttribute("annotation_scripts", annotationHandler.getAnnotationScript(initialPath, userName, userGuid, localization));
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("annotation/index.jsp");
             requestDispatcher.forward(request, response);
         } catch (AnnotationException e) {
