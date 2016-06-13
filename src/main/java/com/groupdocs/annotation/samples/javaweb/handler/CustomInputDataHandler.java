@@ -1,12 +1,13 @@
 package com.groupdocs.annotation.samples.javaweb.handler;
 
-import com.groupdocs.viewer.config.ServiceConfiguration;
-import com.groupdocs.viewer.domain.GroupDocsFileDescription;
-import com.groupdocs.viewer.domain.path.EncodedPath;
-import com.groupdocs.viewer.handlers.input.InputDataHandler;
+import com.groupdocs.annotation.config.ext.ServiceConfiguration;
+import com.groupdocs.annotation.domain.GroupDocsFileDescription;
+import com.groupdocs.annotation.domain.path.EncodedPath;
+import com.groupdocs.annotation.handler.input.InputDataHandler;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.IOUtils;
 
+import javax.naming.NoPermissionException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,13 +24,23 @@ public class CustomInputDataHandler extends InputDataHandler {
     private final ServiceConfiguration serviceConfiguration;
     private String basePath = null;
 
+    /**
+     * Instantiates a new Custom input data handler.
+     * @param serviceConfiguration the service configuration
+     */
     public CustomInputDataHandler(ServiceConfiguration serviceConfiguration) {
         this.basePath = serviceConfiguration.getRootDir();
         this.serviceConfiguration = serviceConfiguration;
     }
 
+    /**
+     * Gets file description list.
+     * @param directory the directory
+     * @return the file description list
+     * @throws NoPermissionException the no permission exception
+     */
     @Override
-    public List<GroupDocsFileDescription> getFileDescriptionList(String directory) {
+    public List<GroupDocsFileDescription> getFileDescriptionList(String directory) throws NoPermissionException {
         File path = new File(basePath + directory);
         if (!path.exists()) {
             path = fileMap.get(directory);
@@ -63,6 +74,12 @@ public class CustomInputDataHandler extends InputDataHandler {
         return fileList;
     }
 
+    /**
+     * Gets file description.
+     * @param guid the guid
+     * @return the file description
+     * @throws Exception the exception
+     */
     @Override
     public GroupDocsFileDescription getFileDescription(String guid) throws Exception {
         //Create file description object
@@ -91,6 +108,11 @@ public class CustomInputDataHandler extends InputDataHandler {
         return fileDescription;
     }
 
+    /**
+     * Gets file.
+     * @param guid the guid
+     * @return the file
+     */
     @Override
     public InputStream getFile(String guid) {
         try {
@@ -100,6 +122,16 @@ public class CustomInputDataHandler extends InputDataHandler {
         }
     }
 
+    /**
+     * Save file string.
+     * @param inputStream  the input stream
+     * @param fileName     the file name
+     * @param timeToLive   the time to live
+     * @param encryptedKey the encrypted key
+     * @return the string
+     * @throws FileNotFoundException the file not found exception
+     * @throws IOException           the io exception
+     */
     @Override
     public String saveFile(InputStream inputStream, String fileName, Integer timeToLive, String encryptedKey) throws FileNotFoundException, IOException {
         //Generate file ID

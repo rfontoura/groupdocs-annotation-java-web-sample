@@ -10,7 +10,6 @@ import com.groupdocs.annotation.data.environment.IEnvironmentCreator;
 public interface ICustomConnector extends IConnector {
     /**
      * Sets environment creator.
-     *
      * @param environmentCreator the environment creator
      */
     public void setEnvironmentCreator(IEnvironmentCreator environmentCreator);

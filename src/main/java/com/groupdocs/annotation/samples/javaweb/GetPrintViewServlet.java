@@ -14,14 +14,29 @@ import java.util.logging.Logger;
 import static com.groupdocs.annotation.common.Utils.toJson;
 
 /**
+ * The type Get print view servlet.
  * @author Aleksey Permyakov on 10.06.14.
  */
 public class GetPrintViewServlet extends AnnotationServlet {
+    /**
+     * Do get.
+     * @param request  the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    /**
+     * Do post.
+     * @param request  the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
+     */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {

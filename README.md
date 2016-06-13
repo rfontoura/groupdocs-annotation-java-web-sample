@@ -1,5 +1,5 @@
 ## GroupDocs.Annotation for Java
-#### **Modified** Servlet Sample 2.0.0 **to run with Apache Maven**
+#### **Modified** Servlet Sample 2.1.0 **to run with Apache Maven**
 ![Alt text](https://media.licdn.com/media/p/7/005/059/258/39b2da3.png "Optional title")
 
 How-to install/run

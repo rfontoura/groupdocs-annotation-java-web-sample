@@ -9,20 +9,35 @@ import com.groupdocs.annotation.data.environment.IEnvironmentCreator;
 import com.groupdocs.annotation.data.tables.interfaces.IAnnotation;
 import com.groupdocs.annotation.data.tables.interfaces.IDocument;
 import com.groupdocs.annotation.data.tables.interfaces.ISession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.*;
 
 /**
+ * The type Custom xml annotation dao.
  * @author Aleksey Permyakov (13.10.2014)
  */
 public class CustomXmlAnnotationDaoImpl extends CustomAbstractDaoImpl<IAnnotation> implements IAnnotationDao {
+    private static Logger logger = LoggerFactory.getLogger(CustomXmlAnnotationDaoImpl.class);
+    /**
+     * The constant ANNOTATION_FILE_NAME.
+     */
     public static final String ANNOTATION_FILE_NAME = "annotation.xml";
 
+    /**
+     * Instantiates a new Custom xml annotation dao.
+     * @param environmentCreator the environment creator
+     */
     public CustomXmlAnnotationDaoImpl(IEnvironmentCreator environmentCreator) {
         super(environmentCreator);
     }
 
+    /**
+     * Save data.
+     * @param data the data
+     */
     @Override
     protected void saveData(List<IAnnotation> data) {
         DaoFactory daoFactory = null;
@@ -60,12 +75,16 @@ public class CustomXmlAnnotationDaoImpl extends CustomAbstractDaoImpl<IAnnotatio
                 }
             }
         } catch (Exception e) {
-            Utils.err(this.getClass(), e);
+            logger.error("Save data", e);
         } finally {
             Utils.closeStreams(daoFactory);
         }
     }
 
+    /**
+     * Load data list.
+     * @return the list
+     */
     @Override
     protected List<IAnnotation> loadData() {
         String tempPath = Utils.getTempPath();

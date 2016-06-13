@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import static com.groupdocs.annotation.common.Utils.toJson;
 
 /**
+ * The type Upload file servlet.
  * @author Aleksey Permyakov (16.07.14).
  */
 @MultipartConfig(
@@ -27,10 +28,10 @@ import static com.groupdocs.annotation.common.Utils.toJson;
 public class UploadFileServlet extends AnnotationServlet {
     /**
      * GET request
-     * @param request object
+     * @param request  object
      * @param response object
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,10 +40,10 @@ public class UploadFileServlet extends AnnotationServlet {
 
     /**
      * POST request
-     * @param request object
+     * @param request  object
      * @param response object
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

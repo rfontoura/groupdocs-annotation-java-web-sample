@@ -1,23 +1,9 @@
 package com.groupdocs.annotation.samples.javaweb;
 
-import java.awt.Color;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Locale;
-import java.util.Properties;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
-
 import com.groupdocs.annotation.common.ICallback;
 import com.groupdocs.annotation.common.Pair;
 import com.groupdocs.annotation.common.Utils;
+import com.groupdocs.annotation.config.ext.ServiceConfiguration;
 import com.groupdocs.annotation.data.common.StorageType;
 import com.groupdocs.annotation.data.common.StoreLogic;
 import com.groupdocs.annotation.data.connector.IConnector;
@@ -35,22 +21,60 @@ import com.groupdocs.annotation.samples.data.connector.CustomDatabaseConnector;
 import com.groupdocs.annotation.samples.data.connector.ICustomConnector;
 import com.groupdocs.annotation.samples.javaweb.config.ApplicationConfig;
 import com.groupdocs.annotation.samples.javaweb.media.MediaType;
-import com.groupdocs.viewer.config.ServiceConfiguration;
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Locale;
+import java.util.Properties;
 
 /**
+ * The type Annotation servlet.
  * @author imy
  */
 public abstract class AnnotationServlet extends HttpServlet {
+    private static Logger logger = LoggerFactory.getLogger(AnnotationServlet.class);
+    /**
+     * The constant MESSAGE_HANDLER_THROWS.
+     */
     protected static final String MESSAGE_HANDLER_THROWS = "Handler throws exception: {0}";
+    /**
+     * The constant DEFAULT_ENCODING.
+     */
     protected static final String DEFAULT_ENCODING = "UTF-8";
+    /**
+     * The constant annotationHandler.
+     */
     protected static AnnotationHandler annotationHandler = null;
+    /**
+     * The constant applicationConfig.
+     */
     protected static ApplicationConfig applicationConfig;
+    /**
+     * The constant serviceConfiguration.
+     */
     protected static ServiceConfiguration serviceConfiguration;
 
+    /**
+     * Gets annotation handler.
+     * @return the annotation handler
+     */
     public static AnnotationHandler getAnnotationHandler() {
         return annotationHandler;
     }
 
+    /**
+     * Init.
+     * @throws ServletException the servlet exception
+     */
     @Override
     public void init() throws ServletException {
         InputStream resourceStreamAux = getServletContext().getResourceAsStream("WEB-INF/application.properties");
@@ -177,12 +201,19 @@ public abstract class AnnotationServlet extends HttpServlet {
 //                });
             }
         } catch (Exception ex) {
-            Logger.getLogger(this.getClass()).error(ex);
+            logger.error("Can't init application!", ex);
         } finally {
             Utils.closeStreams(resourceStreamAux);
         }
     }
 
+    /**
+     * Write output.
+     * @param contentType the content type
+     * @param response    the response
+     * @param object      the object
+     * @throws IOException the io exception
+     */
     protected void writeOutput(MediaType contentType, HttpServletResponse response, Object object) throws IOException {
         String json = (String) object;
         if (contentType != null && !contentType.toString().isEmpty()) {
@@ -191,14 +222,25 @@ public abstract class AnnotationServlet extends HttpServlet {
         response.getOutputStream().write(json.getBytes(DEFAULT_ENCODING));
     }
 
+    /**
+     * Write output.
+     * @param inputStream the input stream
+     * @param response    the response
+     * @throws IOException the io exception
+     */
     protected void writeOutput(InputStream inputStream, HttpServletResponse response) throws IOException {
         if (inputStream == null) {
-            Logger.getLogger(this.getClass()).error("inputStream is null");
+            logger.error("inputStream is null");
         }
         IOUtils.copy(inputStream, response.getOutputStream());
         Utils.closeStreams(inputStream, response.getOutputStream());
     }
 
+    /**
+     * Add cors headers.
+     * @param request  the request
+     * @param response the response
+     */
     protected void addCORSHeaders(HttpServletRequest request, HttpServletResponse response) {
         String origin = request.getHeader("origin");
         if (origin == null || "".equals(origin)) {
@@ -207,17 +249,5 @@ public abstract class AnnotationServlet extends HttpServlet {
         response.addHeader("Access-Control-Allow-Credentials", "true");
         response.addHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
         response.addHeader("Access-Control-Allow-Headers", "X-Requested-With,Origin,Content-Type, Accept");
-    }
-
-    protected void configureApplicationPath(HttpServletRequest request) {
-        String path = applicationConfig.getApplicationPath();
-        if (StringUtils.isBlank(path) || "null".equalsIgnoreCase(path)) {
-            String porta = ":" + request.getServerPort();
-            if (":80".equals(porta)) {
-                porta = "";
-            }
-            String url = request.getScheme() + "://" + request.getServerName() + porta + request.getContextPath();
-            applicationConfig.setApplicationPath(url);
-        }
     }
 }

@@ -1,10 +1,23 @@
 package com.groupdocs.annotation.samples.javaweb.media;
 
 /**
+ * The enum Media type.
  * @author Alex Bobkov
  */
 public enum MediaType {
-    APPLICATION_JSON("application/json"), TEXT_HTML("text/html"), IMAGE_PNG("image/png"), TEXT_PLAIN("text/plain");
+    /**
+     * Application json media type.
+     */
+    APPLICATION_JSON("application/json"), /**
+     * Text html media type.
+     */
+    TEXT_HTML("text/html"), /**
+     * Image png media type.
+     */
+    IMAGE_PNG("image/png"), /**
+     * Text plain media type.
+     */
+    TEXT_PLAIN("text/plain");
 
     private final String name;
 
@@ -12,6 +25,10 @@ public enum MediaType {
         this.name = name;
     }
 
+    /**
+     * To string string.
+     * @return the string
+     */
     @Override
     public String toString() {
         return name;

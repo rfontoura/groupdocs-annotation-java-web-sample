@@ -1,34 +1,58 @@
 package com.groupdocs.annotation.samples.javaweb;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
+import javax.naming.NoPermissionException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.BasicConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import com.groupdocs.annotation.api.ApiFactory;
+import com.groupdocs.annotation.api.interfaces.IExporter;
 import com.groupdocs.annotation.common.Utils;
+import com.groupdocs.annotation.data.DaoFactory;
+import com.groupdocs.annotation.domain.GroupDocsFileDescription;
+import com.groupdocs.annotation.domain.path.EncodedPath;
+import com.groupdocs.annotation.domain.path.GroupDocsPath;
+import com.groupdocs.annotation.domain.path.TokenId;
 import com.groupdocs.annotation.exception.AnnotationException;
 import com.groupdocs.annotation.handler.AnnotationHandler;
+import com.groupdocs.annotation.handler.input.InputDataHandler;
 import com.groupdocs.annotation.localization.ILocalization;
 import com.groupdocs.annotation.localization.LocalizationRU;
 import com.groupdocs.annotation.samples.localization.LocalizationGE;
-import com.groupdocs.viewer.domain.path.EncodedPath;
-import com.groupdocs.viewer.domain.path.GroupDocsPath;
-import com.groupdocs.viewer.domain.path.TokenId;
 
 /**
+ * The type Index servlet.
+ *
  * @author imy
  */
 public class IndexServlet extends AnnotationServlet {
+    private static Logger logger = LoggerFactory.getLogger(IndexServlet.class);
 
+    static {
+        // Configure logger
+        BasicConfigurator.configure();
+    }
+
+    /**
+     * Do get.
+     *
+     * @param request the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException the io exception
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         addCORSHeaders(request, response);
-        configureApplicationPath(request);
-
         // Configure localization
         ILocalization localization = null;
         if ("RU".equalsIgnoreCase(applicationConfig.getLocalization())) {
@@ -40,7 +64,7 @@ public class IndexServlet extends AnnotationServlet {
         try {
             header = annotationHandler.getHeader(applicationConfig.getApplicationPath(), request);
         } catch (AnnotationException e) {
-            Logger.getLogger(this.getClass()).error(e);
+            logger.error("Can't init application!", e);
         }
         request.setAttribute("annotation_head", header);
         final String userName = Utils.or(request.getParameter("userName"), AnnotationHandler.ANONYMOUS_USERNAME);
@@ -49,16 +73,20 @@ public class IndexServlet extends AnnotationServlet {
         String tokenId = request.getParameter("tokenId");
 
         GroupDocsPath path = null;
-        if (file != null && !file.isEmpty()) {
-            path = new EncodedPath(file, annotationHandler.getConfiguration());
-        } else if (tokenId != null && !tokenId.isEmpty()) {
-            TokenId tki = new TokenId(tokenId, applicationConfig.getEncryptionKey());
-            if (!tki.isExpired()) {
-                path = tki;
+        try {
+            if (file != null && !file.isEmpty()) {
+                path = new EncodedPath(file, annotationHandler.getConfiguration());
+            } else if (tokenId != null && !tokenId.isEmpty()) {
+                TokenId tki = new TokenId(tokenId, applicationConfig.getEncryptionKey());
+                if (!tki.isExpired()) {
+                    path = tki;
+                }
+            } else {
+                String defaultFile = request.getServletContext().getRealPath("example.pdf");
+                path = new EncodedPath(defaultFile, annotationHandler.getConfiguration());
             }
-        } else {
-            String defaultFile = request.getServletContext().getRealPath("example.pdf");
-            path = new EncodedPath(defaultFile, annotationHandler.getConfiguration());
+        } catch (NoPermissionException e) {
+            e.printStackTrace();
         }
         final String initialPath = (path == null ? "" : path.getPath());
 
@@ -69,12 +97,45 @@ public class IndexServlet extends AnnotationServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("annotation/index.jsp");
             requestDispatcher.forward(request, response);
         } catch (AnnotationException e) {
-            Logger.getLogger(this.getClass()).error(e);
+            logger.error("Can't init application", e);
         }
     }
 
+    /**
+     * Do post.
+     *
+     * @param request the request
+     * @param response the response
+     * @throws ServletException the servlet exception
+     * @throws IOException the io exception
+     */
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+
+    /**
+     * Export document.
+     *
+     * @param documentGuid the document guid
+     * @throws Exception the exception
+     */
+    public void exportDocument(String documentGuid) throws Exception {
+        final IExporter exporter = ApiFactory.createExporter(annotationHandler);
+        DaoFactory daoFactory = DaoFactory.create();
+        final InputDataHandler inputDataHandler = annotationHandler.getInputDataHandler();
+        final GroupDocsFileDescription groupDocsFileDescription = inputDataHandler.getFileDescription(documentGuid);
+        try {
+            final boolean exportAnnotations = true;
+            // Export annotations as not editable (rasterized)
+            // At the moment it supports next annotations:
+            // Area, Point, Polyline, Resources Redaction, Strikeout, Text, Text Redaction, Underline
+            // Opacity in annotations does not support
+            final boolean rasterizeAnnotations = true;
+            exporter.exportToPdf(daoFactory, groupDocsFileDescription, new FileOutputStream("D:\\test.pdf"), exportAnnotations, rasterizeAnnotations);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

@@ -1,6 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE web-app
+        PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
 
     <servlet>
         <servlet-name>IndexServlet</servlet-name>
@@ -49,17 +53,17 @@
 
     <servlet-mapping>
         <servlet-name>GetDocumentPageImageServlet</servlet-name>
-        <url-pattern>/document-viewer/GetDocumentPageImageHandler/*</url-pattern>
+        <url-pattern>/GetDocumentPageImageHandler/*</url-pattern>
     </servlet-mapping>
 
-    <servlet>
+        <servlet>
         <servlet-name>GetFileServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.GetFileServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>GetFileServlet</servlet-name>
-        <url-pattern>/document-viewer/GetFileHandler/*</url-pattern>
+        <url-pattern>/GetFileHandler/*</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -69,7 +73,7 @@
 
     <servlet-mapping>
         <servlet-name>GetImageUrlsServlet</servlet-name>
-        <url-pattern>/document-viewer/GetImageUrlsHandler</url-pattern>
+        <url-pattern>/GetImageUrlsHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -79,44 +83,44 @@
 
     <servlet-mapping>
         <servlet-name>GetPrintableHtmlServlet</servlet-name>
-        <url-pattern>/document-viewer/GetPrintableHtmlHandler</url-pattern>
+        <url-pattern>/GetPrintableHtmlHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>ListAnnotationsServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.ListAnnotationsServlet</servlet-class>
     </servlet>
-
+    
     <servlet-mapping>
         <servlet-name>ListAnnotationsServlet</servlet-name>
         <url-pattern>/ListAnnotationsHandler</url-pattern>
     </servlet-mapping>
-
+    
     <servlet>
         <servlet-name>ExportAnnotationsServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.ExportAnnotationsServlet</servlet-class>
     </servlet>
-
+    
     <servlet-mapping>
         <servlet-name>ExportAnnotationsServlet</servlet-name>
         <url-pattern>/ExportAnnotationsHandler</url-pattern>
     </servlet-mapping>
-
+    
     <servlet>
         <servlet-name>GetPdfVersionOfDocumentServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.GetPdfVersionOfDocumentServlet</servlet-class>
     </servlet>
-
+    
     <servlet-mapping>
         <servlet-name>GetPdfVersionOfDocumentServlet</servlet-name>
         <url-pattern>/GetPdfVersionOfDocumentHandler</url-pattern>
     </servlet-mapping>
-
+    
     <servlet>
         <servlet-name>CreateAnnotationServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.CreateAnnotationServlet</servlet-class>
     </servlet>
-
+    
     <servlet-mapping>
         <servlet-name>CreateAnnotationServlet</servlet-name>
         <url-pattern>/CreateAnnotationHandler</url-pattern>
@@ -156,7 +160,7 @@
         <servlet-name>DeleteAnnotationReplyServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.DeleteAnnotationReplyServlet</servlet-class>
     </servlet>
-
+    
     <servlet-mapping>
         <servlet-name>DeleteAnnotationReplyServlet</servlet-name>
         <url-pattern>/DeleteAnnotationReplyHandler</url-pattern>
@@ -166,7 +170,7 @@
         <servlet-name>DeleteAnnotationServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.DeleteAnnotationServlet</servlet-class>
     </servlet>
-
+    
     <servlet-mapping>
         <servlet-name>DeleteAnnotationServlet</servlet-name>
         <url-pattern>/DeleteAnnotationHandler</url-pattern>
@@ -176,7 +180,7 @@
         <servlet-name>SaveTextFieldServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.SaveTextFieldServlet</servlet-class>
     </servlet>
-
+    
     <servlet-mapping>
         <servlet-name>SaveTextFieldServlet</servlet-name>
         <url-pattern>/SaveTextFieldHandler</url-pattern>
@@ -186,7 +190,7 @@
         <servlet-name>SetTextFieldColorServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.SetTextFieldColorServlet</servlet-class>
     </servlet>
-
+    
     <servlet-mapping>
         <servlet-name>SetTextFieldColorServlet</servlet-name>
         <url-pattern>/SetTextFieldColorHandler</url-pattern>
@@ -196,7 +200,7 @@
         <servlet-name>MoveAnnotationMarkerServlet</servlet-name>
         <servlet-class>com.groupdocs.annotation.samples.javaweb.MoveAnnotationMarkerServlet</servlet-class>
     </servlet>
-
+    
     <servlet-mapping>
         <servlet-name>MoveAnnotationMarkerServlet</servlet-name>
         <url-pattern>/MoveAnnotationMarkerHandler</url-pattern>
@@ -209,7 +213,7 @@
 
     <servlet-mapping>
         <servlet-name>LoadFileBrowserTreeDataServlet</servlet-name>
-        <url-pattern>/document-viewer/LoadFileBrowserTreeDataHandler</url-pattern>
+        <url-pattern>/LoadFileBrowserTreeDataHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -219,7 +223,7 @@
 
     <servlet-mapping>
         <servlet-name>ViewDocumentServlet</servlet-name>
-        <url-pattern>/document-viewer/ViewDocumentHandler</url-pattern>
+        <url-pattern>/ViewDocumentHandler</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -299,7 +303,7 @@
 
     <servlet-mapping>
         <servlet-name>RotatePageServlet</servlet-name>
-        <url-pattern>/document-viewer/RotatePageHandler/*</url-pattern>
+        <url-pattern>/RotatePageHandler/*</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -326,23 +330,23 @@
     </filter-mapping>
 
     <!-- Atmosphere -->
-    <servlet>
+    <!-- <servlet>
         <servlet-name>AtmosphereServlet</servlet-name>
         <servlet-class>org.atmosphere.cpr.AtmosphereServlet</servlet-class>
         <init-param>
-            <!-- Jersey base package of your resources -->
+            Jersey base package of your resources
             <param-name>com.sun.jersey.config.property.packages</param-name>
             <param-value>com.groupdocs.annotation.samples.service</param-value>
         </init-param>
-        <!--<init-param> -->
-        <!--&lt;!&ndash; Enable Jersey's JSON mapping feature &ndash;&gt; -->
-        <!--<param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name> -->
-        <!--<param-value>true</param-value> -->
-        <!--</init-param> -->
+        <init-param>
+            &lt;!&ndash; Enable Jersey's JSON mapping feature &ndash;&gt;
+            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>
+            <param-value>true</param-value>
+        </init-param>
         <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>AtmosphereServlet</servlet-name>
         <url-pattern>/annotation</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping> -->
 </web-app>

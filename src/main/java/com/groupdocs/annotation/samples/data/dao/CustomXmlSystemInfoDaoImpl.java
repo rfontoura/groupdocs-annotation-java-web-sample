@@ -10,16 +10,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The type Custom xml system info dao.
  * @author Aleksey Permyakov (13.10.2014)
  */
 public class CustomXmlSystemInfoDaoImpl extends CustomAbstractDaoImpl<ISystemInfo> implements ISystemInfoDao {
 
+    /**
+     * The constant SYSTEM_INFO_FILE_NAME.
+     */
     public static final String SYSTEM_INFO_FILE_NAME = "SystemInfo.xml";
 
+    /**
+     * Instantiates a new Custom xml system info dao.
+     * @param environmentCreator the environment creator
+     */
     public CustomXmlSystemInfoDaoImpl(IEnvironmentCreator environmentCreator) {
         super(environmentCreator);
     }
 
+    /**
+     * Save data.
+     * @param data the data
+     */
     @Override
     protected void saveData(List<ISystemInfo> data) {
         String tempPath = Utils.getTempPath();
@@ -35,6 +47,10 @@ public class CustomXmlSystemInfoDaoImpl extends CustomAbstractDaoImpl<ISystemInf
         }
     }
 
+    /**
+     * Load data list.
+     * @return the list
+     */
     @Override
     protected List<ISystemInfo> loadData() {
         String tempPath = Utils.getTempPath();

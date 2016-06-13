@@ -10,16 +10,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * The type Custom xml document dao.
  * @author Aleksey Permyakov (13.10.2014)
  */
 public class CustomXmlDocumentDaoImpl extends CustomAbstractDaoImpl<IDocument> implements IDocumentDao {
 
+    /**
+     * The constant DOCUMENT_FILE_NAME.
+     */
     public static final String DOCUMENT_FILE_NAME = "Document.xml";
 
+    /**
+     * Instantiates a new Custom xml document dao.
+     * @param environmentCreator the environment creator
+     */
     public CustomXmlDocumentDaoImpl(IEnvironmentCreator environmentCreator) {
         super(environmentCreator);
     }
 
+    /**
+     * Save data.
+     * @param data the data
+     */
     @Override
     protected void saveData(List<IDocument> data) {
         String tempPath = Utils.getTempPath();
@@ -35,6 +47,10 @@ public class CustomXmlDocumentDaoImpl extends CustomAbstractDaoImpl<IDocument> i
         }
     }
 
+    /**
+     * Load data list.
+     * @return the list
+     */
     @Override
     protected List<IDocument> loadData() {
         String tempPath = Utils.getTempPath();

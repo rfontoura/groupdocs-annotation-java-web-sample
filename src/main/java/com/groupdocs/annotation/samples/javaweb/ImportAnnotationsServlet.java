@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * The type Import annotations servlet.
  * @author Aleksey Permyakov (16.07.14).
  */
 public class ImportAnnotationsServlet extends AnnotationServlet {
     /**
      * POST request
-     *
      * @param request  object
      * @param response object
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         addCORSHeaders(request, response);
@@ -31,11 +31,10 @@ public class ImportAnnotationsServlet extends AnnotationServlet {
 
     /**
      * GET request
-     *
      * @param request  object
      * @param response object
-     * @throws ServletException
-     * @throws IOException
+     * @throws ServletException the servlet exception
+     * @throws IOException      the io exception
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         throw new UnsupportedOperationException("Not supported yet.");
